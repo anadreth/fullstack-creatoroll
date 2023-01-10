@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { setLogout } from "../../state";
@@ -8,7 +8,6 @@ const UserDashboard = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.user);
-    
 
     const handleClickLogOut = async () => {
         dispatch(
