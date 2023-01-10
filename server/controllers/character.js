@@ -12,3 +12,13 @@ export const saveCharacter = async (req, res) => {
         res.status(404).json({ message: error.message});
     }
 }
+
+export const getCharacters = async (req, res) => {
+    try {
+        const { id } = req.body;
+        const user = await User.findById(id);
+        res.status(200).send(user.characters);
+    } catch (error) {
+        res.status(404).json({ message: error.message});
+    }
+}
