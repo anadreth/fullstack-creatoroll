@@ -3,8 +3,8 @@ import User from '../models/User.js';
 export const saveCharacter = async (req, res) => {
     try {
         
-        const { id } = req.body;
-        const newCharacter = "finally";
+        const { id, race } = req.body;
+        console.log(req.body);
         const user = await User.findById(id);
         const updatedUser =  await User.updateOne({_id: id}, {characters: [...user.characters, newCharacter]});
         res.status(200).send(updatedUser);

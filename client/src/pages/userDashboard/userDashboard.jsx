@@ -21,7 +21,6 @@ const UserDashboard = () => {
             }),
         })
         const characters = await response.json();
-        console.log(characters);
         setCurrentCharacters(characters);
     }
 
