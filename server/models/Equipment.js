@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const CharClassSchema = new mongoose.Schema(
+const EquipmentSchema = new mongoose.Schema(
     {
-        title: {
+        equipmentName: {
             type: String,
             required: true,
             min: 3,
@@ -13,23 +13,23 @@ const CharClassSchema = new mongoose.Schema(
             max: 50,
         },
         description: {
+            type: Text,
+        },
+        iconPath: {
             type: String,
+            default: "",
+        },
+        picturePath: {
+            type: String,
+            default: "", 
         },
         attributes: {
             type: Array,
             default: [],
         },
-        iconPath: {
-            type: String,
-            default: "", 
-        },
-        picturePath: {
-            type: String,
-            default: "",
-        }
     },
-    {timestamps: true}
+    {timestaps: true}
 )
 
-const CharClass = mongoose.model("CharClass", CharClassSchema);
-export default CharClass;
+const Equipment = mongoose.model("Equipment", EquipmentSchema);
+export default Equipment;

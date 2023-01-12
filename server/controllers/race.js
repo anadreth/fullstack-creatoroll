@@ -1,7 +1,7 @@
-import CharClass from "./../models/CharClass.js"
+import Race from "../models/Race.js"
 
 /* SAVE RACE INTO DB */
-export const saveClass= async (req, res) => {
+export const saveRace= async (req, res) => {
     try {
         const {
             title,
@@ -12,8 +12,8 @@ export const saveClass= async (req, res) => {
             attributes,
         } = req.body;
 
-        const newClass = new CharClass({
-            title: title,
+        const newRace = new Race({
+            raceName: title,
             shortDescription: shortDescription,
             description: description,
             iconPath: iconPath,
@@ -21,18 +21,18 @@ export const saveClass= async (req, res) => {
             attributes: attributes,
         })
 
-        const savedClass = await newClass.save();
-        res.status(201).json(savedClass);
+        const savedRace = await newRace.save();
+        res.status(201).json(savedRace);
     } catch (error) {
         res.status(404).json({ message: error.message});
     }
 }
 
 //GET RACE FROM DB
-export const getClasses = async (req, res) => {
+export const getRaces = async (req, res) => {
     try {
-        const classes = await CharClass.find();
-        res.status(200).send(classes);
+        const races = await Race.find();
+        res.status(200).send(races);
     } catch (error) {
         res.status(404).json({ message: error.message});
     }

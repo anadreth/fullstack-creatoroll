@@ -1,10 +1,9 @@
 import React from 'react'
-import { Formik } from "formik";
 import { useSelector } from 'react-redux';
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { v4 as uuid } from 'uuid';
 
 const characterSchema = yup.object().shape({
     name: yup.string().required("required"),
@@ -18,15 +17,19 @@ const Form = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.user);
-
+    const unique_id = uuid();
+    
     //for FORM SUBMISSION
-    const { charName, race, charClass, attributes, background, traits } = useSelector(state => ({
+    const { charName, race, charClass, strength, dexterity, intelligence, background, traits, equipment } = useSelector(state => ({
         charName: state.charName,
         race: state.race,
         charClass: state.charClass,
-        attributes: state.attributes,
+        strength: state.strength,
+        dexterity: state.dexterity,
+        intelligence: state.intelligence,
         background: state.background,
         traits: state.traits,
+        equipment: state.equipment,
     }));
      
     const saveCharacter = async () => {
@@ -35,7 +38,16 @@ const Form = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 id: currentUser._id,
+                charId: unique_id,
+                charName: charName,
                 race: race,
+                charClass: charClass,
+                strength: strength,
+                dexterity: dexterity,
+                intelligence: intelligence,
+                background: background,
+                traits: traits,
+                equipment: equipment,
             }),
         });
         const saved = await savedResponse.json();
@@ -52,7 +64,7 @@ const Form = () => {
 
     return(
         <div>
-            <button onClick={handleFormSubmit}>CLICK ME</button>
+            <button onClick={handleFormSubmit}>Save Character</button>
         </div>
     )
 }

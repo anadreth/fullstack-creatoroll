@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
 
-const CharClassSchema = new mongoose.Schema(
+const RaceSchema = new mongoose.Schema(
     {
-        title: {
+        raceName: {
             type: String,
             required: true,
+            unique: true,
             min: 3,
             max: 20,
         },
@@ -15,21 +16,21 @@ const CharClassSchema = new mongoose.Schema(
         description: {
             type: String,
         },
+        iconPath: {
+            type: String,
+            default: "",
+        },
+        picturePath: {
+            type: String,
+            default: "", 
+        },
         attributes: {
             type: Array,
             default: [],
         },
-        iconPath: {
-            type: String,
-            default: "", 
-        },
-        picturePath: {
-            type: String,
-            default: "",
-        }
     },
     {timestamps: true}
 )
 
-const CharClass = mongoose.model("CharClass", CharClassSchema);
-export default CharClass;
+const Race = mongoose.model("Race", RaceSchema);
+export default Race;

@@ -1,16 +1,32 @@
 
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setNewCharacter } from '../../state';
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setRace } from '../../state';
+import CreateNewForm from "../CreateNewForm/CreateNewForm";
+import SearchBar from "../SearchBar/SearchBar";
+
 
 const Race = () => {
     const dispatch = useDispatch();
-    const race = useSelector((state) => state.race)
-    
+    const [allRaces, setAllRaces] = useState([]);
+    const [searchBar, setSearchBar] = useState("");
 
+    const getRaces = async () =>{
+        const racesResponse = await fetch("http://localhost:3000/race/getall", {
+            method: "GET",
+        })
+        const races = await racesResponse.json();
+        setAllRaces(races);
+    }
+
+    useEffect(() => {
+        getRaces();
+    }, [])
+    
     const updateRace = (e) => {
         dispatch(
-            setNewCharacter({
+            setRace({
                 race: e.target.value,
             })
         )
@@ -20,17 +36,16 @@ const Race = () => {
     return (
         <div>
             <h1>Choose Your Race</h1>
+            <SearchBar setSearchBar={setSearchBar}/>
             <form>
-                <div>
-                    <input type="radio" id="human" value="human" name="race" onChange={updateRace}/>
-                    <label htmlFor="human">Human</label>
-                </div>
-                <div>
-                    <input type="radio" id="elf" value="elf" name="race" onChange={updateRace}/>
-                    <label htmlFor="elf">Elf</label>
-                </div>
+                <ul>
+                    {allRaces.filter(race =>
+                     race.raceName.slice(0, searchBar.length) === searchBar).map(race => <li key={race.raceName}><input onClick={updateRace} type="radio" name="race" id={race.raceName} value={race.raceName}/><label htmlFor={race.raceName}>{race.raceName}</label></li>)
+                       }
+                </ul>
             </form>
-            <p>Current race is: {race}</p>
+            <button onClick={getRaces}>Refresh</button>
+            <CreateNewForm fetchLink={"http://localhost:3000/race/save"} type="Race" />
         </div>
     )
 }

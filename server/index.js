@@ -11,6 +11,9 @@ import { fileURLToPath } from 'url';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import characterRoutes from './routes/character.js'
+import raceRoutes from './routes/race.js'
+import classRoutes from './routes/charClass.js'
+import traitsRoutes from './routes/traits.js'
 import { register } from './controllers/auth.js';
 
 /* CONFIGURATION */
@@ -48,6 +51,9 @@ app.post("/auth/register", upload.single("picture"), register);
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/character", characterRoutes);
+app.use("/race", raceRoutes);
+app.use("/class", classRoutes);
+app.use("/traits", traitsRoutes);
 
 /*MONGOOSE SETUP*/
 const PORT = process.env.port || 6001;

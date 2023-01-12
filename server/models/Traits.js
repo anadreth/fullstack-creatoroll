@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const CharClassSchema = new mongoose.Schema(
+const TraitsSchema = new mongoose.Schema(
     {
         title: {
             type: String,
@@ -15,21 +15,17 @@ const CharClassSchema = new mongoose.Schema(
         description: {
             type: String,
         },
+        iconPath: {
+            type: String,
+            default: "",
+        },
         attributes: {
             type: Array,
             default: [],
         },
-        iconPath: {
-            type: String,
-            default: "", 
-        },
-        picturePath: {
-            type: String,
-            default: "",
-        }
     },
     {timestamps: true}
 )
 
-const CharClass = mongoose.model("CharClass", CharClassSchema);
-export default CharClass;
+const Traits = mongoose.model("Traits", TraitsSchema);
+export default Traits;

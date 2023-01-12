@@ -1,10 +1,23 @@
 import User from '../models/User.js';
-/* SAVE CHARACTER INTO USER ARRAY */
+/* SAVE CHARACTER INTO USER ARRAY IN DB */
 export const saveCharacter = async (req, res) => {
     try {
         
-        const { id, race } = req.body;
+        const { id, charId, charName, race, charClass, strength, dexterity, intelligence, background, traits, equipment} = req.body;
         console.log(req.body);
+        const newCharacter = {
+            charId: charId,
+            charName: charName,
+            race: race,
+            charClass: charClass,
+            strength: strength,
+            dexterity: dexterity,
+            intelligence: intelligence,
+            background: background,
+            traits: traits,
+            equipment: equipment,
+        };
+        console.log(newCharacter);
         const user = await User.findById(id);
         const updatedUser =  await User.updateOne({_id: id}, {characters: [...user.characters, newCharacter]});
         res.status(200).send(updatedUser);
@@ -13,6 +26,8 @@ export const saveCharacter = async (req, res) => {
     }
 }
 
+
+//GET CHARACTER FROM DB
 export const getCharacters = async (req, res) => {
     try {
         const { id } = req.body;

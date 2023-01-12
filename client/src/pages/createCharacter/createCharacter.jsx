@@ -3,17 +3,37 @@ import Form from "./Form";
 import { useSelector, useDispatch } from "react-redux";
 import Race from "../../components/Race/Race";
 import { setCreateCharacterPageCount } from '../../state';
-import CharClass from "../../components/CharClass/charClass";
+import { setCharName } from "../../state";
 import Attributes from "../../components/Attributes/Attributes";
+import { useNavigate } from "react-router-dom";
+import Background from "../../components/Background/Background";
+import { setTraits, setCharClass } from '../../state';
+import PageList from "../../components/PageList/PageList";
 
 
 const CreateCharacter = () => {
     const pageCount = useSelector((state) => state.pageCount);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    console.log(pageCount);
+    const updateClass = (e) => {
+        dispatch(
+            setCharClass({
+                charClass: e.target.value,
+            })
+        )
+
+    }  
+    const updateTraits = (e) => {
+        dispatch(
+            setTraits({
+                traits: e.target.value,
+            })
+        )
+    }   
+
     const increment = () => {
-        if(pageCount < 5){
+        if(pageCount < 6){
             dispatch(
                 setCreateCharacterPageCount({
                     pageCount: pageCount + 1,
@@ -21,9 +41,8 @@ const CreateCharacter = () => {
             )
         }   
     }
-
     const decrement = () => {
-        if(pageCount > 1) {
+        if(pageCount > 0) {
             dispatch(
                 setCreateCharacterPageCount({
                     pageCount: pageCount - 1,
@@ -31,24 +50,62 @@ const CreateCharacter = () => {
             )
         }
     }
-
+    const toInBetween = () => {
+        navigate("/create-in-between");
+    }
+    const handleName = (e) => {
+        dispatch (
+            setCharName({
+                charName: e.target.value,
+            })
+        )
+    }
     return (
         <div>
-            {pageCount === 1 ?
-            <Race />
-            : pageCount === 2 ? 
-            <CharClass /> 
+            {pageCount === 0 ?
+            <div>
+                <h1>Name your character</h1>
+                <input type="text" onChange={handleName} placeholder="name"/>
+                <button onClick={toInBetween}>Create Other</button>
+                <button onClick={increment}>Next</button>
+            </div>
+            : pageCount === 1 ?
+            <div>
+                <Race />
+                <button onClick={decrement}>Back</button>
+                <button onClick={increment}>Next</button> 
+            </div>
+            : pageCount === 2 ?
+            <div> 
+                <PageList type="Class" getUrl="/class/getall" saveUrl="/class/save" updateValue={updateClass}/> 
+                <button onClick={decrement}>Back</button>
+                <button onClick={increment}>Next</button>
+            </div>
             : pageCount === 3 ? 
-            <Attributes />
+            <div>
+                <Attributes />
+                <button onClick={decrement}>Back</button>
+                <button onClick={increment}>Next</button>
+            </div>
             : pageCount === 4 ? 
-            <h1>Background</h1> 
-            :
-            <h1>Traits</h1>}
-
-            <button onClick={decrement}>Back</button>
-            <button onClick={increment}>Next</button>
-            <p>Page number is: {pageCount}</p>
-            <Form />
+            <div>
+                <Background />
+                <button onClick={decrement}>Back</button>
+                <button onClick={increment}>Next</button>
+            </div>
+            : pageCount === 5 ?
+            <div>
+                <PageList type="Trait" getUrl="/traits/getall" saveUrl="/traits/save" updateValue={updateTraits}/>
+                <button onClick={decrement}>Back</button>
+                <button onClick={increment}>Next</button>
+            </div>
+            : 
+            <div>
+                <h1>Equipment</h1>
+                <button onClick={decrement}>Back</button>
+                <Form />
+            </div>
+            }
         </div>
     )
 }

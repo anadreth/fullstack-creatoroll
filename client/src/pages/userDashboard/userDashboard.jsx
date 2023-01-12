@@ -42,7 +42,7 @@ const UserDashboard = () => {
         <div>
             <h1>{currentUser.userName}</h1>
             <ul>
-                {currentCharacters.map(character => <li><p>{character}</p></li>)}
+                {currentCharacters.map(character => <li key={character.charId}><p>{character.race}</p></li>)}
             </ul>
             <button onClick={handleClickCreateNew}>Create Again</button>
             <button onClick={handleClickLogOut}>Log Out</button>
