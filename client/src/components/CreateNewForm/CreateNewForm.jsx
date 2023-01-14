@@ -3,18 +3,23 @@ import { Formik } from "formik";
 import { useState } from "react";
 import * as yup from "yup";
 
-const CreateNewForm = ({fetchLink, type}) => {
+
+
+const CreateNewForm = ({fetchLink, type, iconList}) => {
     const [visible, setVisible] = useState(false);
+
     const createNewSchema = yup.object().shape({
         title: yup.string().required("required"),
         shortDescription:  yup.string().required("required"),
         description: yup.string().required("required"), 
+        iconPath: yup.string(),
     })
     
     const initialValuesCreateNew = {
             title: "",
             shortDescription: "",
             description: "",
+            iconPath: "",
     }
 
     const createNew = async(values, onSubmitProps) => {
@@ -28,14 +33,12 @@ const CreateNewForm = ({fetchLink, type}) => {
             );
             const savedNew = await savedNewResponse.json();
             onSubmitProps.resetForm();
-            console.log(savedNew);
             if (savedNew) {
               setVisible(false);
             }   
     }
 
     const handleFormSubmit = async(values, onSubmitProps) => { 
-        console.log("submitted");
         await createNew(values, onSubmitProps);
     };
 
@@ -45,6 +48,7 @@ const CreateNewForm = ({fetchLink, type}) => {
     const hideVisible = () => {
         setVisible(false);
     }
+
     return (
         <div>
             {!visible ? <></> :
@@ -65,7 +69,15 @@ const CreateNewForm = ({fetchLink, type}) => {
                    <form onSubmit={handleSubmit}>
                        <div>
                            <>
-                               <input 
+                            {iconList !== "" ? 
+                                <select name="iconPath" value={values.iconPath} onChange={handleChange} onBlur={handleBlur}>
+                                <option value="" disabled>Select Icon</option>
+                                {iconList.map(item => <option name="iconPath" key={item.id} value={item.link}>{item.id}</option>)}
+                                </select>
+                                : <></>
+                            }
+                                                              
+                                <input 
                                    type="text" 
                                    name="title"
                                    placeholder='title' 

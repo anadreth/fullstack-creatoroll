@@ -13,14 +13,18 @@ const Attributes = () => {
         dispatch(
             setStrength({
                 strength: 10,
-            }),
+            })
+        );
+        dispatch(
             setDexterity({
                 dexterity: 10,
-            }),
+            })
+        );
+        dispatch(
             setIntelligence({
                 intelligence: 10,
-            }),
-        )
+            })
+        );
     }, [])
 
     const incrementStrength = () => {

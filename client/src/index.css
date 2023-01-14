@@ -1,8 +1,21 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 html,
 body,
 #root,
 .app {
-    height: 100%;
-    width: 100%;
-    font-family: sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Seasons';
+    src: url('./fonts/Fontspring-DEMO-theseasons-reg.otf');
 }

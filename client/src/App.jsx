@@ -7,17 +7,22 @@ import UserDashboard from './pages/userDashboard/userDashboard';
 import CreateCharacter from './pages/createCharacter/createCharacter';
 import CreateAdventure from "./pages/createAdventure/createAdventure";
 import CreateInBetween from "./pages/createInBetween/createInBetween";
+import About from "./pages/about/About";
+import Contact from "./pages/contact/Contact";
 
 function App() {
 
 const isAuth = Boolean(useSelector((state) => state.token));
 
   return (
-    <div className="App">
+    <div className="App font-garet">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/documents" element={<About />} />
           <Route path="/dashboard/:userId" element={isAuth ? <UserDashboard /> : <Navigate to ="/login" />} />
           <Route path="/create-character" element={isAuth ? <CreateCharacter /> : <Navigate to ="/login" />} />
           <Route path="/create-adventure" element={isAuth ? <CreateAdventure /> : <Navigate to ="/login" />} />

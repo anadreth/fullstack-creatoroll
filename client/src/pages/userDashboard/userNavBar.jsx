@@ -2,15 +2,17 @@ import React from "react";
 import { useState,useRef } from "react";
 import { Transition } from '@tailwindui/react'
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogout } from "../../state";
 
 
-
-const NavBar = () => {
+const UserNavBar = ({userName,}) => {
     const [sidebar, setSidebar] = useState(false);
+    const currentUser = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const buttonRef = useRef(null)
     const url = "http://localhost:3000/"
-    const urlHome = "http://localhost:5173/"
    
     const handleSidebar = () => {
         if(sidebar) {
@@ -20,26 +22,27 @@ const NavBar = () => {
             setSidebar(true);
         }
     }
-    const toHome = () => {
-        navigate("/");
+
+    const toDashboard = () => {
+        navigate("/dashboard/" + currentUser._id);
     }
-    const toAbout = () => {
-        navigate("/about");
+    const toCreateNew = () => {
+        navigate("/create-in-between")
     }
-    const toLogin = () => {
-        navigate("/login");
-    }
-    const toContact = () => {
-        navigate("/contact")
+    const handleClickLogOut = async () => {
+        dispatch(
+            setLogout()
+          );
+          navigate("/login");
     }
 
     return (
 
     <nav className="font-poppins text-light bg-light p-3 fixed w-full z-20 top-0 left-0">
         <div className="flex flex-wrap items-center justify-between mx-auto">
-            <button onClick={toHome} className="flex items-center">
+            <button onClick={toDashboard} className="flex items-center">
                 <img src={url + "images/logo.png"} className="h-12 mr-3 sm:h-9" alt="Creato-Roll Logo" />
-                <span className="font-seasons self-center text-xl text-orange whitespace-nowrap tracking-widest">CreatoRoll</span>
+                <span className="font-seasons self-center text-xl text-orange whitespace-nowrap tracking-widest">{userName}</span>
             </button>
             <div className="flex md:order-2">
                 <div>
@@ -72,10 +75,9 @@ const NavBar = () => {
             >
                     <div className="w-full">
                         <ul >
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toHome}>HOME</button></li>
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toContact}>CONTACT</button></li>
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toAbout}>ABOUT</button></li>
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toLogin}>JOIN</button></li>
+                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toDashboard}>Dashboard</button></li>
+                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toCreateNew}>Create New</button></li>
+                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={handleClickLogOut}>Logout</button></li>
                         </ul>
                     </div>
             </Transition>
@@ -84,5 +86,4 @@ const NavBar = () => {
     )
 }
 
-export default NavBar;
-
+export default UserNavBar;

@@ -80,7 +80,8 @@ const Form = () => {
 
 
     return(
-        <div>
+        <div className='flex items-center justify-center font-poppins w-screen h-screen text-red bg-light'>
+            <div className="flex justify-center items-center w-3/4 p-3">
             <Formik 
                 onSubmit={handleFormSubmit}
                 initialValues={isLogin ? initialValuesLogin : initialValuesRegister }
@@ -96,10 +97,12 @@ const Form = () => {
                     isSubmitting,
                 }) => ( 
                     <form onSubmit={handleSubmit}>
-                        <div>
+                        <div className='text-center'>
                         {isRegister && (
-                            <>
+                            <div>  
+                                <h1 className="p-3 text-5xl font-seasons">REGISTER</h1>
                                 <input 
+                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
                                     type="text" 
                                     name="userName"
                                     placeholder='username' 
@@ -108,6 +111,7 @@ const Form = () => {
                                     value={values.username}
                                 />
                                 <input 
+                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
                                     type="text" 
                                     name="email"
                                     placeholder='email' 
@@ -116,18 +120,21 @@ const Form = () => {
                                     value={values.email}
                                     />
                                 <input 
-                                    type="text" 
+                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
+                                    type="password" 
                                     name="password"
                                     placeholder='password' 
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
                                     />
-                            </> 
+                            </div> 
                         )}
                         {isLogin && (
-                            <>
-                                 <input 
+                            <div>
+                                <h1 className="p-3 text-5xl font-seasons ">LOGIN</h1>
+                                <input 
+                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
                                     type="text" 
                                     name="email"
                                     placeholder='email' 
@@ -136,33 +143,45 @@ const Form = () => {
                                     value={values.email}
                                     />
                                 <input 
-                                    type="text" 
+                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
+                                    type="password"
                                     name="password"
                                     placeholder='password' 
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
                                     />
-                            </>
+                            </div>
                         )}
                             <button 
+                            className='p-3 w-full mb-3 bg-red text-light shadow-md'
                                 type="submit" 
                                 disabled={isSubmitting}
                                 >
                                 {isLogin ? "Login" : "Register" }
                             </button>
-                            <p 
-                                onClick={() => {
+                            <div>
+                                {isLogin ? 
+                                <>
+                                    <p>Don't have an acount?</p>
+                                    <a className='underline' onClick={() => {
                                     setPageType(isLogin ? "register" : "login");
                                     resetForm();
-                                }}
-                                >
-                                {isLogin ? "Don't have an account? Sign up here." : "Already have an accoutn? Login here."}
-                            </p>
+                                }}>Sign up here.</a>
+                                </> : 
+                                <>
+                                    <p>Already have an account?</p>
+                                    <a className='underline' onClick={() => {
+                                    setPageType(isLogin ? "register" : "login");
+                                    resetForm();
+                                }}>Log in here.</a>
+                                </>}
+                            </div>
                         </div>
                     </form>
                 )}
             </Formik>
+            </div>
         </div>
     )
 }

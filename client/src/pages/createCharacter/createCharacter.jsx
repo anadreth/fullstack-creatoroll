@@ -7,12 +7,14 @@ import { setCharName } from "../../state";
 import Attributes from "../../components/Attributes/Attributes";
 import { useNavigate } from "react-router-dom";
 import Background from "../../components/Background/Background";
-import { setTraits, setCharClass } from '../../state';
+import { setTraits, setCharClass, setEquipment } from '../../state';
 import PageList from "../../components/PageList/PageList";
+
 
 
 const CreateCharacter = () => {
     const pageCount = useSelector((state) => state.pageCount);
+    const currentName = useSelector((state) => state.charName);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -31,7 +33,13 @@ const CreateCharacter = () => {
             })
         )
     }   
-
+    const updateEqp = (e) => {
+        dispatch(
+            setEquipment({
+                equipment: e.target.value,
+            })
+        )
+    } 
     const increment = () => {
         if(pageCount < 6){
             dispatch(
@@ -60,12 +68,13 @@ const CreateCharacter = () => {
             })
         )
     }
+
     return (
         <div>
             {pageCount === 0 ?
             <div>
                 <h1>Name your character</h1>
-                <input type="text" onChange={handleName} placeholder="name"/>
+                <input type="text" onChange={handleName} placeholder={currentName ? currentName : "Character Name"}/>
                 <button onClick={toInBetween}>Create Other</button>
                 <button onClick={increment}>Next</button>
             </div>
@@ -77,7 +86,7 @@ const CreateCharacter = () => {
             </div>
             : pageCount === 2 ?
             <div> 
-                <PageList type="Class" getUrl="/class/getall" saveUrl="/class/save" updateValue={updateClass}/> 
+                <PageList title="Wizard or Ranger? Oh! Something else entirely..." type="Class" getUrl="/class/getall" saveUrl="/class/save" updateValue={updateClass}/> 
                 <button onClick={decrement}>Back</button>
                 <button onClick={increment}>Next</button>
             </div>
@@ -95,13 +104,13 @@ const CreateCharacter = () => {
             </div>
             : pageCount === 5 ?
             <div>
-                <PageList type="Trait" getUrl="/traits/getall" saveUrl="/traits/save" updateValue={updateTraits}/>
+                <PageList title="Everyone has strengths and weaknesses!"type="Trait" getUrl="/traits/getall" saveUrl="/traits/save" updateValue={updateTraits}/>
                 <button onClick={decrement}>Back</button>
                 <button onClick={increment}>Next</button>
             </div>
             : 
             <div>
-                <h1>Equipment</h1>
+                <PageList title="Sword or that... twig?" type="Equipment" getUrl="/eqp/getall" saveUrl="/eqp/save" updateValue={updateEqp}/>
                 <button onClick={decrement}>Back</button>
                 <Form />
             </div>

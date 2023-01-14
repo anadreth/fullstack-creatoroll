@@ -5,11 +5,12 @@ import CreateNewForm from "../CreateNewForm/CreateNewForm";
 import SearchBar from "../SearchBar/SearchBar";
 
 
-const PageList = ({type, getUrl, saveUrl, updateValue}) => {
+const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
     const dispatch = useDispatch();
     const [all, setAll] = useState([]);
     const [searchBar, setSearchBar] = useState("");
     const url = "http://localhost:3000"
+
 
     const getAll = async () =>{
         const allResponse = await fetch(url + getUrl, {
@@ -25,7 +26,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue}) => {
     
     return (
         <div>
-            <h1>Choose Your {type}</h1>
+            <h1>{title}</h1>
             <SearchBar setSearchBar={setSearchBar}/>
             <form>
                 <ul>
@@ -35,7 +36,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue}) => {
                 </ul>
             </form>
             <button onClick={getAll}>Refresh</button>
-            <CreateNewForm fetchLink={url + saveUrl} type={type}/>
+            <CreateNewForm fetchLink={url + saveUrl} type={type} iconList=""/>
         </div>
     )
 }

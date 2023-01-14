@@ -1,16 +1,20 @@
 
 import React from "react";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setRace } from '../../state';
 import CreateNewForm from "../CreateNewForm/CreateNewForm";
 import SearchBar from "../SearchBar/SearchBar";
+import raceIcons from "./../../assets/raceIcons.js"
+
 
 
 const Race = () => {
     const dispatch = useDispatch();
     const [allRaces, setAllRaces] = useState([]);
     const [searchBar, setSearchBar] = useState("");
+    const icon = useSelector((state) => state.race);
+
 
     const getRaces = async () =>{
         const racesResponse = await fetch("http://localhost:3000/race/getall", {
@@ -25,9 +29,15 @@ const Race = () => {
     }, [])
     
     const updateRace = (e) => {
+        const value = e.target.value.split(',');
+        let map = new Map();
+        map.set("name", value[0]);
+        map.set("iconPath", value[1]);
+        const object = Object.fromEntries(map);
+
         dispatch(
             setRace({
-                race: e.target.value,
+                race: object,
             })
         )
 
@@ -37,15 +47,21 @@ const Race = () => {
         <div>
             <h1>Choose Your Race</h1>
             <SearchBar setSearchBar={setSearchBar}/>
-            <form>
+            <div>
                 <ul>
                     {allRaces.filter(race =>
-                     race.raceName.slice(0, searchBar.length) === searchBar).map(race => <li key={race.raceName}><input onClick={updateRace} type="radio" name="race" id={race.raceName} value={race.raceName}/><label htmlFor={race.raceName}>{race.raceName}</label></li>)
+                        race.raceName.slice(0, searchBar.length) === searchBar)
+                        .map(race =>
+                        <li key={race.raceName}>
+                            <img src={race.iconPath} />
+                            <input onClick={updateRace} type="radio" name="race" id={race.raceName} value={[race.raceName, race.iconPath]}/>
+                            <label htmlFor={race.raceName}>{race.raceName}</label>
+                        </li>)
                        }
                 </ul>
-            </form>
+            </div>
             <button onClick={getRaces}>Refresh</button>
-            <CreateNewForm fetchLink={"http://localhost:3000/race/save"} type="Race" />
+            <CreateNewForm fetchLink={"http://localhost:3000/race/save"} type="Race" iconList={raceIcons}/>
         </div>
     )
 }

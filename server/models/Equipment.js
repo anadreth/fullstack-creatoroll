@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const EquipmentSchema = new mongoose.Schema(
     {
-        equipmentName: {
+        title: {
             type: String,
             required: true,
             min: 3,
@@ -13,7 +13,7 @@ const EquipmentSchema = new mongoose.Schema(
             max: 50,
         },
         description: {
-            type: Text,
+            type: String,
         },
         iconPath: {
             type: String,

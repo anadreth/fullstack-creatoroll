@@ -14,11 +14,13 @@ import characterRoutes from './routes/character.js'
 import raceRoutes from './routes/race.js'
 import classRoutes from './routes/charClass.js'
 import traitsRoutes from './routes/traits.js'
+import eqpRoutes from './routes/eqp.js'
 import { register } from './controllers/auth.js';
 
 /* CONFIGURATION */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -28,8 +30,10 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
 app.use(cors());
+
+
 //dir for image storing
-app.use("/assets", express.static(path.join(__dirname, 'public/assets')));
+app.use("/images", express.static('images'));
 
 
 /* FILE STORAGE */
@@ -54,6 +58,7 @@ app.use("/character", characterRoutes);
 app.use("/race", raceRoutes);
 app.use("/class", classRoutes);
 app.use("/traits", traitsRoutes);
+app.use("/eqp", eqpRoutes);
 
 /*MONGOOSE SETUP*/
 const PORT = process.env.port || 6001;

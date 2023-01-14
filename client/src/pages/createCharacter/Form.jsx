@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
+import raceIcons from '../../assets/raceIcons';
 
 const characterSchema = yup.object().shape({
     name: yup.string().required("required"),
