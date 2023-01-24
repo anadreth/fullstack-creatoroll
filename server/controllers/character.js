@@ -4,7 +4,6 @@ export const saveCharacter = async (req, res) => {
     try {
         
         const { id, charId, charName, race, charClass, strength, dexterity, intelligence, background, traits, equipment} = req.body;
-        console.log(req.body);
         const newCharacter = {
             charId: charId,
             charName: charName,
@@ -17,7 +16,6 @@ export const saveCharacter = async (req, res) => {
             traits: traits,
             equipment: equipment,
         };
-        console.log(newCharacter);
         const user = await User.findById(id);
         const updatedUser =  await User.updateOne({_id: id}, {characters: [...user.characters, newCharacter]});
         res.status(200).send(updatedUser);

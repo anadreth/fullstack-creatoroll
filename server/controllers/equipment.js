@@ -13,7 +13,7 @@ export const saveEqp= async (req, res) => {
         } = req.body;
 
         const newEquipment = new Equipment({
-            raceName: title,
+            title: title,
             shortDescription: shortDescription,
             description: description,
             iconPath: iconPath,
