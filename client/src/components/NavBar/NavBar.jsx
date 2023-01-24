@@ -60,29 +60,32 @@ const NavBar = () => {
                 </div>
             </div>
         </div>
-            <Transition
-            show={sidebar}
-            className="bg-red flex justify-end items-center w-full h-auto p-3 mt-3"
-            enter="transition ease-in-out duration-300 transform"
-            enterFrom="-translate-x-[-100%]"
-            enterTo="translate-x-0"
-            leave="transition ease-in-out duration-300 transform"
-            leaveFrom="translate-x-0"
-            leaveTo="-translate-x-[-100%]"
-            >
-                    <div className="w-full">
-                        <ul >
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toHome}>HOME</button></li>
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toContact}>CONTACT</button></li>
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toAbout}>ABOUT</button></li>
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toLogin}>JOIN</button></li>
-                        </ul>
-                    </div>
-            </Transition>
+                <Transition
+                show={sidebar}
+                className="bg-red flex justify-end items-start w-full h-screen p-3 mt-3"
+                enter="transition ease-in-out duration-300 transform"
+                enterFrom="-translate-x-[-100%]"
+                enterTo="translate-x-0"
+                leave="transition ease-in-out duration-300 transform"
+                leaveFrom="translate-x-0"
+                leaveTo="-translate-x-[-100%]"
+                >
+                        <div className="w-full">
+                            <ul className="" >
+                                <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toHome}>HOME</button></li>
+                                <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toContact}>CONTACT</button></li>
+                                <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toAbout}>ABOUT</button></li>
+                                <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toLogin}>JOIN</button></li>
+                            </ul>
+                        </div>
+                </Transition>
     </nav>
    
     )
 }
 
 export default NavBar;
+
+
+
 

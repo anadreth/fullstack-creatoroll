@@ -15,7 +15,7 @@ function App() {
 const isAuth = Boolean(useSelector((state) => state.token));
 
   return (
-    <div className="App font-garet">
+    <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />

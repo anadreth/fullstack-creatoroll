@@ -21,6 +21,12 @@ module.exports = {
       fontFamily: {
         'seasons': ['Seasons', 'sans-serif'],
         'poppins': ['Poppins', 'sans-serif']
+      },
+      hueRotate: {
+        '314': '314deg',
+      },
+      saturate: {
+        25: '.25',
       }
     },
   },
