@@ -15,6 +15,7 @@ import raceRoutes from './routes/race.js'
 import classRoutes from './routes/charClass.js'
 import traitsRoutes from './routes/traits.js'
 import eqpRoutes from './routes/eqp.js'
+import backgroundRoutes from './routes/background.js'
 import { register } from './controllers/auth.js';
 
 /* CONFIGURATION */
@@ -59,6 +60,7 @@ app.use("/race", raceRoutes);
 app.use("/class", classRoutes);
 app.use("/traits", traitsRoutes);
 app.use("/eqp", eqpRoutes);
+app.use("/background", backgroundRoutes);
 
 /*MONGOOSE SETUP*/
 const PORT = process.env.port || 6001;

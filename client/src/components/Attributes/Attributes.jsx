@@ -70,25 +70,33 @@ const Attributes = () => {
         )
     }
     return (
-        <div>
-            <h1>Choose Your Attributes</h1>
-            <div>
-                <button onClick={decrementStrength}>-</button>
-                <p>Strength</p>
-                <p>{strength}</p>
-                <button onClick={incrementStrength}>+</button>
+        <div className="h-3/4 flex flex-col justify-center items-center">
+            <div className=" w-80 flex justify-start items-center">
+                <h2 className="my-3 text-xl text-orange">Choose Your Attributes</h2>
             </div>
-            <div>
-                <button onClick={decrementDexterity}>-</button>
-                <p>Dexterity</p>
-                <p>{dexterity}</p>
-                <button onClick={incrementDexterity}>+</button>
+            <div className="flex justify-between items-center p-3 w-80 bg-white ">
+                <button className="px-3 py-1 bg-red text-light active:bg-orange" onClick={decrementStrength}>-</button>
+                <div className="flex justify-center items-center flex-col">
+                    <p className="text-red text-xl mb-3">Strength:</p>
+                    <p className="rounded-full  w-18 px-5 py-4 text-2xl text-orange bg-light">{strength}</p>
+                </div>            
+                <button className="px-3 py-1 bg-red text-light active:bg-orange" onClick={incrementStrength}>+</button>
             </div>
-            <div>
-                <button onClick={decrementIntelligence}>-</button>
-                <p>Intelligence</p>
-                <p>{intelligence}</p>
-                <button onClick={incrementIntelligence}>+</button>
+            <div className=" m-3 flex  justify-between items-center p-3 w-80 bg-white ">
+                <button className="px-3 py-1 bg-red text-light active:bg-orange" onClick={decrementDexterity}>-</button>
+                <div className="flex justify-center items-center flex-col">
+                    <p className="text-red text-xl mb-3">Dexterity:</p>
+                    <p className="rounded-full  w-18 px-5 py-4 text-2xl text-orange bg-light">{dexterity}</p>
+                </div> 
+                <button className="px-3 py-1 bg-red text-light active:bg-orange" onClick={incrementDexterity}>+</button>
+            </div >
+            <div className=" flex  justify-between items-center p-3 w-80 bg-white ">
+                <button className="px-3 py-1 bg-red text-light active:bg-orange" onClick={decrementIntelligence}>-</button>
+                <div className="flex justify-center items-center flex-col">
+                    <p className="text-red text-xl mb-3">Intelligence:</p>
+                    <p className="rounded-full px-5 py-4 text-2xl text-orange bg-light">{intelligence}</p> 
+                </div>
+                <button className="px-3 py-1 bg-red text-light active:bg-orange" onClick={incrementIntelligence}>+</button>
             </div>
         </div>
     )

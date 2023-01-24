@@ -65,7 +65,7 @@ const Form = () => {
 
     return(
         <div>
-            <button onClick={handleFormSubmit}>Save Character</button>
+            <button  className="bg-orange shadow-md w-44 text-light border-orange border-2 p-3" onClick={handleFormSubmit}>Save Character</button>
         </div>
     )
 }
