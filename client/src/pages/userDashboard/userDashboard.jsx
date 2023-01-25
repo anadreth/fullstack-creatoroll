@@ -67,9 +67,12 @@ const UserDashboard = () => {
                     <h2 className="font-poppints text-red text-xl p-3">Your Characters</h2>
                 </div>  
                 <div className="font-poppins h-3/4">      
-                    <div id="charDisplay" className="m-3 h-full bg-white overflow-scroll p-3 border-orange border-2"> 
+                    <div id="charDisplay" className="m-3 h-full bg-white overflow-scroll p-3 scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red "> 
                         <div className="w-full h-full">
                             <ul className="w-full h-full">
+                                    <li>   
+                                        <button onClick={toInBetween}className='bg-red p-3 w-32 m-3 shadow-md hover:bg-orange text-light'>Create New</button>
+                                    </li>
                                 {currentCharacters.map(character =>
                                     <li key={character.charId}>
                                         <Card 
@@ -79,10 +82,7 @@ const UserDashboard = () => {
                                         setSelected={setSelected}
                                         inspectCharacter={inspectCharacter}
                                         />
-                                    </li>)}
-                                    <li>   
-                                        <button onClick={toInBetween}className='p-3 w-32 m-3 shadow-md bg-orange text-light'>Create New</button>
-                                    </li>
+                                    </li>)}   
                             </ul>
                         </div> 
                     </div>                 
@@ -98,7 +98,7 @@ const UserDashboard = () => {
                     <div className="mt-[70px]">
                         <h2 className="font-poppints text-red text-xl p-3">Character Chart</h2>
                     </div>
-                    <div ref={reportTemplateRef} id="charBoard" className="border-orange border-2 h-3/4 m-3 overflow-scroll bg-white p-3 border-orange border-2">
+                    <div ref={reportTemplateRef} id="charBoard" className="shadow-md h-3/4 m-3 overflow-scroll scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red  bg-white p-3">
                         <CharChart id="character" character={character} />
                     </div>
                 </div>  
@@ -111,7 +111,7 @@ const UserDashboard = () => {
                     <div className="mt-[70px]">
                         <h2 className="font-poppints text-red text-xl p-3">Character Chart</h2>
                     </div>
-                    <div ref={reportTemplateRef} id="charBoard" className="border-orange border-2 overflow-scroll h-3/4 m-3 bg-white p-3 border-orange border-2">
+                    <div ref={reportTemplateRef} id="charBoard" className="shadow-md overflow-scroll h-3/4 m-3 bg-white p-3 scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red ">
                         <CharChart id="character" character={character} />
                     </div>
                 </div>  

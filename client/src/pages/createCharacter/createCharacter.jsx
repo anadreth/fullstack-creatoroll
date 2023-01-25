@@ -13,6 +13,7 @@ import PageList from "../../components/PageList/PageList";
 import ArrowLeft from "../../components/Arrow/ArrowLeft";
 import ArrowRight from "../../components/Arrow/ArrowRight";
 import PageNav from "../../components/PageNav/PageNav";
+import raceIcons from "./../../assets/raceIcons.js"
 
 
 
@@ -28,8 +29,21 @@ const CreateCharacter = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const updateRace = (e) => {
+        const value = e.target.value.split(',');
+        let map = new Map();
+        map.set("name", value[0]);
+        map.set("iconPath", value[1]);
+        const object = Object.fromEntries(map);
+
+        dispatch(
+            setRace({
+                race: object,
+            })
+        )
+
+    } 
     const updateClass = (e) => {
-        console.log('updated');
         dispatch(
             setCharClass({
                 charClass: e.target.value,
@@ -165,13 +179,14 @@ const CreateCharacter = () => {
             
             : pageCount === 1 ?
             <div className="h-full text-center">
+                {/*<PageList title="Choose Your Race" type="Race" getUrl="/race/getall" saveUrl="/race/save" updateValue={updateRace} iconList={raceIcons} />*/}
                 <Race />
                 <p className="text-dark-red mb-3">{error ? "Your character must have a race." : ""}</p>
                 <PageNav increment={increment} decrement={decrement} />
             </div>
             : pageCount === 2 ?
             <div className="h-full text-center"> 
-                <PageList title="Wizard or Ranger?" type="Class" getUrl="/class/getall" saveUrl="/class/save" updateValue={updateClass}/> 
+                <PageList title="Wizard or Ranger?" type="Class" getUrl="/class/getall" saveUrl="/class/save" updateValue={updateClass} iconList={raceIcons}/> 
                 <p className="text-dark-red mb-3">{error ? "Your character must have a class." : ""}</p>
                 <PageNav increment={increment} decrement={decrement} />
             </div>
@@ -187,13 +202,13 @@ const CreateCharacter = () => {
             </div>
             : pageCount === 4 ?
             <div className="h-full text-center">
-                <PageList title="What's your thing?" type="Trait" getUrl="/traits/getall" saveUrl="/traits/save" updateValue={updateTraits}/>
+                <PageList title="What's your thing?" type="Trait" getUrl="/traits/getall" saveUrl="/traits/save" updateValue={updateTraits} iconList={raceIcons}/>
                 <p className="text-dark-red mb-3">{error ? "Your character must have a trait." : ""}</p>
                 <PageNav increment={increment} decrement={decrement} />
             </div>
             : 
             <div className="h-full">
-                <PageList title="Sword or that... twig?" type="Equipment" getUrl="/eqp/getall" saveUrl="/eqp/save" updateValue={updateEqp}/>
+                <PageList title="Sword or that... twig?" type="Equipment" getUrl="/eqp/getall" saveUrl="/eqp/save" updateValue={updateEqp} iconList={raceIcons}/>
                 <div className="flex justify-center items-center">
                     <div className="flex justify-between items-center w-80">
                         <button className="shadow-md bg-white w-24 text-orange active:animate-ping border-orange border-2 p-2" onClick={decrement}><ArrowLeft /></button>

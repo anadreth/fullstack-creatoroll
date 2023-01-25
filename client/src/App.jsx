@@ -1,4 +1,5 @@
 import React from "react"
+import {useState, useEffect} from 'react';
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/homePage/homePage';
@@ -11,8 +12,26 @@ import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
 
 function App() {
-
+const [isLoading, setLoading] = useState(true);
 const isAuth = Boolean(useSelector((state) => state.token));
+
+function someRequest() {
+  return new Promise(resolve => setTimeout(() => resolve(), 2500));
+} 
+
+useEffect(() => {
+  someRequest().then(() => {
+    const loaderElement = document.querySelector(".loader-container");
+    if (loaderElement) {
+      loaderElement.remove();
+      setLoading(!isLoading);
+    }
+  });
+});
+
+if (isLoading) {
+  return null;
+}
 
   return (
     <div className="App">

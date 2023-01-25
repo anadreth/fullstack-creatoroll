@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -27,6 +27,7 @@ const initialValuesLogin = {
     email: "",
     password: "",
 }
+
 
 const Form = () => {
     const [pageType, setPageType] = useState("login");
@@ -74,7 +75,6 @@ const Form = () => {
     }
 
     const handleFormSubmit = async(values, onSubmitProps) => { 
-        console.log(onSubmitProps);
         if (isLogin) await login(values, onSubmitProps);
         if (isRegister) await register(values, onSubmitProps);
     };
@@ -102,15 +102,17 @@ const Form = () => {
                         {isRegister && (
                             <div>  
                                 <h1 className="p-3 text-5xl font-seasons">REGISTER</h1>
-                                <input 
-                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
-                                    type="text" 
-                                    name="userName"
-                                    placeholder='username' 
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.username}
-                                />
+                                    <input
+                                        className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
+                                        type="text" 
+                                        name="userName"
+                                        placeholder='username' 
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.userName}
+                                    />
+                                {errors.userName && touched.userName ? <div>{errors.userName}</div> : null}
+                                
                                 <input 
                                     className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
                                     type="text" 
@@ -120,6 +122,8 @@ const Form = () => {
                                     onBlur={handleBlur}
                                     value={values.email}
                                     />
+                                {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                               
                                 <input 
                                     className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
                                     type="password" 
@@ -128,7 +132,13 @@ const Form = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
+                                    error={
+                                        Boolean(touched.password) && Boolean(errors.password)
+                                      }
+                                    helpertext={touched.password && errors.password}
                                     />
+                                {errors.password && touched.password  ? <div>{errors.password }</div> : null}
+                                
                             </div> 
                         )}
                         {isLogin && (
@@ -142,7 +152,13 @@ const Form = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.email}
+                                    error={
+                                        Boolean(touched.email) && Boolean(errors.email)
+                                      }
+                                    helpertext={touched.email && errors.email}
                                     />
+                                    {errors.email && touched.email ? <div>{errors.email}</div> : null}
+
                                 <input 
                                     className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
                                     type="password"
@@ -151,7 +167,13 @@ const Form = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
+                                    error={
+                                        Boolean(touched.password) && Boolean(errors.password)
+                                      }
+                                    helpertext={touched.password && errors.password}
                                     />
+                                    {errors.password && touched.password  ? <div>{errors.password }</div> : null}
+
                             </div>
                         )}
                             <button 
