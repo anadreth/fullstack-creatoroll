@@ -5,35 +5,161 @@
     <link rel="icon" type="" href="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CreatoRoll</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz@6..96&family=Khand:wght@300&family=Libre+Bodoni:ital,wght@0,400;0,500;1,700&family=Montserrat:wght@100&family=Poppins:wght@100&display=swap" rel="stylesheet">
     <style>
-      .loader-container {
-        width: 100vw;
-        height: 100vh;
+      body {
         background-color: #F6EFE9;
-        display: grid;
-        place-items: center;
+        font-size: Poppins, serif;
       }
-      .loader {
-        border: 16px solid #F6EFE9;
-        border-top: 16px solid #8C5958;
-        border-radius: 50%;
-        width: 130px;
-        height: 130px;
-        animation: spin 2s linear infinite;
-      }
-      
-      @keyframes spin {
-        0%  { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      </style>
+      .Cube {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 10px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s 0.1s;
+  transition: transform 0.5s 0.1s;
+  perspective: 9999px;
+  color: #333;
+  margin: -20px 0 0 -20px;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -37px;
+  top: 65px;
+  opacity: 1;
+}
+.Cube.panelLoad {
+  z-index: 11;
+  top: 50%;
+  margin-top: -60px;
+  -webkit-animation: panel 2.2s infinite forwards;
+  animation: panel 2.2s infinite forwards;
+}
+.Cube.panelLoad .cube-face {
+  color: black;
+  box-shadow: inset 0 0 0 1px #111, 0 0 1px 1px #111;
+}
+.Cube .cube-face {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  background: white;
+  box-shadow: inset 0 0 0 1px #333, 0 0 1px 1px #333;
+  opacity: 1;
+}
+.Cube .cube-face-front {
+  transform: translate3d(0, 0, 20px);
+  -webkit-transform: translate3d(0, 0, 20px);
+  font-size: 10px;
+  font-weight: bold;
+}
+.Cube .cube-face-back {
+  -webkit-transform: rotateY(180deg) translate3d(0, 0, 20px);
+  transform: rotateY(180deg) translate3d(0, 0, 20px);
+}
+.Cube .cube-face-left {
+  -webkit-transform: rotateY(-90deg) translate3d(0, 0, 20px);
+  transform: rotateY(-90deg) translate3d(0, 0, 20px);
+}
+.Cube .cube-face-right {
+  -webkit-transform: rotateY(90deg) translate3d(0, 0, 20px);
+  transform: rotateY(90deg) translate3d(0, 0, 20px);
+}
+.Cube .cube-face-top {
+  -webkit-transform: rotateX(90deg) translate3d(0, 0, 20px);
+  transform: rotateX(90deg) translate3d(0, 0, 20px);
+}
+.Cube .cube-face-bottom {
+  -webkit-transform: rotateX(-90deg) translate3d(0, 0, 20px);
+  transform: rotateX(-90deg) translate3d(0, 0, 20px);
+}
+
+@-webkit-keyframes panel {
+  0% {
+    -webkit-transform: rotateY(0deg) rotateZ(0deg);
+  }
+  20% {
+    -webkit-transform: rotateY(90deg) rotateZ(0deg);
+  }
+  40% {
+    -webkit-transform: rotateX(45deg) rotateZ(45deg);
+  }
+  60% {
+    -webkit-transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+  }
+  80% {
+    -webkit-transform: rotateX(310deg) rotateZ(230deg);
+  }
+  100% {
+    -webkit-transform: rotateX(360deg) rotateZ(360deg);
+  }
+}
+@keyframes panel {
+  0% {
+    -webkit-transform: rotateY(0deg) rotateZ(0deg);
+    transform: rotateY(0deg) rotateZ(0deg);
+  }
+  20% {
+    -webkit-transform: rotateY(90deg) rotateZ(0deg);
+    transform: rotateY(90deg) rotateZ(0deg);
+  }
+  40% {
+    -webkit-transform: rotateX(45deg) rotateZ(45deg);
+    transform: rotateX(45deg) rotateZ(45deg);
+  }
+  60% {
+    -webkit-transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+    transform: rotateX(90deg) rotateY(180deg) rotateX(90deg);
+  }
+  80% {
+    -webkit-transform: rotateX(310deg) rotateZ(230deg);
+    transform: rotateX(310deg) rotateZ(230deg);
+  }
+  100% {
+    -webkit-transform: rotateX(360deg) rotateZ(360deg);
+    transform: rotateX(360deg) rotateZ(360deg);
+  }
+}
+.Cube.panelLoad .cube-face {
+  color: #fff;
+  box-shadow: inset 0 0 0 1px #F6EFE9, 0 0 1px 1px #F6EFE9;
+  background: #B37A79;
+}
+
+.Cube.panelLoad .cube-face {
+  color: #fff;
+  box-shadow: inset 0 0 0 1px #F6EFE9, 0 0 1px 1px #F6EFE9;
+  background: #B37A79;
+}
+
+    </style>
   </head>
   <body>
     
     <div id="root"></div>
     <div class="loader-container">
-      <div class="loader"></div>
+      <div class='Cube panelLoad'>
+        <div class='cube-face cube-face-front'>C</div>
+        <div class='cube-face cube-face-back'>R</div>
+        <div class='cube-face cube-face-left'>E</div>
+        <div class='cube-face cube-face-right'>A</div>  
+        <div class='cube-face cube-face-bottom'>T</div>
+        <div class='cube-face cube-face-top'>E</div>
+      </div>
     </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+  

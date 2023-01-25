@@ -62,7 +62,7 @@ const NavBar = () => {
         </div>
                 <Transition
                 show={sidebar}
-                className="bg-red flex justify-end items-start w-full h-screen p-3 mt-3"
+                className="bg-red flex justify-end items-start text-lg w-full h-screen p-3 mt-3"
                 enter="transition ease-in-out duration-300 transform"
                 enterFrom="-translate-x-[-100%]"
                 enterTo="translate-x-0"
@@ -72,10 +72,10 @@ const NavBar = () => {
                 >
                         <div className="w-full">
                             <ul className="" >
-                                <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toHome}>HOME</button></li>
-                                <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toContact}>CONTACT</button></li>
-                                <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toAbout}>ABOUT</button></li>
-                                <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toLogin}>JOIN</button></li>
+                                <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toHome}>HOME</button></li>
+                                <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toContact}>CONTACT</button></li>
+                                <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toAbout}>ABOUT</button></li>
+                                <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toLogin}>JOIN</button></li>
                             </ul>
                         </div>
                 </Transition>

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from 'react-redux';
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -11,16 +10,16 @@ import jsPDF from 'jspdf';
 
 const UserDashboard = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.user);
     const [currentCharacters, setCurrentCharacters] = useState([]);
     const [selected, setSelected] = useState("");
     const [displayed, setDisplayed] = useState([]);
     const character = displayed[0];
-
+    
+    console.log(displayed);
 //PDF GENERATING
     const reportTemplateRef = useRef(null);
-
+   
 	const saveDiv = () => {
 		const doc = new jsPDF({
 			format: 'a4',
@@ -67,7 +66,7 @@ const UserDashboard = () => {
                     <h2 className="font-poppints text-red text-xl p-3">Your Characters</h2>
                 </div>  
                 <div className="font-poppins h-3/4">      
-                    <div id="charDisplay" className="m-3 h-full bg-white overflow-scroll p-3 scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red "> 
+                    <div id="charDisplay" className="m-3 w-80 h-full bg-white overflow-scroll p-3 scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red "> 
                         <div className="w-full h-full">
                             <ul className="w-full h-full">
                                     <li>   

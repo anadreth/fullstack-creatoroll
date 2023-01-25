@@ -1,26 +1,17 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import CreateNewForm from "../CreateNewForm/CreateNewForm";
 import SearchBar from "../SearchBar/SearchBar";
-import { Transition } from '@tailwindui/react'
-
 
 const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
-    const dispatch = useDispatch();
     const [all, setAll] = useState([]);
     const [searchBar, setSearchBar] = useState("");
     const [showSearch, setShowSearch] = useState(false);
     const [selected, setSelected] = useState("");
-    const [description, setDescription] = useState("");
     const [info, setInfo] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [checked, setChecked] = useState(false);
     const url = "http://localhost:3000"
 
-    const handleChecked = (e) => {
-        setChecked(e.currentTarget.checked);
-    }
     const getAll = async () =>{
         setLoading(true);
         const allResponse = await fetch(url + getUrl, {
@@ -62,20 +53,19 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
             <div className="scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red h-96 w-80 shadow-md bg-white overflow-scroll mb-3">
                     <ul>
                         {!loading ? all.filter(item =>
-                        item.title.toLowerCase().slice(0, searchBar.length) === searchBar || item.title.toUpperCase().slice(0, searchBar.length) === searchBar).map(item =>
-                        
-                        <label className="m-3 flex justify-between items-center " htmlFor={item.title} key={item.title}>
-                            <li className= "flex justify-between items-center hover:bg-yogurt hover:text-dark h-24 w-full text-orange bg-light p-3 shadow-md group" key={item.title}>
-                                <input className="" onClick={updateValue} type="radio" name={type} id={item.title} value={item.title}/>
-                                {!checked ? <p>not checked</p> : <p>checked!!</p>}
-                                
+                        item.title.toLowerCase().slice(0, searchBar.length) === searchBar.toLowerCase()).map(item => 
+                        <li key={item.title}>
+                        <input className="hidden peer" onClick={updateValue} type="radio" name={type} id={item._id} value={item.title}/>
+                        <label className="peer-checked:bg-dark m-3 flex justify-between items-center text-orange bg-light " htmlFor={item._id}>
+                            <div className= "flex justify-between items-center  h-24 w-full p-3 shadow-md">
                                 <div className="w-1/2 whitespace-nowrap flex justify-center items-center flex-col ">
                                     <h3>{item.title}</h3>
-                                    <p className="text-dark text-sm">{item.shortDescription}</p>
+                                    <p className="text-red text-sm">{item.shortDescription}</p>
                                 </div>
                                 <button onClick={handleInfo} id={item.description}>Info</button>
-                            </li>
-                        </label>)
+                            </div>
+                        </label>
+                        </li>)
                         : 
                         <div className="w-full h-full flex justify-center items-center">
                             <button disabled type="button" className="w-44 p-3 mr-2 text-lg text-red bg-white inline-flex justify-center items-center">
@@ -101,6 +91,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
                     </div>
                 </div>
                 : <></>}
+                <p className="pb-3 px-3 text-red w-80">Not finding what you want? Try creating your own!</p>
             <CreateNewForm fetchLink={url + saveUrl} type={type} iconList=""/>
         </div>
     )

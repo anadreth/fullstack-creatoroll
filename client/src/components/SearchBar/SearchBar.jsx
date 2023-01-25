@@ -1,9 +1,18 @@
 import React from 'react'
 
 function SearchBar({setSearchBar}) {
+    let filterTimeout;
 
    const search = (e) => {
-        setSearchBar(e.target.value);
+    clearTimeout(filterTimeout)
+    
+    if (!e.target.value) return setSearchBar("");
+
+    filterTimeout = setTimeout(() => {
+      console.log(e.target.value)
+      setSearchBar(e.target.value);
+    }, 500)
+  
    } 
 
   return (

@@ -65,7 +65,7 @@ const UserNavBar = ({userName,}) => {
         </div>
             <Transition
             show={sidebar}
-            className="bg-red flex justify-end items-center w-full h-auto p-3 mt-3"
+            className="bg-red flex justify-end items-start text-lg w-full h-screen p-3 mt-3"
             enter="transition ease-in-out duration-300 transform"
             enterFrom="-translate-x-[-100%]"
             enterTo="translate-x-0"
@@ -75,9 +75,9 @@ const UserNavBar = ({userName,}) => {
             >
                     <div className="w-full">
                         <ul >
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toDashboard}>Dashboard</button></li>
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toCreateNew}>Create New</button></li>
-                            <li><button className="p-3 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={handleClickLogOut}>Logout</button></li>
+                            <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toDashboard}>Dashboard</button></li>
+                            <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toCreateNew}>Create New</button></li>
+                            <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={handleClickLogOut}>Logout</button></li>
                         </ul>
                     </div>
             </Transition>

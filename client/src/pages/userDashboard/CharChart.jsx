@@ -1,120 +1,43 @@
+import e from 'cors';
 import React from 'react'
+import { useState } from 'react'
+import Pencil from '../../components/Pencil/Pencil'
 
 function CharChart({character}) {
+  const [hideName, setHideName] = useState(false);
+  const [name, setName] = useState(false);
+
+  const handleName = (e) => {
+    setName(e.target.value);
+    
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(name);
+    setHideName(false);
+
+  }
+
+  
   return (
+    <form onSubmit={handleSubmit}>
     <div className='grid grid-cols-3 gap-4 font-poppins text-orange bg-light'>
-        <div className='border-red border-2 col-span-3 text-3xl'>
-            <h2>{character.charName}</h2>
+        <div className='border-red border-2 col-span-3'>
+            {!hideName ? <h2>{character.charName}<span><button className='text-red ml-3' onClick={() => setHideName(true)}><Pencil /></button></span></h2> 
+            :
+            <input className='m-3 text-md' type="text" value={name} onChange={handleName} placeholder={character.charName}></input>
+            }
         </div>
 
-        <div className=' border-red border-2 grid grid-cols-2 place-items-center p-3'>
-            <img src={character.race.iconPath} className="aspect-[3/4] w-auto h-12 m-3" />
-            <div className='grid grid-cols-1'>
-                <div className='text-md '>
-                    <h2>{character.race.name.slice(0, 1).toUpperCase() + character.race.name.slice(1)}</h2>
-                </div>
-                <div className='text-sm text-red'>
-                    <p>{character.traits.toLowerCase()}</p>
-                </div>
-            </div>
+        <div>
+          <p>{character.background}</p>
         </div>
-        <div className=' border-red border-2 flex justify-center items-center'>
-            <img src={character.race.iconPath} className="aspect-[3/4] w-auto h-12 m-3" />
-            <div className='grid grid-cols-1'>
-                <div className='text-md '>
-                    <h2>{character.charClass.slice(0, 1).toUpperCase() + character.charClass.slice(1)}</h2>
-                </div>
-            </div>
-        </div>
-        <div className=' border-red border-2 flex justify-center items-center'>
-            <img src={character.race.iconPath} className="aspect-[3/4] w-auto h-12 m-3" />
-            <div className='grid grid-cols-1'>
-                <div className='text-md '>
-                    <h2>Background</h2>
-                </div>
-            </div>
-        </div>
-
-        <div className='border-red border-2 grid grid-cols-1 gap-4'>
-            <div className='grid grid-rows-3 place-items-center'>
-                <p>Strength</p>
-                <p className='text-xl row-span-2 border-red border-2 px-3 py-2 rounded-full'>{character.strength}</p>
-            </div>
-            <div className='grid grid-rows-3 place-items-center'>
-                <p>Dexterity</p>
-                <p className='text-xl row-span-2 border-red border-2 px-3 py-2 rounded-full'> {character.dexterity}</p>
-            </div>
-            <div className='grid grid-rows-3 place-items-center'>
-                <p>Intelligence</p>
-                <p className='text-xl row-span-2 border-red border-2 px-3 py-2 rounded-full'> {character.intelligence}</p>
-            </div>
-        </div>
-        <div className='grid grid-rows-4 gap-4'>
-            <div className=' border-red border-2 flex justify-center items-center'>
-                <img src={character.race.iconPath} className="aspect-[3/4] w-auto h-12 m-3" />
-                <div className='grid grid-cols-1'>
-                    <div className='text-md '>
-                        <h2>Background</h2>
-                    </div>
-                </div>
-            </div>
-            <div className=' border-red border-2 flex justify-center items-center'>
-            <img src={character.race.iconPath} className="aspect-[3/4] w-auto h-12 m-3" />
-            <div className='grid grid-cols-1'>
-                <div className='text-md '>
-                    <h2>Background</h2>
-                </div>
-            </div>
-            </div>
-            <div className=' border-red border-2 flex justify-center items-center'>
-                <img src={character.race.iconPath} className="aspect-[3/4] w-auto h-12 m-3" />
-                <div className='grid grid-cols-1'>
-                    <div className='text-md '>
-                        <h2>Background</h2>
-                    </div>
-                </div>
-            </div>
-            <div className=' border-red border-2 flex justify-center items-center'>
-                <img src={character.race.iconPath} className="aspect-[3/4] w-auto h-12 m-3" />
-                <div className='grid grid-cols-1'>
-                    <div className='text-md '>
-                        <h2>Background</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className='border-red border-2 grid grid-cols-1 gap-8 p-6'>
-            <div className='flex justify-around items-center'>
-                <p className=''>Strength </p>
-                <span className='text-xl border-red border-2 px-3 py-2 rounded-full'>{character.strength}</span>
-            </div>
-            <div className='flex justify-around items-center'>
-                <p className=''>Strength </p>
-                <span className='text-xl border-red border-2 px-3 py-2 rounded-full'>{character.strength}</span>
-            </div>
-            <div className='flex justify-around items-center'>
-                <p className=''>Strength </p>
-                <span className='text-xl border-red border-2 px-3 py-2 rounded-full'>{character.strength}</span>
-            </div>
-            <div className='flex justify-around items-center'>
-                <p className=''>Strength </p>
-                <span className='text-xl border-red border-2 px-3 py-2 rounded-full'>{character.strength}</span>
-            </div>
-            <div className='flex justify-around items-center'>
-                <p className=''>Strength </p>
-                <span className='text-xl border-red border-2 px-3 py-2 rounded-full'>{character.strength}</span>
-            </div>
-            <div className='flex justify-around items-center'>
-                <p className=''>Strength </p>
-                <span className='text-xl border-red border-2 px-3 py-2 rounded-full'>{character.strength}</span>
-            </div>
-            <div className='flex justify-around items-center'>
-                <p className=''>Strength </p>
-                <span className='text-xl border-red border-2 px-3 py-2 rounded-full'>{character.strength}</span>
-            </div>
-        </div>
+        <button type='submit'>Save</button>
     </div>
+    </form>
   )
 }
 
 export default CharChart
+
