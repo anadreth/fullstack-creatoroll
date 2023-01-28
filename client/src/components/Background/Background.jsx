@@ -1,12 +1,8 @@
 import React from "react";
-import { setBackground } from "../../state";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
-const Background = () => {
-    const dispatch = useDispatch();
-    const [generated, setGenerated] = useState();
-    const [saved, setSaved] = useState(false);
+const Background = ({setGenerated, generated}) => {
     const [loading, setLoading] = useState(false);
     const currentName = useSelector((state) => state.charName);
     const currentRace = useSelector((state) => state.race);
@@ -37,24 +33,14 @@ const Background = () => {
     }
 
     const handleTextarea = (e) => {
-        setSaved(false);
         setGenerated(e.target.value);
     }
     const generateText = async () => {
-        setSaved(false);
         if(!generated) {
             getBackground();
         } else {
             setGenerated("")
         }
-    }
-    const saveBackground = () => {
-        dispatch(
-            setBackground({
-                background: generated,
-            })
-        )
-        setSaved(true);
     }
 
     return(
@@ -62,7 +48,7 @@ const Background = () => {
             <div className="flex w-80 justify-start items-center">
                 <h2 className="my-3 text-xl text-orange">Your Background</h2>
             </div>
-            <textarea className="shadow-md h-1/2 p-3 w-80 resize-none overflow-scroll" placeholder={"Who am I? \nLet me tell you a tale..."} value={generated} onChange={handleTextarea}/>
+            <textarea className="scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red shadow-md h-1/2 p-3 w-80 resize-none overflow-scroll" placeholder={"Who am I? \nLet me tell you a tale..."} value={generated} onChange={handleTextarea}/>
             <div className="bg-red p-3 m-3 shadow-md w-80 text-center">
                 <p className="text-light pb-3">Out of ideas? Try generating!</p>
                 {!generated && !loading ? <button className="w-44 overflow-hidden shadow-md text-lg bg-orange text-light p-3" onClick={generateText}>Generate</button> 
@@ -76,9 +62,6 @@ const Background = () => {
                 </button>
                 : <button className="w-44 text-lg bg-white shadow-md text-red p-3" onClick={generateText}>Clear</button>  }
             </div>
-            {!saved ? <button onClick={saveBackground}>Save Background</button> :
-             <p>Saved!</p>}
-            
         </div>
     )
 }

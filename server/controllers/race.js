@@ -13,7 +13,7 @@ export const saveRace= async (req, res) => {
         } = req.body;
 
         const newRace = new Race({
-            raceName: title,
+            title: title.slice(0, 1).toUpperCase() + title.slice(1, title.length).toLowerCase(),
             shortDescription: shortDescription,
             description: description,
             iconPath: iconPath,

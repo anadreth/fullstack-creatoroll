@@ -13,7 +13,7 @@ export const saveTrait= async (req, res) => {
         } = req.body;
 
         const newTrait = new Traits({
-            title: title,
+            title: title.slice(0, 1).toUpperCase() + title.slice(1, title.length).toLowerCase(),
             shortDescription: shortDescription,
             description: description,
             iconPath: iconPath,

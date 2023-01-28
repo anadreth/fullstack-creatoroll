@@ -1,4 +1,4 @@
-import e from 'cors';
+
 import React from 'react'
 import { useState } from 'react'
 import Pencil from '../../components/Pencil/Pencil'

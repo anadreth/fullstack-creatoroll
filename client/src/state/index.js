@@ -8,7 +8,7 @@ const initialState = {
     pageCount: 0,
     charName: null,
     race: null,
-    charClass:null,
+    charClass: null,
     strength: 10,
     dexterity: 10,
     intelligence: 10,

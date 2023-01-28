@@ -65,7 +65,7 @@ const Form = () => {
 
     return(
         <div>
-            <button  className="bg-orange shadow-md w-44 text-light border-orange border-2 p-3" onClick={handleFormSubmit}>Save Character</button>
+            <button  className="bg-orange active:animate-ping  shadow-md w-44 text-light border-orange border-2 p-2" onClick={handleFormSubmit}>Save Character</button>
         </div>
     )
 }

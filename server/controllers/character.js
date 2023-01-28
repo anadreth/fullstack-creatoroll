@@ -6,7 +6,7 @@ export const saveCharacter = async (req, res) => {
         const { id, charId, charName, race, charClass, strength, dexterity, intelligence, background, traits, equipment} = req.body;
         const newCharacter = {
             charId: charId,
-            charName: charName,
+            charName: charName.slice(0, 1).toUpperCase() + charName.slice(1, charName.length).toLowerCase(),
             race: race,
             charClass: charClass,
             strength: strength,

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setCharName, setCreateCharacterPageCount } from "../../state";
+import { setCharName, setCreateCharacterPageCount, setRace,setBackground,setTraits,setEquipment, setCharClass } from "../../state";
 import UserNavBar from "../userDashboard/userNavBar"
 
 const CreateInBetween = () => {
@@ -18,6 +18,31 @@ const CreateInBetween = () => {
         dispatch(
             setCreateCharacterPageCount({
                 pageCount: 0,
+            })    
+        )
+        dispatch(
+            setRace({
+                race: {name: "", iconPath: ""},
+            })
+        )
+        dispatch(
+            setCharClass({
+                charClass: null,
+            })
+        )
+        dispatch (
+            setBackground({
+                background: "0"
+            })
+        )
+        dispatch (
+            setTraits({
+                traits: null,
+            })
+        )
+        dispatch (
+            setEquipment({
+                equipment: null,
             })
         )
         navigate("/create-character");
@@ -51,7 +76,7 @@ const CreateInBetween = () => {
                         </div>
                     </div>  
                     <div className="p-3 md:col-span-2">
-                        <button className="hover:bg-orange hover:outline-orange hover:outline-2 bg-red shadow-md text-light hover:text-white p-3" onClick={() => navigate("/dashboard/" + currentUser._id ) } >To Dashboard</button>
+                        <button className="hover:bg-orange w-80 hover:outline-orange hover:outline-2 bg-red shadow-md text-light hover:text-white p-3" onClick={() => navigate("/dashboard/" + currentUser._id ) } >To Dashboard</button>
                     </div>
                 </div>       
         </div>

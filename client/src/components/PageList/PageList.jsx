@@ -2,16 +2,28 @@ import React from "react";
 import { useEffect, useState } from "react";
 import CreateNewForm from "../CreateNewForm/CreateNewForm";
 import SearchBar from "../SearchBar/SearchBar";
+import { useSelector, useDispatch } from "react-redux";
+import { setRace } from "../../state";
 
-const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
+const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
+    const pageCount = useSelector((state) => state.pageCount);
+    const dispatch = useDispatch();
     const [all, setAll] = useState([]);
     const [searchBar, setSearchBar] = useState("");
     const [showSearch, setShowSearch] = useState(false);
     const [selected, setSelected] = useState("");
     const [info, setInfo] = useState(false);
     const [loading, setLoading] = useState(false);
-    const url = "http://localhost:3000"
+    const url = "http://localhost:3000";
+    let current;
 
+    if (type === "race") {
+        current = useSelector((state) => state[type]);
+        current = current.name;
+    } else {
+        current = useSelector((state) => state[type]);
+    }
+    
     const getAll = async () =>{
         setLoading(true);
         const allResponse = await fetch(url + getUrl, {
@@ -22,10 +34,9 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
         setAll(response);
     }
 
-
     useEffect(() => {
         getAll();
-    }, [])
+    }, [pageCount])
     
     const handleInfo = (e) => {
         setSelected(e.target.id);
@@ -41,11 +52,6 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                 </button>
-                <button className="text-red" onClick={getAll}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hover:animate-spin">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                </button>
             </div>
 
             {showSearch ? <SearchBar setSearchBar={setSearchBar}/> : <></>}
@@ -55,14 +61,15 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
                         {!loading ? all.filter(item =>
                         item.title.toLowerCase().slice(0, searchBar.length) === searchBar.toLowerCase()).map(item => 
                         <li key={item.title}>
-                        <input className="hidden peer" onClick={updateValue} type="radio" name={type} id={item._id} value={item.title}/>
-                        <label className="peer-checked:bg-dark m-3 flex justify-between items-center text-orange bg-light " htmlFor={item._id}>
+                        <input checked={current === item.title ? true : false} className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={item.title}/>
+                        <label className="peer-checked:bg-dark transition-all duration-150 m-3 flex justify-between items-center text-orange bg-light" htmlFor={item._id}>
                             <div className= "flex justify-between items-center  h-24 w-full p-3 shadow-md">
-                                <div className="w-1/2 whitespace-nowrap flex justify-center items-center flex-col ">
+                                <img src={item.iconPath} className="aspect-square w-[35px] h-[40px] m-3"/>
+                                <div className="w-1/2 whitespace-nowrap flex justify-center items-center flex-col m-3">
                                     <h3>{item.title}</h3>
                                     <p className="text-red text-sm">{item.shortDescription}</p>
                                 </div>
-                                <button onClick={handleInfo} id={item.description}>Info</button>
+                                <button className="m-3" onClick={handleInfo} id={item.description}>Info</button>
                             </div>
                         </label>
                         </li>)
@@ -92,7 +99,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title,}) => {
                 </div>
                 : <></>}
                 <p className="pb-3 px-3 text-red w-80">Not finding what you want? Try creating your own!</p>
-            <CreateNewForm fetchLink={url + saveUrl} type={type} iconList=""/>
+            <CreateNewForm getAll={getAll} fetchLink={url + saveUrl} type={type} iconList={iconList}/>
         </div>
     )
 }

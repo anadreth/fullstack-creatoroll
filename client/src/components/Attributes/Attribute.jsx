@@ -4,16 +4,14 @@ import Plus from "./Plus";
 
 function Attribute({decrement, increment, nameAtt, count}) {
   return (
-    <div>
-      <div className="flex justify-between items-center p-3 m-3 shadow-md w-80 bg-white ">
+      <div className="grid grid-cols-3 p-3 m-3 place-items-center shadow-md w-80 bg-white ">
+            <p className="text-red text-xl mb-3 col-span-3">{nameAtt}:</p>
             <button className="text-red" onClick={decrement}><Minus /></button>
             <div className="flex justify-center items-center flex-col">
-                <p className="text-red text-xl mb-3">{nameAtt}:</p>
                 <p className="rounded-full  w-18 px-5 py-4 text-2xl text-orange bg-light">{count}</p>
             </div>            
             <button className="text-red" onClick={increment}><Plus /></button>
-        </div>
-    </div>
+      </div>
   )
 }
 

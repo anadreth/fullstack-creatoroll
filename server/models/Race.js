@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const RaceSchema = new mongoose.Schema(
     {
-        raceName: {
+        title: {
             type: String,
             required: true,
             unique: true,
