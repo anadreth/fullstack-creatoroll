@@ -3,12 +3,10 @@ import { useEffect, useState } from "react";
 import CreateNewForm from "../CreateNewForm/CreateNewForm";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
-import { setRace } from "../../state";
 import Info from "./Info";
 
 const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
     const pageCount = useSelector((state) => state.pageCount);
-    const dispatch = useDispatch();
     const [all, setAll] = useState([]);
     const [searchBar, setSearchBar] = useState("");
     const [showSearch, setShowSearch] = useState(false);
@@ -62,7 +60,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
                         {!loading ? all.filter(item =>
                         item.title.toLowerCase().slice(0, searchBar.length) === searchBar.toLowerCase()).map(item => 
                         <li key={item.title}>
-                        <input checked={current === item.title ? true : false} className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={item.title}/>
+                        <input checked={current === item.title ? true : false} className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={type === "race" ? `${item.title}, ${item.iconPath}` : item.title} />
                         <label className="peer-checked:bg-dark rounded-lg transition-all shadow-md duration-150 m-3 flex justify-between items-center text-orange bg-light" htmlFor={item._id}>
                             <div className= "flex justify-between items-center h-auto w-full px-3 py-2">
                                 <img src={item.iconPath} className="aspect-square w-[35px] h-[40px] m-3"/>

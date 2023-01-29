@@ -32,8 +32,13 @@ module.exports = {
   },
   plugins: [
     require('tailwind-scrollbar'),
+    function ({ addVariant }) {
+      addVariant('child', '& > *');
+      addVariant('child-hover', '& > *:hover');
+      addVariant('child-checked', '& > *:checked');
+  },
   ],
   variants: {
-    scrollbar: ['rounded']
+    scrollbar: ['rounded'],
 }
 }

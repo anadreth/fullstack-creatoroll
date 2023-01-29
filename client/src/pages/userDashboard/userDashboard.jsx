@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import jsPDF from 'jspdf'; 
-import UserChart from "./UserChart";
-import CharList from "./CharList";
+import SideBar from "./SideBar";
 import UserNavBar from "./userNavBar";
 
 
@@ -15,9 +14,22 @@ const UserDashboard = () => {
     const currentUser = useSelector((state) => state.user);
     const [currentCharacters, setCurrentCharacters] = useState([]);
     const [selected, setSelected] = useState("");
-    const [displayed, setDisplayed] = useState([]);
+    const [displayed, setDisplayed] = useState([{
+        charName: "",
+        race: "",
+        charClass: "",
+        dexterity: "",
+        strength: "",
+        intelligence: "",
+        traits: "",
+        equipment: "",
+        charId: "",
+        background: "",
+
+    }]);
     const character = displayed[0];
-    
+    console.log()
+
 //PDF GENERATING
     const reportTemplateRef = useRef(null);
    
@@ -62,35 +74,32 @@ const UserDashboard = () => {
             <UserNavBar userName={currentUser.userName}/>
             <div className="h-[73px]"></div>
             <div className="font-poppins h-5/6 bg-light grid grid-cols-5 gap-3 mx-6 my-3">
-                <div className="bg-light col-span-1 grid grid-rows-7 p-3">
-                    <div className="flex justify-center items-center my3">
-                        <h2 className="row-span-1 text-orange text-2xl">Overview</h2>
-                    </div>
+                <SideBar currentCharacters={currentCharacters} setSelected={setSelected} inspectCharacter={inspectCharacter} toInBetween={toInBetween} />
                     
-
-                    <div className="bg-white row-span-1 grid place-items-center rounded-lg shadow-md">
-                        <UserChart currentCharacters={currentCharacters} />
+                <div className="bg-light col-span-3 grid grid-rows-7 p-3">
+                    <div className="row-span-1 flex justify-center items-center">
+                        <h2 className="text-orange text-2xl">Character Chart</h2>
                     </div>
+                    <div className="bg-white row-span-6 grid grid-cols-3 grid-rows-5 rounded-lg shadow-md">
+                        <div className="col-span-1 row-span-2 bg-light m-3 rounded-lg">
+                            <h2>{character.charName}</h2>
+                        </div>
+                        
+                        <div className="text-orange text-xl p-3 bg-light m-3 rounded-lg"></div>
+                        <div className="text-orange text-xl p-3 bg-light m-3 rounded-lg"></div>
+                        <div className="text-orange text-xl p-3 bg-light m-3 rounded-lg"></div>
+                        <div className="text-orange text-xl p-3 bg-light m-3 rounded-lg"></div>
 
-                    <div className="flex justify-center items-center my-3">
-                        <h2 className="row-span-1 text-orange text-2xl ">Your Characters</h2>
-                    </div>
-
-                    <div className="bg-white row-span-3 grid bg-light">
-                        <CharList currentCharacters={currentCharacters} setSelected={setSelected} inspectCharacter={inspectCharacter} />
-                    </div>
-
-                    <div className="bg-white row-span-1 flex justify-end items-end bg-light ">
-                        <button onClick={toInBetween} className="bg-red w-full p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-orange hover:text-white">Create New</button>
+                        <div className="col-span-1 row-span-3 p-3 bg-light m-3 rounded-lg"></div>
+                        
+                        <div className="col-span-2 row-span-3 p-3 bg-light m-3 rounded-lg">
+                            
+                        </div>
                     </div>
                 </div>
-                    
-                <div className="bg-light col-span-3 p-3">
 
-                </div>
-
-                <div className="bg-light col-span-1 p-3">
-
+                <div className="col-span-1 p-3 bg-light grid place-items-end">
+                        <button onClick={saveDiv} className="bg-red w-full p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-dark-red hover:text-white">Get PDF</button>
                 </div>
             </div>
         </div>

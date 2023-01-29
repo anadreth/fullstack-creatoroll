@@ -32,12 +32,12 @@ const CreateCharacter = () => {
     const navigate = useNavigate();
 
     const updateRace = (e) => {
+        console.log(e.target.value);
         const value = e.target.value.split(',');
         let map = new Map();
         map.set("name", value[0]);
         map.set("iconPath", value[1]);
         const object = Object.fromEntries(map);
-
         dispatch(
             setRace({
                 race: object,

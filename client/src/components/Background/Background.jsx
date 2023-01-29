@@ -48,7 +48,7 @@ const Background = ({setGenerated, generated}) => {
             <div className="flex w-80 justify-start items-center">
                 <h2 className="my-3 text-xl text-orange">Your Background</h2>
             </div>
-            <textarea className="scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red shadow-md h-1/2 p-3 w-80 resize-none overflow-scroll rounded-lg" placeholder={"Who am I? \nLet me tell you a tale..."} value={generated} onChange={handleTextarea}/>
+            <textarea className="focus:outline-none scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red shadow-md h-1/2 p-3 w-80 resize-none overflow-scroll rounded-lg" placeholder={"Who am I? \nLet me tell you a tale..."} value={generated} onChange={handleTextarea}/>
             <div className="bg-red p-3 m-3 shadow-md w-80 text-center rounded-lg">
                 <p className="text-light pb-3">Out of ideas? Try generating!</p>
                 {!generated && !loading ? <button className="transition-all duration-150 hover:shadow-lg hover:shadow-light rounded-lg w-44 overflow-hidden shadow-md text-lg bg-orange text-light p-3" onClick={generateText}>Generate</button> 

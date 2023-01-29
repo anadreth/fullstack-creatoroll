@@ -196,7 +196,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                                         type="submit" 
                                         disabled={isSubmitting}
                                     >
-                                        Create New
+                                        Create!
                                     </button>
                                     
                                 </div>                

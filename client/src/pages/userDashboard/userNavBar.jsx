@@ -47,7 +47,7 @@ const UserNavBar = ({userName,}) => {
             <div className="flex md:order-2 md:mr-6 ">
                 <div>
                     <button className="relative group" onClick={handleSidebar} ref={buttonRef}>
-                        <div className="relative flex overflow-hidden items-center justify-center outline-none rounded-lg w-[47px] h-[47px] transform transition-all bg-light ring-0 ring-red hover:ring-4 group-focus:ring-2 ring-opacity-30 duration-200 focus:duration-500 shadow-md">
+                        <div className="relative flex overflow-hidden items-center justify-center outline-none rounded-full w-[47px] h-[47px] transform transition-all bg-light ring-0 ring-red hover:ring-4 group-focus:ring-2 ring-opacity-30 duration-200 focus:duration-500 shadow-md">
                         <div className="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden">
                             <div className="bg-red h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:translate-y-6 delay-100"></div>
                             <div className="bg-red h-[2px] w-7 rounded transform transition-all duration-300 group-focus:translate-y-6 delay-75"></div>

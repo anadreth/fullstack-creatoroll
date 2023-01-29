@@ -57,7 +57,7 @@ export const getDescription = async (req, res) => {
 
         openai.createCompletion({
             model: "text-davinci-003", 
-            prompt: "Write a 150 word description about " + type + " with name " + name + ". One Line phrase that describes it is " + shortDescription + ". Try to create original description. Do not reference sources of your inspiration. Write it in style of " + randomAuthor + "and give it " + randomStyle + " mood.",
+            prompt: "Write a 150 word description about " + type + " with title " + name + ". One Line phrase that describes it is " + shortDescription + ". Try to create original description. Do not reference sources of your inspiration. Write it in style of " + randomAuthor + "and give it " + randomStyle + " mood.",
             max_tokens: 1000,
             temperature: 0.7,
         })
