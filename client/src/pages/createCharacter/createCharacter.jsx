@@ -155,14 +155,14 @@ const CreateCharacter = () => {
                 <div className="h-2/4 flex flex-col justify-center items-center">
                     <div className="flex flex-col justify-center items-center">
                             <h2 className="text-xl p-3 text-orange">Name your character</h2>
-                            <input className="w-80 p-3 shadow-md focus:outline-none" type="text" onChange={handleName} placeholder={currentName ? currentName : "Name"}/>
+                            <input className="w-80 p-3 shadow-md rounded-lg focus:outline-none" type="text" onChange={handleName} placeholder={currentName ? currentName : "Name"}/>
                     </div>
                 </div>
                 
                 <div className="h-1/4 flex  flex-col justify-center items-center">
                         <p className="text-dark-red">{error ? "Your character must have a name." : ""}</p>
-                        <button className="inline-block active:animate-ping w-44 bg-white border-orange shadow-md text-orange border-2 p-3 m-3" onClick={toInBetween}>Create Other</button>
-                        <button className="inline-block active:animate-ping w-44 bg-red text-light shadow-md p-3 m-3" onClick={increment}><ArrowRight /></button>
+                        <button className="inline-block transition-all duration-150 hover:bg-dark-red hover:border-dark-red hover:text-white rounded-lg w-44 bg-white border-orange shadow-md text-orange border-2 p-3 m-3" onClick={toInBetween}>Create Other</button>
+                        <button className="inline-block transition-all duration-150 rounded-lg hover:bg-orange w-44 bg-red text-light shadow-md p-3 m-3" onClick={increment}><ArrowRight /></button>
                 </div> 
             </div>
             
@@ -199,7 +199,7 @@ const CreateCharacter = () => {
                 <PageList title="Sword or that... twig?" type="equipment" getUrl="/eqp/getall" saveUrl="/eqp/save" updateValue={updateEqp} iconList=""/>
                 <div className="flex justify-center items-center">
                     <div className="flex justify-between items-center w-80">
-                        <button className="shadow-md bg-white w-24 text-orange active:animate-ping border-orange border-2 p-2" onClick={decrement}><ArrowLeft /></button>
+                        <button className="transition-all duration-150 hover:bg-orange hover:text-white shadow-md rounded-lg bg-white w-24 text-orange active:animate-ping border-orange border-2 p-2" onClick={decrement}><ArrowLeft /></button>
                         <Form />
                     </div>
                 </div>

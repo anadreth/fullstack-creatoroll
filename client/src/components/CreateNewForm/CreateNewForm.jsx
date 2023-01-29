@@ -11,6 +11,21 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
     const formRef = useRef();
+    let naming;
+    switch(type) {
+        case "race": 
+            naming = "Race";
+            break;
+        case "charClass":
+            naming = "Class";
+            break;
+        case "traits":
+            naming = "Trait"
+            break;
+        case "equipment":
+            naming = "Equipment"
+            break;
+    }
 
     const handleShow = () => {
         if(!show) {
@@ -103,7 +118,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
 
                             {iconList !== "" ? 
                             <div className="w-80 flex justify-between mb-3 items-center">
-                                <select className="shadow-md p-3 focus:outline-red text-opacity-60  text-dark" name="iconPath" value={values.iconPath} onChange={handleChange} onBlur={handleBlur}>
+                                <select className="shadow-md rounded-lg p-3 focus:outline-none text-opacity-60  text-dark" name="iconPath" value={values.iconPath} onChange={handleChange} onBlur={handleBlur}>
                                 <option value="" disabled>Select Icon</option>
                                 {iconList.map(item => <option name="iconPath" key={item.id} value={item.link}>{item.id.slice(0, 1).toUpperCase() + item.id.slice(1).toLowerCase()}</option>)}
                                 </select>
@@ -118,7 +133,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                             }
                                                               
                                 <input 
-                                    className="p-3 mb-3 w-80 shadow-md focus:outline-none"
+                                    className="p-3 rounded-lg mb-3 w-80 shadow-md focus:outline-none"
                                    type="text" 
                                    name="title"
                                    placeholder='Title' 
@@ -128,7 +143,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                                />
                                {errors.title && touched.title ? <div className="text-red mb-3">Title is required.</div> : null}
                                <input 
-                                    className="p-3 mb-3 w-80 shadow-md focus:outline-none"
+                                    className="p-3 rounded-lg mb-3 w-80 shadow-md focus:outline-none"
                                    type="text" 
                                    name="shortDescription"
                                    placeholder='One line description' 
@@ -139,7 +154,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                                 {errors.title && touched.title ? <div className="text-red mb-3">You need to create short description.</div> : null}
 
                                     <textarea
-                                        className="focus:outline-none p-3 resize-none mb-3 w-80 h-80 overflow-scroll shadow-md scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red"
+                                        className="focus:outline-none rounded-lg p-3 resize-none mb-3 w-80 h-80 overflow-scroll shadow-md scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                                         type="text" 
                                         name="description"
                                         placeholder='Description'
@@ -150,16 +165,16 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                                         />
                               
                                     {show ? 
-                                    <div className="w-80 bg-red text-light shadow-md mb-3 p-3">
+                                    <div className="w-80 bg-red rounded-lg text-light shadow-md mb-3 p-3">
                                         {!loading ? 
                                         <div>
                                             <p className="pb-3">Need a bit of help?</p>
-                                            <button type="button" onClick={getDescription} className="p-3 shadow-md bg-orange">Generate Decription</button>
+                                            <button type="button" onClick={getDescription} className="p-3 transition-all duration-150 rounded-lg shadow-md bg-orange hover:shadow-yogurt">Generate Decription</button>
                                         </div>
                                         : 
                                         <div>
-                                            <p className="p-3 ">Give us a second...</p>
-                                            <button disabled type="button" className="w-44 p-3 mr-2 text-lg text-red bg-white shadow-md inline-flex justify-center items-center">
+                                            <p className="pb-3 ">Give us a second...</p>
+                                            <button disabled type="button" className="rounded-lg w-44 p-3 mr-2 text-lg text-red bg-white shadow-md inline-flex justify-center items-center">
                                                 <svg aria-hidden="true" role="status" className="inline w-6 h-6 mr-3 text-red animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
                                                 <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#F69500"/>
@@ -175,14 +190,15 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                                     
                                     
                                 <div className="flex justify-between items-center w-80">
+                                    <button className="bg-red hover:bg-dark-red transition-all duration-150 rounded-lg  text-light shadow-md w-32 p-3" onClick={hideVisible}>Cancel</button>
                                     <button 
-                                        className="bg-red text-light shadow-md w-32 p-3"
+                                        className="bg-red hover:bg-orange hover:text-white transition-all duration-150 rounded-lg text-light shadow-md w-32 p-3"
                                         type="submit" 
                                         disabled={isSubmitting}
                                     >
                                         Create New
                                     </button>
-                                    <button className="bg-red text-light shadow-md w-32 p-3" onClick={hideVisible}>Cancel</button>
+                                    
                                 </div>                
                            </div> 
                        </div>     
@@ -192,7 +208,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
            </Formik>
            
             }
-            <button className="bg-red mb-3 shadow-md text-light w-80 p-3" onClick={showHidden}>Create New {type}</button>
+            <button className="bg-red mb-3 transition-all duration-150 shadow-md text-light w-80 p-3 rounded-lg hover:bg-orange hover:text-white" onClick={showHidden}>Create New {naming}</button>
             
         </div>
     )

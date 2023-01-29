@@ -11,7 +11,7 @@ module.exports = {
       current: 'currentColor',
       'white': '#FFFFFF',
       'light': '#F6EFE9',
-      'yogurt': '#E6D4C4',
+      'yogurt': '#e7d5c5',
       'red': '#B37A79',
       'dark-red': '#8C5958',
       'dark': '#403F3C',
@@ -33,4 +33,7 @@ module.exports = {
   plugins: [
     require('tailwind-scrollbar'),
   ],
+  variants: {
+    scrollbar: ['rounded']
+}
 }

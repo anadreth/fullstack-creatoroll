@@ -40,14 +40,14 @@ const UserNavBar = ({userName,}) => {
 
     <nav className="font-poppins text-light bg-light p-3 fixed w-full z-20 top-0 left-0">
         <div className="flex flex-wrap items-center justify-between mx-auto">
-            <button onClick={toDashboard} className="flex items-center">
-                <img src={url + "images/logo.png"} className="h-12 mr-3 sm:h-9" alt="Creato-Roll Logo" />
+            <button onClick={toDashboard} className="flex items-center md:ml-6">
+                <img src={url + "images/logo-clear.png"} className="h-12 mr-3 sm:h-9" alt="Creato-Roll Logo" />
                 <span className="font-seasons self-center text-xl text-orange whitespace-nowrap tracking-widest">{userName}</span>
             </button>
-            <div className="flex md:order-2">
+            <div className="flex md:order-2 md:mr-6 ">
                 <div>
                     <button className="relative group" onClick={handleSidebar} ref={buttonRef}>
-                        <div className="relative flex overflow-hidden items-center justify-center outline-none rounded-full w-[47px] h-[47px] transform transition-all bg-light ring-0 ring-red hover:ring-4 group-focus:ring-2 ring-opacity-30 duration-200 focus:duration-500 shadow-md">
+                        <div className="relative flex overflow-hidden items-center justify-center outline-none rounded-lg w-[47px] h-[47px] transform transition-all bg-light ring-0 ring-red hover:ring-4 group-focus:ring-2 ring-opacity-30 duration-200 focus:duration-500 shadow-md">
                         <div className="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden">
                             <div className="bg-red h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:translate-y-6 delay-100"></div>
                             <div className="bg-red h-[2px] w-7 rounded transform transition-all duration-300 group-focus:translate-y-6 delay-75"></div>
@@ -65,7 +65,7 @@ const UserNavBar = ({userName,}) => {
         </div>
             <Transition
             show={sidebar}
-            className="bg-red flex justify-end items-start text-lg w-full h-screen p-3 mt-3"
+            className="bg-red flex justify-end items-start text-lg w-full h-screen p-3 mt-3 rounded-lg"
             enter="transition ease-in-out duration-300 transform"
             enterFrom="-translate-x-[-100%]"
             enterTo="translate-x-0"
@@ -75,9 +75,9 @@ const UserNavBar = ({userName,}) => {
             >
                     <div className="w-full">
                         <ul >
-                            <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toDashboard}>Dashboard</button></li>
-                            <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={toCreateNew}>Create New</button></li>
-                            <li><button className="p-6 w-full hover:text-red hover:bg-light hover:font-bold text-end" onClick={handleClickLogOut}>Logout</button></li>
+                            <li><button className="p-6 w-full hover:text-red hover:bg-light rounded-lg hover:font-bold text-end" onClick={toDashboard}>Dashboard</button></li>
+                            <li><button className="p-6 w-full hover:text-red hover:bg-light rounded-lg hover:font-bold text-end" onClick={toCreateNew}>Create New</button></li>
+                            <li><button className="p-6 w-full hover:text-red hover:bg-light rounded-lg hover:font-bold text-end" onClick={handleClickLogOut}>Logout</button></li>
                         </ul>
                     </div>
             </Transition>

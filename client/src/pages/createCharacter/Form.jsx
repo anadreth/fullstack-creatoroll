@@ -65,7 +65,7 @@ const Form = () => {
 
     return(
         <div>
-            <button  className="bg-orange active:animate-ping  shadow-md w-44 text-light border-orange border-2 p-2" onClick={handleFormSubmit}>Save Character</button>
+            <button  className="rounded-lg bg-orange active:animate-ping transition-all hover:shadow-lg hover:shadow-white duration-150 shadow-md w-44 text-light border-orange border-2 p-2" onClick={handleFormSubmit}>Save Character</button>
         </div>
     )
 }

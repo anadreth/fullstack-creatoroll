@@ -16,8 +16,8 @@ function SearchBar({setSearchBar}) {
    } 
 
   return (
-    <div className='px-3 pb-3'>    
-        <input className="p-3 shadow-md w-80" type="text" placeholder='search...' id="searchBar" onChange={search}/> 
+    <div className='px-3 pb-3 '>    
+        <input className="p-3 shadow-md rounded-lg w-80" type="text" placeholder='search...' id="searchBar" onChange={search}/> 
     </div>
   )
 }

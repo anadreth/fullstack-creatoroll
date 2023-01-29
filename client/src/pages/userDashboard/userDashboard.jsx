@@ -2,10 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import UserNavBar from "./userNavBar";
-import CharChart from "./CharChart";
 import jsPDF from 'jspdf'; 
+import UserChart from "./UserChart";
 import CharList from "./CharList";
+import UserNavBar from "./userNavBar";
+
 
 
 
@@ -17,7 +18,6 @@ const UserDashboard = () => {
     const [displayed, setDisplayed] = useState([]);
     const character = displayed[0];
     
-    console.log(displayed);
 //PDF GENERATING
     const reportTemplateRef = useRef(null);
    
@@ -58,17 +58,41 @@ const UserDashboard = () => {
     }
     
     return (
-        <div className="font-poppins bg-light h-screen grid grid-cols-5">
-           <UserNavBar userName={currentUser.userName}/>
-           <div className="bg-white"></div>
-           <div className="bg-dark"></div>
-           <div className="bg-red"></div>
-           <div className="bg-orange"></div>
-           <div className="bg-yogurt"></div>
-           <div className="bg-white"></div>
-           <div className="bg-dark"></div>
-           <div className="bg-red"></div>
-           <div className="bg-orange"></div>
+        <div className="bg-light h-screen">
+            <UserNavBar userName={currentUser.userName}/>
+            <div className="h-[73px]"></div>
+            <div className="font-poppins h-5/6 bg-light grid grid-cols-5 gap-3 mx-6 my-3">
+                <div className="bg-light col-span-1 grid grid-rows-7 p-3">
+                    <div className="flex justify-center items-center my3">
+                        <h2 className="row-span-1 text-orange text-2xl">Overview</h2>
+                    </div>
+                    
+
+                    <div className="bg-white row-span-1 grid place-items-center rounded-lg shadow-md">
+                        <UserChart currentCharacters={currentCharacters} />
+                    </div>
+
+                    <div className="flex justify-center items-center my-3">
+                        <h2 className="row-span-1 text-orange text-2xl ">Your Characters</h2>
+                    </div>
+
+                    <div className="bg-white row-span-3 grid bg-light">
+                        <CharList currentCharacters={currentCharacters} setSelected={setSelected} inspectCharacter={inspectCharacter} />
+                    </div>
+
+                    <div className="bg-white row-span-1 flex justify-end items-end bg-light ">
+                        <button onClick={toInBetween} className="bg-red w-full p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-orange hover:text-white">Create New</button>
+                    </div>
+                </div>
+                    
+                <div className="bg-light col-span-3 p-3">
+
+                </div>
+
+                <div className="bg-light col-span-1 p-3">
+
+                </div>
+            </div>
         </div>
     )
 }
@@ -77,5 +101,5 @@ export default UserDashboard;
 
 
 {/*<CharChart id="character" character={character} />
-<CharList currentCharacters={currentCharacters} toInBetween={toInBetween} setSelected={setSelected} inspectCharacter={inspectCharacter} />
-<UserNavBar userName={currentUser.userName}/>*/}
+
+*/}

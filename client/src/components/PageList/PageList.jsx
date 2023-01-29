@@ -4,6 +4,7 @@ import CreateNewForm from "../CreateNewForm/CreateNewForm";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { setRace } from "../../state";
+import Info from "./Info";
 
 const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
     const pageCount = useSelector((state) => state.pageCount);
@@ -56,20 +57,25 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
 
             {showSearch ? <SearchBar setSearchBar={setSearchBar}/> : <></>}
             
-            <div className="scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red h-96 w-80 shadow-md bg-white overflow-scroll mb-3">
+            <div className="scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red h-96 w-80 shadow-md bg-white rounded-lg overflow-scroll mb-3 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
                     <ul>
                         {!loading ? all.filter(item =>
                         item.title.toLowerCase().slice(0, searchBar.length) === searchBar.toLowerCase()).map(item => 
                         <li key={item.title}>
                         <input checked={current === item.title ? true : false} className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={item.title}/>
-                        <label className="peer-checked:bg-dark transition-all duration-150 m-3 flex justify-between items-center text-orange bg-light" htmlFor={item._id}>
-                            <div className= "flex justify-between items-center  h-24 w-full p-3 shadow-md">
+                        <label className="peer-checked:bg-dark rounded-lg transition-all shadow-md duration-150 m-3 flex justify-between items-center text-orange bg-light" htmlFor={item._id}>
+                            <div className= "flex justify-between items-center h-auto w-full px-3 py-2">
                                 <img src={item.iconPath} className="aspect-square w-[35px] h-[40px] m-3"/>
-                                <div className="w-1/2 whitespace-nowrap flex justify-center items-center flex-col m-3">
+                                <div className="w-1/2 flex justify-center items-center flex-col my-2">
                                     <h3>{item.title}</h3>
-                                    <p className="text-red text-sm">{item.shortDescription}</p>
+                                    <div className="w-32">
+                                        <p className="break-words text-red text-sm ">{item.shortDescription}</p>
+                                    </div>
+                                    
                                 </div>
-                                <button className="m-3" onClick={handleInfo} id={item.description}>Info</button>
+                                <button className="m-3 text-orange" onClick={handleInfo} id={item._id}>
+                                    Info
+                                </button>
                             </div>
                         </label>
                         </li>)
@@ -86,19 +92,9 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
                     </ul>   
             </div>
             {info ? 
-                <div className="absolute h-screen w-full flex flex-col justify-center items-center">
-                    <div className="scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red h-3/4 w-3/4 border-red border-2 bg-light text-red p-3 flex flex-col justify-center items-center overflow-scroll">
-                        <div className="w-full flex justify-end p-3">
-                            <button className="bg-light text-red border-red border-2 px-3 py-1" onClick={() => setInfo(false)}>X</button>
-                        </div>
-                        <div className="h-full flex w-full p-3 justify-start items-start">
-                            <p className="p-3 ">{selected}</p>
-                        </div>
-                        
-                    </div>
-                </div>
+                <Info selected={selected} setInfo={setInfo} all={all} />
                 : <></>}
-                <p className="pb-3 px-3 text-red w-80">Not finding what you want? Try creating your own!</p>
+                <p className="pb-3 px-3 text-red w-80 text-center">Not finding what you want? <br /> Try creating your own!</p>
             <CreateNewForm getAll={getAll} fetchLink={url + saveUrl} type={type} iconList={iconList}/>
         </div>
     )

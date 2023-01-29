@@ -12,7 +12,6 @@ export const getBackground = async (req, res) => {
         const randomStyle  = styleList[Math.floor(Math.random() * styleList.length)]
 
         const {name, charClass, race, trait, str, dex, int} = req.body;
-
         const configuration = new Configuration({
             apiKey: process.env.OPEN_AI_KEY,
         });
@@ -21,7 +20,7 @@ export const getBackground = async (req, res) => {
 
         openai.createCompletion({
             model: "text-davinci-003", 
-            prompt: "Generate short character backstory for " + name + " who is " + race + " " + charClass + " and he is special for being " + trait + " Write it as if it were written by " + randomAuthor + " but dont mention him in text and give this writing mood " + randomStyle,
+            prompt: "Generate short character backstory for " + name + " who is " + race.name + " " + charClass + " and he is special for being " + trait + " Write it as if it were written by " + randomAuthor + " but dont mention him in text and give this writing mood " + randomStyle,
             max_tokens: 300,
             temperature: 0.7,
         })
@@ -49,7 +48,6 @@ export const getDescription = async (req, res) => {
         const randomStyle  = styleList[Math.floor(Math.random() * styleList.length)]
 
         const {name, shortDescription, type} = req.body;
-        console.log(req.body);
 
         const configuration = new Configuration({
             apiKey: process.env.OPEN_AI_KEY,

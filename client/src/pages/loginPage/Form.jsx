@@ -98,12 +98,12 @@ const Form = () => {
                     isSubmitting,
                 }) => ( 
                     <form onSubmit={handleSubmit}>
-                        <div className='text-center'>
+                        <div className='flex flex-col justify-center items-center'>
                         {isRegister && (
-                            <div>  
-                                <h1 className="p-3 text-5xl font-seasons">REGISTER</h1>
+                            <div className='w-80 md:w-96 text-center'>  
+                                <h1 className="p-3  text-6xl font-seasons">REGISTER</h1>
                                     <input
-                                        className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
+                                        className='p-3 w-full transition-all duration-300 focus:outline-red mb-3 rounded-lg outline-none text-red shadow-md'
                                         type="text" 
                                         name="userName"
                                         placeholder='username' 
@@ -111,10 +111,10 @@ const Form = () => {
                                         onBlur={handleBlur}
                                         value={values.userName}
                                     />
-                                {errors.userName && touched.userName ? <div>{errors.userName}</div> : null}
+                                {errors.userName && touched.userName ? <div className='pb-3 transition-all duration-300'>{errors.userName}</div> : null}
                                 
                                 <input 
-                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
+                                    className='p-3 w-full transition-all focus:outline-red duration-300 rounded-lg mb-3 outline-none text-red shadow-md'
                                     type="text" 
                                     name="email"
                                     placeholder='email' 
@@ -122,10 +122,10 @@ const Form = () => {
                                     onBlur={handleBlur}
                                     value={values.email}
                                     />
-                                {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                                {errors.email && touched.email ? <div className='pb-3 transition-all duration-300'>{errors.email}</div> : null}
                                
                                 <input 
-                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
+                                    className='p-3 w-full transition-all focus:outline-red duration-300 rounded-lg outline-none text-red shadow-md'
                                     type="password" 
                                     name="password"
                                     placeholder='password' 
@@ -137,15 +137,15 @@ const Form = () => {
                                       }
                                     helpertext={touched.password && errors.password}
                                     />
-                                {errors.password && touched.password  ? <div>{errors.password }</div> : null}
+                                {errors.password && touched.password  ? <div className='pb-3 transition-all duration-300'>{errors.password }</div> : null}
                                 
                             </div> 
                         )}
                         {isLogin && (
-                            <div>
-                                <h1 className="p-3 text-5xl font-seasons ">LOGIN</h1>
+                            <div className='w-80 md:w-96 text-center'>
+                                <h1 className="p-3 text-6xl font-seasons ">LOGIN</h1>
                                 <input 
-                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
+                                    className='p-3 rounded-lg transition-all focus:outline-red duration-300 w-full mb-3 outline-none text-red shadow-md'
                                     type="text" 
                                     name="email"
                                     placeholder='email' 
@@ -157,10 +157,10 @@ const Form = () => {
                                       }
                                     helpertext={touched.email && errors.email}
                                     />
-                                    {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                                    {errors.email && touched.email ? <div className='pb-3 transition-all duration-300'>{errors.email}</div> : null}
 
                                 <input 
-                                    className='p-3 w-full mb-3 focus:outline-red text-red shadow-md'
+                                    className='p-3 rounded-lg transition-all focus:outline-red duration-300  w-full outline-none text-red shadow-md'
                                     type="password"
                                     name="password"
                                     placeholder='password' 
@@ -172,18 +172,23 @@ const Form = () => {
                                       }
                                     helpertext={touched.password && errors.password}
                                     />
-                                    {errors.password && touched.password  ? <div>{errors.password }</div> : null}
+                                    {errors.password && touched.password  ? <div className='pb-3 transition-all duration-300'>{errors.password}</div> : null}
 
                             </div>
                         )}
+
+                            <div className='w-80 flex justify-center items-center p-3'>
+                               <img src="http://localhost:3000/images/little-dice.png" className='aspect-square w-[25px] h-[25px]' alt="- - -"/>
+                            </div>
+
                             <button 
-                            className='p-3 w-full mb-3 bg-red text-light shadow-md'
+                            className='p-3 w-80 transition-all duration-150 md:w-96 rounded-lg mb-3 bg-red text-light shadow-md hover:bg-dark-red'
                                 type="submit" 
                                 disabled={isSubmitting}
                                 >
                                 {isLogin ? "Login" : "Register" }
                             </button>
-                            <div>
+                            <div className='w-80 md:w-96 text-center'>
                                 {isLogin ? 
                                 <>
                                     <p>Don't have an acount?</p>
