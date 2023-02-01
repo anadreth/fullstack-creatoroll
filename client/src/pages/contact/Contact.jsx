@@ -20,9 +20,11 @@ const initialContactValues = {
 
 function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const homeUrl = "https://creato-roll-client.onrender.com/"
 
   const onSubmit = async (values, onSubmitProps) => {
+    setLoading(true);
     send(
       'service_cz9d09g',
       'template_8a1z9dc',
@@ -31,12 +33,14 @@ function Contact() {
     )
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
+        setLoading(false);
         setSubmitted(true);
         
       })
       .catch((err) => {
         console.log('FAILED...', err);
       });
+      
   };
 
 
@@ -49,7 +53,7 @@ function Contact() {
   return (
     <div className='bg-red text-light w-full h-auto'>
       <NavBar />
-      {!submitted ?
+      {!submitted && !loading ?
         <div className='flex justify-center items-center'>
         <Formik 
                 onSubmit={handleFormSubmit}
@@ -84,6 +88,7 @@ function Contact() {
                                     onBlur={handleBlur}
                                     value={values.email}
                                     />
+
                                 <input 
                                     className='p-3 w-full mb-3 focus:outline-none rounded-lg text-red shadow-md'
                                     type="text" 
@@ -93,6 +98,7 @@ function Contact() {
                                     onBlur={handleBlur}
                                     value={values.subject}
                                 />
+
                                 <textarea 
                                     className='overflow-scroll p-3 w-full h-96 mb-3 focus:outline-none rounded-lg text-red shadow-md resize-none scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red'
                                     type="text" 
@@ -115,13 +121,20 @@ function Contact() {
                 )}
             </Formik>
         </div>
+        : !submitted && loading ? 
+
+        <div className='bg-red text-light w-full h-screen flex justify-center items-center'>
+          <div className='w-3/4 text-center'>
+            <h2 className='p-3 text-5xl font-seasons'>Submiting...</h2>
+            <p className='font-poppins text-light'>Just a moment.</p> 
+          </div> 
+        </div>
+
         : 
         <div className='bg-red text-light w-full h-screen flex justify-center items-center'>
           <div className='w-3/4 text-center'>
             <h2 className='p-3 text-5xl font-seasons'>MESSAGE SENT...</h2>
-            <div className='p-3 w-full bg-orange text-light shadow-md font-poppins'>
-              <a href={homeUrl + "contact"} >Send New Message</a>   
-            </div>
+            <p className='font-poppins text-light'>Thank you! We will answer soon.</p> 
           </div> 
         </div>}
       <Footer />
