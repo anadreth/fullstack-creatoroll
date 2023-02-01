@@ -20,7 +20,7 @@ const initialContactValues = {
 
 function Contact() {
   const [submitted, setSubmitted] = useState(false);
-  const homeUrl = "http://localhost:5173/"
+  const homeUrl = "https://creato-roll-client.onrender.com/"
 
   const onSubmit = async (values, onSubmitProps) => {
     send(

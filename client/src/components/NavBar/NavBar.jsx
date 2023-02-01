@@ -10,7 +10,7 @@ const NavBar = () => {
     const navigate = useNavigate();
     const buttonRef = useRef(null)
     const url = "https://creato-roll-server.onrender.com/"
-    const urlHome = "http://localhost:5173/"
+    const urlHome = "https://creato-roll-client.onrender.com/"
    
     const handleSidebar = () => {
         if(sidebar) {
