@@ -13,7 +13,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) 
     const [selected, setSelected] = useState("");
     const [info, setInfo] = useState(false);
     const [loading, setLoading] = useState(false);
-    const url = "http://localhost:3000";
+    const url = "https://creato-roll-server.onrender.com";
     let current;
 
     let naming;

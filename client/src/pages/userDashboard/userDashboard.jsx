@@ -54,7 +54,7 @@ const UserDashboard = () => {
 	};
 
     const getCharacters = async () => {
-        const response = await fetch("http://localhost:3000/character/get", {
+        const response = await fetch("https://creato-roll-server.onrender.com/character/get", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -66,7 +66,7 @@ const UserDashboard = () => {
     }
 
     const deleteCharacter = async () => {
-        const response = await fetch("http://localhost:3000/character/delete", {
+        const response = await fetch("https://creato-roll-server.onrender.com/character/delete", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

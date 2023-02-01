@@ -74,7 +74,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll, naming}) => {
     const getDescription = async() => {
         
         setLoading(true);
-        const responseDescription = await fetch('http://localhost:3000/background/description', {
+        const responseDescription = await fetch('https://creato-roll-server.onrender.com/background/description', {
             method:'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

@@ -5,7 +5,7 @@ import Footer from "./../../components/Footer/Footer"
 
 const HomePage = () => {
     const navigate = useNavigate();
-    const url = "http://localhost:3000/"
+    const url = "https://creato-roll-server.onrender.com/"
     const handleStart = () => {
         navigate("/login");
     }

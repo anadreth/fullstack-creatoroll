@@ -15,7 +15,7 @@ const Background = ({setGenerated, generated}) => {
 
     const getBackground = async() => {
         setLoading(true);
-        const responseBackground = await fetch('http://localhost:3000/background/get', {
+        const responseBackground = await fetch('https://creato-roll-server.onrender.com/background/get', {
             method:'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

@@ -37,7 +37,7 @@ const Form = () => {
     const isRegister = pageType === "register";
 
     const login = async (values, onSubmitProps) => {
-        const loggedInResponse = await fetch("http://localhost:3000/auth/login", {
+        const loggedInResponse = await fetch("https://creato-roll-server.onrender.com/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
@@ -58,7 +58,7 @@ const Form = () => {
     const register = async (values, onSubmitProps) => {
 
     const savedUserResponse = await fetch(
-      "http://localhost:3000/auth/register",
+      "https://creato-roll-server.onrender.com/auth/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -178,7 +178,7 @@ const Form = () => {
                         )}
 
                             <div className='w-80 flex justify-center items-center p-3'>
-                               <img src="http://localhost:3000/images/little-dice.png" className='aspect-square w-[25px] h-[25px]' alt="- - -"/>
+                               <img src="https://creato-roll-server.onrender.com/images/little-dice.png" className='aspect-square w-[25px] h-[25px]' alt="- - -"/>
                             </div>
 
                             <button 

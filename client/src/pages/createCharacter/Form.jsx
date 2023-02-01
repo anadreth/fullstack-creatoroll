@@ -24,7 +24,7 @@ const Form = () => {
     }));
      
     const saveCharacter = async () => {
-        const savedResponse = await fetch("http://localhost:3000/character/save", {
+        const savedResponse = await fetch("https://creato-roll-server.onrender.com/character/save", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
