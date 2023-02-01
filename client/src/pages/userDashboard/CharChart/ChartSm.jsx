@@ -33,7 +33,7 @@ function ChartSm({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
                     <div className='oveflow-scroll'>
                         <p className='text-sm'>{character.race.shortDescription}</p>
                     </div>
-                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setRacePop(true)}>Read more..</button>
+                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setRacePop(true)}>Read more..</button>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@ function ChartSm({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
                     <div className='oveflow-scroll'>
                         <p className='text-sm'>{character.charClass.shortDescription}</p>
                     </div>
-                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setClassPop(true)}>Read more..</button>
+                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setClassPop(true)}>Read more..</button>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@ function ChartSm({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
                     <div className='w-1/2'>
                         <p className='text-sm'>{character.traits.shortDescription}</p>
                     </div>
-                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setTraitPop(true)}>Read more..</button>
+                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setTraitPop(true)}>Read more..</button>
                 </div>
             </div>
 
@@ -72,7 +72,7 @@ function ChartSm({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
                     <div className='oveflow-scroll'>
                         <p className='text-sm'>{character.equipment.shortDescription}</p>
                     </div>
-                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setEqpPop(true)}>Read more..</button>
+                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setEqpPop(true)}>Read more..</button>
                 </div>
             </div>
 
@@ -95,7 +95,7 @@ function ChartSm({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
                 <p className="text-orange mb-3">Background:</p>
                 <p className='pb-3'>{character.background.slice(0, 100) + "..."}</p>
                 <div className='flex justify-end items-end'>
-                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setBackPop(true)}>Read more..</button>
+                    <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setBackPop(true)}>Read more..</button>
                 </div>
                 
             </div>

@@ -21,9 +21,9 @@ function Info({selected, setInfo, all}) {
     }
 
     return (
-        <div className="absolute text-justify h-screen flex flex-col justify-center items-center bg-red">
+        <div className="absolute text-justify w-full h-screen flex flex-col justify-center items-center bg-red">
             <div className='mt-[73px]'></div>
-            <div className="rounded-lg h-3/4 min-w-80 md:w-3/4 sm:w-3/4 border-red border-2 bg-light text-red p-3 mx-3 overflow-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-light" onScroll={handleScroll} >
+            <div className="rounded-lg h-3/4 min-w-80 max-w-[40rem] border-red border-2 bg-light text-red p-3 mx-3 overflow-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-light" onScroll={handleScroll} >
                 <div className="flex justify-between p-3 items-center bg-white rounded-lg">
                     <div className="w-10 h-10 m-3"></div>
                     <h2 className='text-2xl text-orange m-3'>{current.title}</h2>

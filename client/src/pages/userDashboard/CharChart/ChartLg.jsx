@@ -30,7 +30,7 @@ function ChartLg({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
                 <img src={character.race.iconPath} className="aspect-square w-[35px] h-[40px] mx-3"></img>
             </div>
             <p className='text-sm mb-auto'>{character.race.shortDescription}</p>
-            <button className="mt-3 bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setRacePop(true)}>Read more..</button>
+            <button className="mt-3 bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setRacePop(true)}>Read more..</button>
         </div>
 
         <div className="flex flex-col justify-between bg-light rounded-lg shadow-md p-3">
@@ -39,7 +39,7 @@ function ChartLg({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
                 <img src={character.charClass.iconPath} className="aspect-square w-[35px] h-[40px] mx-3"></img>
             </div>
             <p className='text-sm mb-auto'>{character.charClass.shortDescription}</p>
-            <button className="mt-3 bg-red text-white text-sm px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setClassPop(true)}>Read more..</button>
+            <button className="mt-3 bg-red text-white text-sm px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setClassPop(true)}>Read more..</button>
         </div>
 
         <div className="flex flex-col justify-between bg-light rounded-lg shadow-md p-3">
@@ -48,7 +48,7 @@ function ChartLg({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
                 <img src={character.traits.iconPath} className="aspect-square w-[35px] h-[40px] mx-3"></img>
             </div>
              <p className='text-sm mb-auto'>{character.traits.shortDescription}</p>
-            <button className=" mt-3 bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setTraitPop(true)}>Read more..</button>
+            <button className=" mt-3 bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setTraitPop(true)}>Read more..</button>
         </div>
 
         <div className="flex flex-col justify-between bg-light rounded-lg shadow-md p-3">
@@ -58,7 +58,7 @@ function ChartLg({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
             </div>
             <p className='text-sm mb-auto'>{character.equipment.shortDescription}</p>
 
-            <button className="bg-red text-white text-sm mt-3 px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setEqpPop(true)}>Read more..</button>
+            <button className="bg-red text-white text-sm mt-3 px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setEqpPop(true)}>Read more..</button>
         </div>
 
         <div className="bg-light row-span-2 rounded-lg shadow-md p-3 flex flex-col items-center justify-around gap-3">
@@ -86,7 +86,7 @@ function ChartLg({character, setBackPop, setClassPop, setEqpPop, setRacePop, set
         <div className="flex flex-col justify-between bg-light col-span-2 row-span-2 rounded-lg shadow-md p-3">
             <p className="text-orange mb-3">Background:</p>
             <p className='pb-3 text-justify mb-auto'>{character.background.slice(0, 500) + "..."}</p>
-            <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md" onClick={() => setBackPop(true)}>Read more..</button>          
+            <button className="bg-red text-white text-sm  px-3 py-1 rounded-lg hover:bg-dark-red shadow-md transition-all duration-150" onClick={() => setBackPop(true)}>Read more..</button>          
         </div>
     </div>
   )

@@ -8,7 +8,7 @@ const Form = () => {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.user);
     const unique_id = uuid();
-    const [error, setError] = useState(false);
+    const [saving, setSaving] = useState(false);
 
     //for FORM SUBMISSION
     const { charName, race, charClass, strength, dexterity, intelligence, background, traits, equipment } = useSelector(state => ({
@@ -45,17 +45,19 @@ const Form = () => {
         console.log(saved);
         if(saved) {
             navigate("/dashboard/" + currentUser._id);
+            setSaving(false);
         }
     }
 
     const handleFormSubmit = async(currentUser) => { 
+        setSaving(true);
         await saveCharacter(currentUser);
     };
 
 
     return(
         <div>
-            <button  className="rounded-lg bg-orange active:animate-ping transition-all hover:shadow-lg hover:shadow-white duration-150 shadow-md w-44 text-light border-orange border-2 p-2" onClick={handleFormSubmit}>Save Character</button>
+            <button disabled={saving ? true : false}  className="rounded-lg bg-orange active:animate-ping transition-all hover:shadow-lg hover:shadow-white duration-150 shadow-md w-44 text-light border-orange border-2 p-2" onClick={handleFormSubmit}>{saving ? "Saving!" : "Save Character"}</button>
         </div>
     )
 }

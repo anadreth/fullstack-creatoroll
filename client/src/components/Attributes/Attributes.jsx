@@ -30,46 +30,64 @@ const Attributes = () => {
     }, [])
 
     const incrementStrength = () => {
-        dispatch(
-            setStrength({
-                    strength: strength + 1,
-            })
-        )
+        if (strength < 20) {
+            dispatch(
+                setStrength({
+                        strength: strength + 1,
+                })
+            )
+        }
+        return;
     }
     const decrementStrength = () => {
-        dispatch(
-            setStrength({
-                strength: strength - 1,
-            })
-        )
+        if (strength > 5) {
+            dispatch(
+                setStrength({
+                    strength: strength - 1,
+                })
+            )
+        }
+        return;
     }
     const incrementDexterity = () => {
-        dispatch(
-            setDexterity({
-                dexterity: dexterity + 1,
-            })
-        )
+        if (dexterity < 20) {
+            dispatch(
+                setDexterity({
+                    dexterity: dexterity + 1,
+                })
+            )
+        }
+        return;
     }
     const decrementDexterity = () => {
-        dispatch(
-            setDexterity({
-                dexterity: dexterity - 1,
-            })
-        )
+        if (dexterity > 5) {
+            dispatch(
+                setDexterity({
+                    dexterity: dexterity - 1,
+                })
+            )
+        }
+        return;
     }
     const incrementIntelligence = () => {
-        dispatch(
-            setIntelligence({
-                intelligence: intelligence + 1,
-            })
-        )
+        if (intelligence < 20) {
+            dispatch(
+                setIntelligence({
+                    intelligence: intelligence + 1,
+                })
+            )
+        }
+        return;
     }
     const decrementIntelligence = () => {
-        dispatch(
-            setIntelligence({
-                intelligence: intelligence - 1,
-            })
-        )
+        if (intelligence > 5) {
+            dispatch(
+                setIntelligence({
+                    intelligence: intelligence - 1,
+                })
+            )
+        }
+       return;
     }
     return (
         <div className="h-3/4 flex flex-col justify-center items-center">
