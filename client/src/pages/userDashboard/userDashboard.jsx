@@ -111,7 +111,7 @@ const UserDashboard = () => {
 
                         <div className="my-3 flex flex-col justify-end gap-3">
                                 <button onClick={deleteCharacter} className="bg-red p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-dark-red hover:text-white">Delete Character</button>
-                                <button onClick={saveDiv} className="bg-red p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-dark-red hover:text-white">Get PDF</button>
+                               {/* <button onClick={saveDiv} className="bg-red p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-dark-red hover:text-white">Get PDF</button> */}
                         </div> 
                   
             </div>
