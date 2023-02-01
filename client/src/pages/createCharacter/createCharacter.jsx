@@ -15,6 +15,7 @@ import PageNav from "../../components/PageNav/PageNav";
 import raceIcons from "./../../assets/raceIcons.js"
 import classIcons from "../../assets/classIcons.js"
 import traitIcons from "../../assets/traitIcons.js"
+import eqpIcons from "../../assets/eqpIcons";
 
 
 
@@ -31,39 +32,43 @@ const CreateCharacter = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const updateRace = (e) => {
-        console.log(e.target.value);
-        const value = e.target.value.split(',');
-        let map = new Map();
-        map.set("name", value[0]);
-        map.set("iconPath", value[1]);
-        const object = Object.fromEntries(map);
+    
+
+    const updateRace = async (e) => {
+        const value = JSON.parse(e.target.value);
+
         dispatch(
             setRace({
-                race: object,
+                race: value,
             })
         )
 
     } 
     const updateClass = (e) => {
+        const value = JSON.parse(e.target.value)
+
         dispatch(
             setCharClass({
-                charClass: e.target.value,
+                charClass: value,
             })
         )
 
     }  
     const updateTraits = (e) => {
+        const value = JSON.parse(e.target.value)
+
         dispatch(
             setTraits({
-                traits: e.target.value,
+                traits: value,
             })
         )
     }   
     const updateEqp = (e) => {
+        const value = JSON.parse(e.target.value)
+
         dispatch(
             setEquipment({
-                equipment: e.target.value,
+                equipment: value,
             })
         )
     } 
@@ -78,6 +83,7 @@ const CreateCharacter = () => {
                     break;
                 };  
             case 1: 
+            
                 if(!currentRace) {
                     setError(true);
                     return;
@@ -168,14 +174,12 @@ const CreateCharacter = () => {
             
             : pageCount === 1 ?
             <div className="h-full text-center">
-                <PageList title="Choose Your Race" type="race" getUrl="/race/getall" saveUrl="/race/save" updateValue={updateRace} iconList={raceIcons} />
-                <p className="text-dark-red mb-3">{error ? "Your character must have a race." : ""}</p>
+                <PageList title="Choose Your Race" type="race" getUrl="/race/getall" saveUrl="/race/save" updateValue={updateRace} iconList={raceIcons} error={error} />
                 <PageNav increment={increment} decrement={decrement} />
             </div>
             : pageCount === 2 ?
             <div className="h-full text-center"> 
-                <PageList title="Wizard or Ranger?" type="charClass" getUrl="/class/getall" saveUrl="/class/save" updateValue={updateClass} iconList={classIcons}/> 
-                <p className="text-dark-red mb-3">{error ? "Your character must have a class." : ""}</p>
+                <PageList title="Wizard or Ranger?" type="charClass" getUrl="/class/getall" saveUrl="/class/save" updateValue={updateClass} iconList={classIcons} error={error}/> 
                 <PageNav increment={increment} decrement={decrement} />
             </div>
             : pageCount === 3 ? 
@@ -190,13 +194,12 @@ const CreateCharacter = () => {
             </div>
             : pageCount === 4 ?
             <div className="h-full text-center">
-                <PageList title="What's your thing?" type="traits" getUrl="/traits/getall" saveUrl="/traits/save" updateValue={updateTraits} iconList={traitIcons}/>
-                <p className="text-dark-red mb-3">{error ? "Your character must have a trait." : ""}</p>
+                <PageList title="What's your thing?" type="traits" getUrl="/traits/getall" saveUrl="/traits/save" updateValue={updateTraits} iconList={traitIcons} error={error}/>
                 <PageNav increment={increment} decrement={decrement} />
             </div>
             : 
             <div className="h-full">
-                <PageList title="Sword or that... twig?" type="equipment" getUrl="/eqp/getall" saveUrl="/eqp/save" updateValue={updateEqp} iconList=""/>
+                <PageList title="Sword or that... twig?" type="equipment" getUrl="/eqp/getall" saveUrl="/eqp/save" updateValue={updateEqp} iconList={eqpIcons} error={error}/>
                 <div className="flex justify-center items-center">
                     <div className="flex justify-between items-center w-80">
                         <button className="transition-all duration-150 hover:bg-orange hover:text-white shadow-md rounded-lg bg-white w-24 text-orange active:animate-ping border-orange border-2 p-2" onClick={decrement}><ArrowLeft /></button>

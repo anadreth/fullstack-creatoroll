@@ -35,3 +35,17 @@ export const getCharacters = async (req, res) => {
         res.status(404).json({ message: error.message});
     }
 }
+
+
+export const deleteCharacter = async (req, res) => {
+    try {
+        const { id, charId} = req.body;
+        const user = await User.findById(id);
+        const filtered = user.characters.filter(item => item.charId !== charId)
+        console.log(filtered);
+        const updatedUser =  await User.updateOne({_id: id}, {characters: [...filtered]});
+        res.status(200).send(updatedUser);
+    } catch (error) {
+        res.status(404).json({ message: error.message});
+    }
+}

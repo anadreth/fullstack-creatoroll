@@ -63,7 +63,7 @@ app.use("/eqp", eqpRoutes);
 app.use("/background", backgroundRoutes);
 
 /*MONGOOSE SETUP*/
-const PORT = process.env.port || 6001;
+const PORT = process.env.port || 3000;
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

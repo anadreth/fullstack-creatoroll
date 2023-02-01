@@ -12,6 +12,7 @@ const Background = ({setGenerated, generated}) => {
     const currentDexterity = useSelector((state) => state.dexterity);
     const currentInt = useSelector((state) => state.intelligence);
 
+
     const getBackground = async() => {
         setLoading(true);
         const responseBackground = await fetch('http://localhost:3000/background/get', {
@@ -19,9 +20,9 @@ const Background = ({setGenerated, generated}) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 name: currentName,
-                charClass: currentClass,
-                race: currentRace,
-                trait: currentTrait,
+                charClass: currentClass.title,
+                race: currentRace.title,
+                trait: currentTrait.title,
                 str: currentStrength,
                 dex: currentDexterity,
                 int: currentInt,

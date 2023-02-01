@@ -66,18 +66,17 @@ function Contact() {
                     isSubmitting,
                 }) => ( 
                     <form onSubmit={handleSubmit}>
-                        <div className='w-3/4 mx-auto text-center mt-24'>
+                        <div className='w-3/4 mx-auto text-center mt-44 mb-24 font-poppins'>
                             <>  
                                 <h1 className="text-5xl font-seasons">Get In Touch</h1>
                                 <div className='font-poppins p-3 '>
-                                  <p >Got a technical issue? </p>
-                                  <p>Don't like a feature?</p>
+                                  <p >Got a technical issue? Don't like a feature?</p>
                                   <p> Want to work with us?</p>
-                                  <p>Let us know.</p> 
+                                  <p className=''>Let us know.</p> 
                                 </div>
                                   
                                 <input 
-                                    className='p-3 w-full mb-3 focus:outline-orange text-red shadow-md'
+                                    className='p-3 w-full mb-3 focus:outline-none text-red shadow-md rounded-lg'
                                     type="text" 
                                     name="email"
                                     placeholder='Your email' 
@@ -86,7 +85,7 @@ function Contact() {
                                     value={values.email}
                                     />
                                 <input 
-                                    className='p-3 w-full mb-3 focus:outline-orange text-red shadow-md'
+                                    className='p-3 w-full mb-3 focus:outline-none rounded-lg text-red shadow-md'
                                     type="text" 
                                     name="subject"
                                     placeholder='How can we help?' 
@@ -95,7 +94,7 @@ function Contact() {
                                     value={values.subject}
                                 />
                                 <textarea 
-                                    className='p-3 w-full h-44 mb-3 focus:outline-orange text-red shadow-md'
+                                    className='overflow-scroll p-3 w-full h-96 mb-3 focus:outline-none rounded-lg text-red shadow-md resize-none scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red'
                                     type="text" 
                                     name="message"
                                     placeholder='Your message' 
@@ -105,7 +104,7 @@ function Contact() {
                                     />
                             </> 
                             <button 
-                                className='p-3 w-full mb-3 bg-orange text-light shadow-md'
+                                className='p-3 w-full mb-3 bg-orange text-light shadow-md rounded-lg hover:shadow-white'
                                 type="submit" 
                                 disabled={isSubmitting}
                                 >

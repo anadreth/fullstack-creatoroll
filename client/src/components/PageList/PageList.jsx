@@ -5,7 +5,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import Info from "./Info";
 
-const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
+const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) => {
     const pageCount = useSelector((state) => state.pageCount);
     const [all, setAll] = useState([]);
     const [searchBar, setSearchBar] = useState("");
@@ -16,13 +16,29 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
     const url = "http://localhost:3000";
     let current;
 
+    let naming;
+    switch(type) {
+        case "race": 
+            naming = "Race";
+            break;
+        case "charClass":
+            naming = "Class";
+            break;
+        case "traits":
+            naming = "Trait"
+            break;
+        case "equipment":
+            naming = "Equipment"
+            break;
+    }
+
     if (type === "race") {
         current = useSelector((state) => state[type]);
         current = current.name;
     } else {
         current = useSelector((state) => state[type]);
     }
-    
+  
     const getAll = async () =>{
         setLoading(true);
         const allResponse = await fetch(url + getUrl, {
@@ -37,6 +53,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
         getAll();
     }, [pageCount])
     
+
     const handleInfo = (e) => {
         setSelected(e.target.id);
         setInfo(true);
@@ -60,14 +77,14 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
                         {!loading ? all.filter(item =>
                         item.title.toLowerCase().slice(0, searchBar.length) === searchBar.toLowerCase()).map(item => 
                         <li key={item.title}>
-                        <input checked={current === item.title ? true : false} className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={type === "race" ? `${item.title}, ${item.iconPath}` : item.title} />
+                        <input className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={JSON.stringify(item)} />
                         <label className="peer-checked:bg-dark rounded-lg transition-all shadow-md duration-150 m-3 flex justify-between items-center text-orange bg-light" htmlFor={item._id}>
                             <div className= "flex justify-between items-center h-auto w-full px-3 py-2">
                                 <img src={item.iconPath} className="aspect-square w-[35px] h-[40px] m-3"/>
                                 <div className="w-1/2 flex justify-center items-center flex-col my-2">
                                     <h3>{item.title}</h3>
                                     <div className="w-32">
-                                        <p className="break-words text-red text-sm ">{item.shortDescription}</p>
+                                        <p className="break-words text-red text-sm text-center">{item.shortDescription}</p>
                                     </div>
                                     
                                 </div>
@@ -92,8 +109,9 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList}) => {
             {info ? 
                 <Info selected={selected} setInfo={setInfo} all={all} />
                 : <></>}
-                <p className="pb-3 px-3 text-red w-80 text-center">Not finding what you want? <br /> Try creating your own!</p>
-            <CreateNewForm getAll={getAll} fetchLink={url + saveUrl} type={type} iconList={iconList}/>
+                {error ? <p className="text-dark-red mb-3">{error ? "Your character must have a " + naming : ""}</p> : <p className="pb-3 px-3 text-red w-80 text-center">Not finding what you want? <br /> Try creating your own!</p>}
+                
+            <CreateNewForm getAll={getAll} fetchLink={url + saveUrl} type={type} iconList={iconList} naming={naming} />
         </div>
     )
 }

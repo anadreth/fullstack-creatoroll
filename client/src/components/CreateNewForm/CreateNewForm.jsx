@@ -6,27 +6,20 @@ import * as yup from "yup";
 
 
 
-const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
+const CreateNewForm = ({fetchLink, type, iconList, getAll, naming}) => {
     const [visible, setVisible] = useState(false);
     const [show, setShow] = useState(false);
+    const [confirm, setConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
     const formRef = useRef();
-    let naming;
-    switch(type) {
-        case "race": 
-            naming = "Race";
-            break;
-        case "charClass":
-            naming = "Class";
-            break;
-        case "traits":
-            naming = "Trait"
-            break;
-        case "equipment":
-            naming = "Equipment"
-            break;
-    }
 
+    const handleConfirm = () => {
+        if(confirm) {
+            setConfirm(false);
+        } else {
+            setConfirm(true);
+        }
+    }
     const handleShow = () => {
         if(!show) {
             setShow(true);
@@ -67,6 +60,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
     const handleFormSubmit = async(values, onSubmitProps) => { 
         await createNew(values, onSubmitProps);
         getAll();
+        setConfirm(false);
     };
 
     const showHidden = () => {
@@ -157,7 +151,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                                         className="focus:outline-none rounded-lg p-3 resize-none mb-3 w-80 h-80 overflow-scroll shadow-md scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                                         type="text" 
                                         name="description"
-                                        placeholder='Description'
+                                        placeholder={"Describe it! \nLet your imagination run wild..."}
                                         onClick={handleShow} 
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -165,13 +159,13 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                                         />
                               
                                     {show ? 
-                                    <div className="w-80 bg-red rounded-lg text-light shadow-md mb-3 p-3">
+                                    <div className="w-80 bg-red rounded-lg text-light shadow-md mb-3 p-3 text-center">
                                         {!loading ? 
                                         <div>
                                             <p className="pb-3">Need a bit of help?</p>
                                             <button type="button" onClick={getDescription} className="p-3 transition-all duration-150 rounded-lg shadow-md bg-orange hover:shadow-yogurt">Generate Decription</button>
                                         </div>
-                                        : 
+                                        :
                                         <div>
                                             <p className="pb-3 ">Give us a second...</p>
                                             <button disabled type="button" className="rounded-lg w-44 p-3 mr-2 text-lg text-red bg-white shadow-md inline-flex justify-center items-center">
@@ -193,12 +187,30 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll}) => {
                                     <button className="bg-red hover:bg-dark-red transition-all duration-150 rounded-lg  text-light shadow-md w-32 p-3" onClick={hideVisible}>Cancel</button>
                                     <button 
                                         className="bg-red hover:bg-orange hover:text-white transition-all duration-150 rounded-lg text-light shadow-md w-32 p-3"
-                                        type="submit" 
-                                        disabled={isSubmitting}
+                                        type="button" 
+                                        onClick={handleConfirm}
                                     >
                                         Create!
                                     </button>
-                                    
+                                    {!confirm ? <></> : 
+                                    <div className="top-0 left-0 h-screen w-full absolute flex flex-col justify-center items-center">
+                                        <div className="flex justify-center items-center flex-col rounded-lg w-80 md:w-96 border-red border-2 bg-red text-light p-3 ">
+                                            <p className="p-3 text-center">This asset will be also available for other users to use. <br /> Do you still wish to continue?</p>
+                                            <div className="w-full flex justify-around items-center m-3">
+                                                <button 
+                                                    className="bg-dark-red hover:shadow-none transition-all duration-150 rounded-lg text-light shadow-md w-32 p-3"
+                                                    onClick={handleConfirm}>
+                                                No?
+                                                </button>
+                                                <button className="bg-orange hover:shadow-white hover:text-white hover:shadow-lg transition-all duration-150 rounded-lg text-light shadow-md w-32 p-3"
+                                                        type="submit" 
+                                                        disabled={isSubmitting}>
+                                                Yes!
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    }
                                 </div>                
                            </div> 
                        </div>     

@@ -9,7 +9,7 @@ function Footer() {
     const navigate = useNavigate();
   return (
     <div>
-        <footer className="p-3 m-3 bg-light sm:p-6  text-red font-poppins">
+        <footer className="p-3 mx-3 mt-3 bg-light sm:p-6  text-red font-poppins">
             <div className="md:flex md:justify-between text-red ">
                 <div className="grid  text-red grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                     <div>

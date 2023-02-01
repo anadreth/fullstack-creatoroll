@@ -1,25 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
-import raceIcons from '../../assets/raceIcons';
-
-const characterSchema = yup.object().shape({
-    name: yup.string().required("required"),
-})
-
-const initialValuesCharacter = {
-        name: "",
-}
+import { useState } from 'react';
 
 const Form = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.user);
     const unique_id = uuid();
-    
+    const [error, setError] = useState(false);
+
     //for FORM SUBMISSION
     const { charName, race, charClass, strength, dexterity, intelligence, background, traits, equipment } = useSelector(state => ({
         charName: state.charName,

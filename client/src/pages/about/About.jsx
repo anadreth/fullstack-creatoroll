@@ -8,7 +8,7 @@ function About() {
         <div className='flex justify-center items-center w-screen h-screen bg-light z-100'>
             <div className=''>
                 <h1 className='font-seasons text-orange tracking-widest text-5xl'>ABOUT US</h1>
-                <p className='font-seasons text-orange'>It needs just a little...</p>
+                <p className='font-seasons text-orange'>Sparking imagination...</p>
             </div>
         </div>
         <div className='bg-red text-light w-screen h-screen flex justify-center items-center'>
