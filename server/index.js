@@ -41,13 +41,22 @@ app.use("/images", express.static('images'));
 //from github repo of multer
 const storage = multer.diskStorage( {
     destination: function (req, file, cb) {
-        cb(null, "public/assets");
+        cb(null, "");
     },
      filename: function (req, file, cb ) {
         cb(null, file.originalname);
      }
 })
 const upload = multer({storage});
+
+/*FIX FOR RELOAD */
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, './../client/dist'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 /*ROUTES WITH FILES*/
 app.post("/auth/register", upload.single("picture"), register);
