@@ -49,15 +49,6 @@ const storage = multer.diskStorage( {
 })
 const upload = multer({storage});
 
-/*FIX FOR RELOAD */
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, './../client/dist'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
 /*ROUTES WITH FILES*/
 app.post("/auth/register", upload.single("picture"), register);
 
