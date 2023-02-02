@@ -25,7 +25,6 @@ const CreateCharacter = () => {
     const currentRace = useSelector((state) => state.race);
     const currentClass = useSelector((state) => state.charClass);
     const currentTrait = useSelector((state) => state.traits);
-    const currentEqp = useSelector((state) => state.equipment);
 
     const [error, setError] = useState(false);
     const [generated, setGenerated] = useState("");
@@ -114,14 +113,6 @@ const CreateCharacter = () => {
                     })
                 )
                 break;  
-            case 6:
-                if(!currentEqp) {
-                    setError(true);
-                    return;
-                } else {
-                    setError(false);
-                    break;
-                }
         }
 
         if(pageCount < 6){
@@ -167,8 +158,8 @@ const CreateCharacter = () => {
                 
                 <div className="h-1/4 flex  flex-col justify-center items-center">
                         <p className="text-dark-red">{error ? "Your character must have a name." : ""}</p>
-                        <button className="inline-block transition-all duration-150 hover:bg-dark-red hover:border-dark-red hover:text-white rounded-lg w-44 bg-white border-orange shadow-md text-orange border-2 p-3 m-3" onClick={toInBetween}>Create Other</button>
                         <button className="inline-block transition-all duration-150 rounded-lg hover:bg-orange w-44 bg-red text-light shadow-md p-3 m-3" onClick={increment}><ArrowRight /></button>
+                        <button className="inline-block transition-all duration-150 hover:bg-dark-red hover:border-dark-red hover:text-white rounded-lg w-44 bg-white border-orange shadow-md text-orange border-2 p-3 m-3" onClick={toInBetween}>Create Other</button>
                 </div> 
             </div>
             
@@ -203,7 +194,7 @@ const CreateCharacter = () => {
                 <div className="flex justify-center items-center">
                     <div className="flex justify-between items-center w-80">
                         <button className="transition-all duration-150 hover:bg-orange hover:text-white shadow-md rounded-lg bg-white w-24 text-orange active:animate-ping border-orange border-2 p-2" onClick={decrement}><ArrowLeft /></button>
-                        <Form />
+                        <Form setError={setError} error={error} />
                     </div>
                 </div>
             </div>

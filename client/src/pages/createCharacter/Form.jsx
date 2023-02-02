@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { useState } from 'react';
 
-const Form = () => {
+const Form = ({setError, error}) => {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.user);
     const unique_id = uuid();
@@ -23,6 +23,7 @@ const Form = () => {
         equipment: state.equipment,
     }));
      
+    console.log(equipment);
     const saveCharacter = async () => {
         const savedResponse = await fetch("https://creato-roll-server.onrender.com/character/save", {
             method: "POST",
@@ -50,6 +51,13 @@ const Form = () => {
     }
 
     const handleFormSubmit = async(currentUser) => { 
+        setError(false);
+
+        if(!equipment) {
+            setError(true);
+            return;
+        }
+
         setSaving(true);
         await saveCharacter(currentUser);
     };

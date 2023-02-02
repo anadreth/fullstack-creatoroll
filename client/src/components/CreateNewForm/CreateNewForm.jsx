@@ -11,9 +11,17 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll, naming}) => {
     const [show, setShow] = useState(false);
     const [confirm, setConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState(false);
     const formRef = useRef();
 
     const handleConfirm = () => {
+        setError(false);
+       if(!formRef.current.values.title ||  !formRef.current.values.shortDescription || !formRef.current.values.iconPath) {
+            setError(true);
+            return;
+       } 
+
         if(confirm) {
             setConfirm(false);
         } else {
@@ -58,8 +66,10 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll, naming}) => {
     }
 
     const handleFormSubmit = async(values, onSubmitProps) => { 
+        setSubmitting(true);
         await createNew(values, onSubmitProps);
         getAll();
+        setSubmitting(false);
         setConfirm(false);
     };
 
@@ -107,8 +117,9 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll, naming}) => {
                    isSubmitting,
                }) => ( 
                    <form onSubmit={handleSubmit}>
-                       <div className="bg-light absolute top-0 left-0 h-screen w-full p-3 flex flex-col justify-center items-center">
-                           <div className="h-3/4 flex flex-col justify-center items-center">
+                       <div className="bg-light absolute top-0 left-0 h-screen w-full p-3 flex flex-col justify-between items-center">
+                        <div className="mt-[73px]"></div>
+                           <div className="h-full md:h-4/6 flex flex-col justify-start items-center my-auto">
 
                             {iconList !== "" ? 
                             <div className="w-80 flex justify-between mb-3 items-center">
@@ -148,7 +159,7 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll, naming}) => {
                                 {errors.title && touched.title ? <div className="text-red mb-3">You need to create short description.</div> : null}
 
                                     <textarea
-                                        className="focus:outline-none rounded-lg p-3 resize-none mb-3 w-80 h-80 overflow-scroll shadow-md scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
+                                        className="focus:outline-none rounded-lg p-3 resize-none mb-3 w-80 h-full overflow-scroll shadow-md scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                                         type="text" 
                                         name="description"
                                         placeholder={"Describe it! \nLet your imagination run wild..."}
@@ -182,8 +193,8 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll, naming}) => {
                                     }
                                     
                                     
-                                    
-                                <div className="flex justify-between items-center w-80">
+                                {error? <p className="text-red pb-3 w-80 text-center">New Asset must have Icon, Title and One line description!</p> : <></>}
+                                <div className="flex justify-between items-center mt-auto w-80">
                                     <button className="bg-red hover:bg-dark-red transition-all duration-150 rounded-lg  text-light shadow-md w-32 p-3" onClick={hideVisible}>Cancel</button>
                                     <button 
                                         className="bg-red hover:bg-orange hover:text-white transition-all duration-150 rounded-lg text-light shadow-md w-32 p-3"
@@ -202,11 +213,14 @@ const CreateNewForm = ({fetchLink, type, iconList, getAll, naming}) => {
                                                     onClick={handleConfirm}>
                                                 No?
                                                 </button>
-                                                <button className="bg-orange hover:shadow-white hover:text-white hover:shadow-lg transition-all duration-150 rounded-lg text-light shadow-md w-32 p-3"
+                                                {submitting ?
+                                                <p className="bg-orange hover:shadow-white hover:text-white hover:shadow-lg transition-all duration-150 rounded-lg text-light shadow-md w-32 p-3">Processing...</p>
+                                                : <button className="bg-orange hover:shadow-white hover:text-white hover:shadow-lg transition-all duration-150 rounded-lg text-light shadow-md w-32 p-3"
                                                         type="submit" 
                                                         disabled={isSubmitting}>
                                                 Yes!
                                                 </button>
+                                                }
                                             </div>
                                         </div>
                                     </div>

@@ -26,13 +26,14 @@ function Info({selected, setInfo, all}) {
             <div className="rounded-lg h-3/4 min-w-80 max-w-[40rem] border-red border-2 bg-light text-red p-3 mx-3 overflow-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-light" onScroll={handleScroll} >
                 <div className="flex justify-between p-3 items-center bg-white rounded-lg">
                     <div className="w-10 h-10 m-3"></div>
-                    <h2 className='text-2xl text-orange m-3'>{current.title}</h2>
-                    <img src={current.iconPath} className="aspect-square w-[35px] h-[40px] m-3" />
                     <button className={"fixed p-1 transition-all duration-150  hover:bg-orange hover:text-white rounded-lg " + `bg-${bgColor} text-${textColor}`} onClick={() => setInfo(false)}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
+                    <h2 className='text-2xl text-orange m-3'>{current.title}</h2>
+                    <img src={current.iconPath} className="aspect-square w-[35px] h-[40px] m-3" />
+                    
                 </div>
                 <div className="w-full p-3">
                     <p className="italic p-3 text-orange ">{current.shortDescription}</p>

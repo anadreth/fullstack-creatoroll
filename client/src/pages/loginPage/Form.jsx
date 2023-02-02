@@ -7,14 +7,14 @@ import { useDispatch } from 'react-redux';
 import { setLogin } from '../../state';
 
 const registerSchema = yup.object().shape({
-    userName: yup.string().required("required"),
-    email:  yup.string().email("invalid email").required("required"),
-    password: yup.string().required("required"), 
+    userName: yup.string().required("Username is required."),
+    email:  yup.string().email("Invalid email.").required("Email is required."),
+    password: yup.string().required("Password is required."), 
 })
 
 const loginSchema = yup.object().shape({
-    email: yup.string().email("invalid email").required("required"),
-    password: yup.string().required("required"),
+    email: yup.string().email("Invalid email.").required("Email is required."),
+    password: yup.string().required("Password is required."),
 })
 
 const initialValuesRegister = {
@@ -31,6 +31,7 @@ const initialValuesLogin = {
 
 const Form = () => {
     const [pageType, setPageType] = useState("login");
+    const [exist, setExist] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLogin = pageType === "login";
@@ -44,7 +45,11 @@ const Form = () => {
         });
         const loggedIn = await loggedInResponse.json();
         onSubmitProps.resetForm();
-        if (loggedIn) {
+        if (loggedIn.message === "User does not exist!") {
+            setExist(false);
+            return;
+        }
+        else if (loggedIn) {
           dispatch(
             setLogin({
               user: loggedIn.user,
@@ -52,9 +57,10 @@ const Form = () => {
             })
           );
           navigate("/dashboard/" + loggedIn.user._id);
-        }
+        } 
       };
 
+      
     const register = async (values, onSubmitProps) => {
 
     const savedUserResponse = await fetch(
@@ -132,12 +138,9 @@ const Form = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
-                                    error={
-                                        Boolean(touched.password) && Boolean(errors.password)
-                                      }
                                     helpertext={touched.password && errors.password}
                                     />
-                                {errors.password && touched.password  ? <div className='pb-3 transition-all duration-300'>{errors.password }</div> : null}
+                                {errors.password && touched.password  ? <div className='pt-3 transition-all duration-300'>{errors.password }</div> : null}
                                 
                             </div> 
                         )}
@@ -152,9 +155,6 @@ const Form = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.email}
-                                    error={
-                                        Boolean(touched.email) && Boolean(errors.email)
-                                      }
                                     helpertext={touched.email && errors.email}
                                     />
                                     {errors.email && touched.email ? <div className='pb-3 transition-all duration-300'>{errors.email}</div> : null}
@@ -167,12 +167,9 @@ const Form = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
-                                    error={
-                                        Boolean(touched.password) && Boolean(errors.password)
-                                      }
                                     helpertext={touched.password && errors.password}
                                     />
-                                    {errors.password && touched.password  ? <div className='pb-3 transition-all duration-300'>{errors.password}</div> : null}
+                                    {errors.password && touched.password  ? <div className='pt-3 transition-all duration-300'>{errors.password}</div> : null}
 
                             </div>
                         )}
@@ -191,15 +188,15 @@ const Form = () => {
                             <div className='w-80 md:w-96 text-center'>
                                 {isLogin ? 
                                 <>
-                                    <p>Don't have an acount?</p>
-                                    <a className='underline' onClick={() => {
+                                    <p>{exist ? "Don't have an acount?" : "User does not exist!"} </p>
+                                    <a className='underline cursor-pointer' onClick={() => {
                                     setPageType(isLogin ? "register" : "login");
                                     resetForm();
-                                }}>Sign up here.</a>
+                                }}>{exist ? "Sign up here." : "You need to sign up first." }</a>
                                 </> : 
                                 <>
                                     <p>Already have an account?</p>
-                                    <a className='underline' onClick={() => {
+                                    <a className='underline cursor-pointer' onClick={() => {
                                     setPageType(isLogin ? "register" : "login");
                                     resetForm();
                                 }}>Log in here.</a>
