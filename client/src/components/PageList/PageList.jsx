@@ -14,7 +14,8 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) 
     const [info, setInfo] = useState(false);
     const [loading, setLoading] = useState(false);
     const url = "https://creato-roll-server.onrender.com";
-    let current;
+    const current = useSelector((state) => state[type]);
+    console.log(current);
 
     let naming;
     switch(type) {
@@ -30,13 +31,6 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) 
         case "equipment":
             naming = "Equipment"
             break;
-    }
-
-    if (type === "race") {
-        current = useSelector((state) => state[type]);
-        current = current.name;
-    } else {
-        current = useSelector((state) => state[type]);
     }
   
     const getAll = async () =>{
@@ -77,7 +71,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) 
                         {!loading ? all.filter(item =>
                         item.title.toLowerCase().slice(0, searchBar.length) === searchBar.toLowerCase()).map(item => 
                         <li key={item.title}>
-                        <input className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={JSON.stringify(item)} />
+                        <input checked={current && current._id === item._id ? true : false} className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={JSON.stringify(item)} />
                         <label className="peer-checked:bg-dark rounded-lg transition-all shadow-md duration-150 m-3 flex justify-between items-center text-orange bg-light" htmlFor={item._id}>
                             <div className= "flex justify-between items-center h-auto w-full px-3 py-2">
                                 <img src={item.iconPath} className="aspect-square w-[35px] h-[40px] m-3"/>

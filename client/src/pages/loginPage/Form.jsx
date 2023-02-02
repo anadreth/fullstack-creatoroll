@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { Formik, Field } from "formik";
+import { Formik} from "formik";
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -32,6 +32,7 @@ const initialValuesLogin = {
 const Form = () => {
     const [pageType, setPageType] = useState("login");
     const [exist, setExist] = useState(true);
+    const [duplicate, setDuplicate] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLogin = pageType === "login";
@@ -50,6 +51,7 @@ const Form = () => {
             return;
         }
         else if (loggedIn) {
+            setExist(true);
           dispatch(
             setLogin({
               user: loggedIn.user,
@@ -73,8 +75,12 @@ const Form = () => {
     );
     const savedUser = await savedUserResponse.json();
     onSubmitProps.resetForm();
-
+    if(savedUser.error) {
+        setDuplicate(true);
+        return;
+    }
     if (savedUser) {
+        setDuplicate(false);
       setPageType("login");
     }
 
@@ -188,15 +194,15 @@ const Form = () => {
                             <div className='w-80 md:w-96 text-center'>
                                 {isLogin ? 
                                 <>
-                                    <p>{exist ? "Don't have an acount?" : "User does not exist!"} </p>
-                                    <a className='underline cursor-pointer' onClick={() => {
+                                    <p className={`text-${!exist ? "orange" : "red"}`}>{exist ? "Don't have an acount?" : "User does not exist!"} </p>
+                                    <a className={`underline cursor-pointer text-${!exist ? "orange" : "red"}`} onClick={() => {
                                     setPageType(isLogin ? "register" : "login");
                                     resetForm();
                                 }}>{exist ? "Sign up here." : "You need to sign up first." }</a>
                                 </> : 
                                 <>
-                                    <p>Already have an account?</p>
-                                    <a className='underline cursor-pointer' onClick={() => {
+                                    <p className={`text-${duplicate ? "orange" : "red"}`}>{!duplicate ? "Already have an account?" : "This account already exists."}</p>
+                                    <a className={`underline cursor-pointer text-${duplicate ? "orange" : "red"}`} onClick={() => {
                                     setPageType(isLogin ? "register" : "login");
                                     resetForm();
                                 }}>Log in here.</a>
