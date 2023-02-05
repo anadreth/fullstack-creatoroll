@@ -1,8 +1,8 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setStrength, setDexterity, setIntelligence } from '../../state';
-import Attribute from "./Attribute";
+
+import Attribute from "./Attribute/Attribute";
 
 
 const Attributes = () => {
@@ -10,24 +10,6 @@ const Attributes = () => {
     const strength = useSelector((state) => state.strength)
     const dexterity = useSelector((state) => state.dexterity)
     const intelligence = useSelector((state) => state.intelligence)
-    
-    useEffect(() => {
-        dispatch(
-            setStrength({
-                strength: 10,
-            })
-        );
-        dispatch(
-            setDexterity({
-                dexterity: 10,
-            })
-        );
-        dispatch(
-            setIntelligence({
-                intelligence: 10,
-            })
-        );
-    }, [])
 
     const incrementStrength = () => {
         if (strength < 20) {

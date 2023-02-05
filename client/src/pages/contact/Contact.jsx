@@ -1,7 +1,7 @@
-import React from 'react'
-import NavBar from './../../components/NavBar/NavBar'
-import Footer from './../../components/Footer/Footer'
-import { useState } from 'react';
+import React, { useState } from 'react'
+
+import { NavBar, Footer } from './../../components/index'
+
 import { Formik } from "formik";
 import * as yup from "yup";
 import { send } from 'emailjs-com';

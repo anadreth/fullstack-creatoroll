@@ -1,6 +1,6 @@
 import React from 'react'
-import ChartLg from './ChartLg'
-import ChartSm from './ChartSm'
+import ChartLg from './Chart/ChartLg'
+import ChartSm from './Chart/ChartSm'
 
 
 function CharChart({character, setRacePop, setClassPop, setEqpPop, setTraitPop, setBackPop, selected}) {

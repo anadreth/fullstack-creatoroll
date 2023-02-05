@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+
 import jsPDF from 'jspdf'; 
+
+import { UserNavBar } from "../../components/index";
+
 import SideBar from "./SideBar/SideBar";
-import UserNavBar from "./userNavBar";
 import CharChart from "./CharChart/CharChart";
 import PopUp from "./CharChart/PopUp";
 import BackgroundPop from "./CharChart/BackgroundPop"

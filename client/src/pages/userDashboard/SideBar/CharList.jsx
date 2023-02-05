@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from "../../../components/Card/Card";
+import { Card } from './../../../components/index'
 
 function CharList({currentCharacters, setSelected, inspectCharacter}) {
   return (

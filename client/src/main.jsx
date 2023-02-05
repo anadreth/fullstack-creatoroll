@@ -5,6 +5,7 @@ import './index.css'
 import authReducer from './state/index.js'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
+
 //all will be stored in the localState storage
 import {
   persistStore,

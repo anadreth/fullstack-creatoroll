@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 
 const Background = ({setGenerated, generated}) => {
     const [loading, setLoading] = useState(false);

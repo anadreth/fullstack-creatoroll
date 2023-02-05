@@ -1,15 +1,24 @@
-import React from "react"
-import {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux";
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/homePage/homePage';
-import LoginPage from './pages/loginPage/loginPage';
-import UserDashboard from './pages/userDashboard/userDashboard';
-import CreateCharacter from './pages/createCharacter/createCharacter';
-import CreateAdventure from "./pages/createAdventure/createAdventure";
-import CreateInBetween from "./pages/createInBetween/createInBetween";
-import About from "./pages/about/About";
-import Contact from "./pages/contact/Contact";
+
+import { 
+  BrowserRouter,
+  Navigate, 
+  Route, 
+  Routes } from 'react-router-dom';
+
+import { 
+  HomePage,
+  About, 
+  Contact, 
+  CreateAdventure, 
+  CreateCharacter, 
+  CreateInBetween, 
+  LoginPage, 
+  UserDashboard 
+} from './pages/index'
+
+
 
 function App() {
 const [isLoading, setLoading] = useState(true);

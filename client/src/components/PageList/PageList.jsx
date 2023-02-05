@@ -1,8 +1,7 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import CreateNewForm from "../CreateNewForm/CreateNewForm";
-import SearchBar from "../SearchBar/SearchBar";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
+import { CreateNewForm, SearchBar } from './../index';
 import Info from "./Info";
 
 const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) => {
@@ -100,10 +99,13 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) 
                         </div>}
                     </ul>   
             </div>
-            {info ? 
+            
+                {info ? 
                 <Info selected={selected} setInfo={setInfo} all={all} />
                 : <></>}
-                {error ? <p className="text-dark-red mb-3">{error ? "Your character must have a " + naming : ""}</p> : <p className="pb-3 px-3 text-red w-80 text-center">Not finding what you want? <br /> Try creating your own!</p>}
+
+                {error ? <p className="text-dark-red mb-3">{error ? "Your character must have a " + naming : ""}</p> 
+                : <p className="pb-3 px-3 text-red w-80 text-center">Not finding what you want? <br /> Try creating your own!</p>}
                 
             <CreateNewForm getAll={getAll} fetchLink={url + saveUrl} type={type} iconList={iconList} naming={naming} />
         </div>

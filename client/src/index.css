@@ -1,5 +1,5 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 html,
 body,
 #root,
@@ -13,6 +13,7 @@ body,
 @tailwind components;
 @tailwind utilities;
 
+/* Interesting import of fonts without link */
 @font-face {
     font-family: 'Seasons';
     src: url('./fonts/Fontspring-DEMO-theseasons-reg.otf');

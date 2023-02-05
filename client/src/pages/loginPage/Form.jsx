@@ -1,9 +1,10 @@
-import React from 'react'
-import { useState } from 'react';
-import { Formik} from "formik";
-import * as yup from "yup";
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
+import { Formik} from "formik";
+import * as yup from "yup";
+
 import { setLogin } from '../../state';
 
 const registerSchema = yup.object().shape({

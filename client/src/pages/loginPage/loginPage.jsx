@@ -1,7 +1,8 @@
 import React from "react";
-import Form from "./Form"
 import { useSelector } from "react-redux";
-import NavBar from "./../../components/NavBar/NavBar"
+
+import Form from "./Form"
+import { NavBar } from './../../components/index'
 
 const LoginPage = () => {
     const currentUser = useSelector((state) => state.user);

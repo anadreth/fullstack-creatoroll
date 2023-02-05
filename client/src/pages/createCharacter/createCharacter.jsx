@@ -1,22 +1,34 @@
 import React, { useState } from "react";
-import Form from "./Form";
-import UserNavBar from "../userDashboard/userNavBar"
-import { useSelector, useDispatch } from "react-redux";
-import { setCreateCharacterPageCount } from '../../state';
-import { setCharName, setRace } from "../../state";
-import Attributes from "../../components/Attributes/Attributes";
 import { useNavigate } from "react-router-dom";
-import Background from "../../components/Background/Background";
-import { setTraits, setCharClass, setEquipment, setBackground } from '../../state';
-import PageList from "../../components/PageList/PageList";
-import ArrowLeft from "../../components/Arrow/ArrowLeft";
-import ArrowRight from "../../components/Arrow/ArrowRight";
-import PageNav from "../../components/PageNav/PageNav";
-import raceIcons from "./../../assets/raceIcons.js"
-import classIcons from "../../assets/classIcons.js"
-import traitIcons from "../../assets/traitIcons.js"
-import eqpIcons from "../../assets/eqpIcons";
+import { useSelector, useDispatch } from "react-redux";
 
+import Form from "./Form";
+import {
+    UserNavBar,
+    Attributes,
+    Background, 
+    ArrowLeft, 
+    ArrowRight, 
+    PageNav, 
+    PageList 
+} from "../../components/index";
+
+import { 
+    setTraits, 
+    setCharClass, 
+    setEquipment, 
+    setBackground, 
+    setCharName, 
+    setRace, 
+    setCreateCharacterPageCount 
+} from '../../state';
+
+import { 
+    raceIcons, 
+    classIcons, 
+    traitIcons, 
+    eqpIcons 
+} from './../../assets/index'
 
 
 const CreateCharacter = () => {

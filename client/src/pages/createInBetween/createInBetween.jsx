@@ -1,8 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setCharName, setCreateCharacterPageCount, setRace,setBackground,setTraits,setEquipment, setCharClass } from "../../state";
-import UserNavBar from "../userDashboard/userNavBar"
+
+import { 
+    setCharName, 
+    setCreateCharacterPageCount, 
+    setRace,
+    setBackground,
+    setTraits,
+    setEquipment, 
+    setCharClass,
+    setDexterity,
+    setIntelligence,
+    setStrength,
+ } from "../../state";
+    
+import { UserNavBar } from "../../components/index";
 
 const CreateInBetween = () => {
     const navigate = useNavigate();
@@ -43,6 +56,21 @@ const CreateInBetween = () => {
         dispatch (
             setEquipment({
                 equipment: null,
+            })
+        )
+        dispatch(
+            setStrength({
+                strength: 10,
+            })
+        )
+        dispatch(
+            setDexterity({
+                dexterity: 10,
+            })
+        )
+        dispatch(
+            setIntelligence({
+                intelligence: 10,
             })
         )
         navigate("/create-character");

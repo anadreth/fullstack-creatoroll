@@ -9,11 +9,9 @@ function SearchBar({setSearchBar}) {
     if (!e.target.value) return setSearchBar("");
 
     filterTimeout = setTimeout(() => {
-      console.log(e.target.value)
       setSearchBar(e.target.value);
     }, 500)
-  
-   } 
+  } 
 
   return (
     <div className='px-3 pb-3 '>    
