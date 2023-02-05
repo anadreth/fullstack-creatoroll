@@ -5,6 +5,7 @@ import { NavBar, Footer } from './../../components/index'
 import { Formik } from "formik";
 import * as yup from "yup";
 import { send } from 'emailjs-com';
+import {motion} from 'framer-motion'
 
 const contactSchema = yup.object().shape({
   subject: yup.string(),
@@ -79,7 +80,7 @@ function Contact() {
                                   <p className=''>Let us know.</p> 
                                 </div>
                                   
-                                <input 
+                                <motion.input 
                                     className='p-3 w-full mb-3 focus:outline-none text-red shadow-md rounded-lg'
                                     type="text" 
                                     name="email"
@@ -87,9 +88,11 @@ function Contact() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.email}
+
+                                    animate={{x: [-300, 0], opacity: [0, 1]}}
                                     />
 
-                                <input 
+                                <motion.input 
                                     className='p-3 w-full mb-3 focus:outline-none rounded-lg text-red shadow-md'
                                     type="text" 
                                     name="subject"
@@ -97,9 +100,12 @@ function Contact() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.subject}
+
+                                    animate={{x: [-300, 0], opacity: [0, 1]}}
+                                    transition={{delay: 0.2}}
                                 />
 
-                                <textarea 
+                                <motion.textarea 
                                     className='overflow-scroll p-3 w-full h-96 mb-3 focus:outline-none rounded-lg text-red shadow-md resize-none scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red'
                                     type="text" 
                                     name="message"
@@ -107,15 +113,20 @@ function Contact() {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
+
+                                    animate={{x: [-300, 0], opacity: [0, 1]}}
+                                    transition={{delay: 0.4}}
                                     />
                             </> 
-                            <button 
+                            <motion.button 
+                                animate={{x: [-300, 0], opacity: [0, 1]}}
+                                transition={{delay: 0.6}}
                                 className='p-3 w-full mb-3 bg-orange text-light shadow-md rounded-lg hover:shadow-white'
                                 type="submit" 
                                 disabled={isSubmitting}
                                 >
                                 SUBMIT
-                            </button>
+                            </motion.button>
                         </div>
                     </form>
                 )}

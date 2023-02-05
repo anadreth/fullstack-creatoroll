@@ -1,11 +1,16 @@
 import React from 'react'
 import ChartLg from './Chart/ChartLg'
 import ChartSm from './Chart/ChartSm'
+import { motion } from 'framer-motion'
 
 
 function CharChart({character, setRacePop, setClassPop, setEqpPop, setTraitPop, setBackPop, selected}) {
   return (
-    <div className={`flex flex-col justify-center place-self-center max-w-[60rem] col-span-3 w-full bg-light ${selected ? "h-screen" : ""}`}>
+    <motion.div className={`flex flex-col justify-center place-self-center max-w-[60rem] col-span-3 w-full bg-light ${selected ? "h-screen" : ""}`}
+      animate={{scale: [0, 1]}}
+      transition={{delay: 0.7}}
+
+    >
         {screen.width > 767 ? <div className='mt-[73px]'></div> : <></> }
         
         {selected ?
@@ -25,7 +30,7 @@ function CharChart({character, setRacePop, setClassPop, setEqpPop, setTraitPop, 
                 <h2 className='text-center p-3 w-full'>Select Character<br />to Display</h2>
             </div>
         </>}
-    </div>
+    </motion.div>
   )
 }
 

@@ -6,6 +6,7 @@ import {
   Navigate, 
   Route, 
   Routes } from 'react-router-dom';
+import ScrollToTop from "./functions/ScrollToTop";
 
 import { 
   HomePage,
@@ -45,17 +46,20 @@ if (isLoading) {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/documents" element={<About />} />
-          <Route path="/dashboard/:userId" element={isAuth ? <UserDashboard /> : <Navigate to ="/login" />} />
-          <Route path="/create-character" element={isAuth ? <CreateCharacter /> : <Navigate to ="/login" />} />
-          <Route path="/create-adventure" element={isAuth ? <CreateAdventure /> : <Navigate to ="/login" />} />
-          <Route path="/create-in-between" element={isAuth ? <CreateInBetween /> : <Navigate to ="/login" />} />
-        </Routes>
+          <ScrollToTop />
+          <Routes>
+          
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/documents" element={<About />} />
+            <Route path="/dashboard/:userId" element={isAuth ? <UserDashboard /> : <Navigate to ="/login" />} />
+            <Route path="/create-character" element={isAuth ? <CreateCharacter /> : <Navigate to ="/login" />} />
+            <Route path="/create-adventure" element={isAuth ? <CreateAdventure /> : <Navigate to ="/login" />} />
+            <Route path="/create-in-between" element={isAuth ? <CreateInBetween /> : <Navigate to ="/login" />} />
+          
+          </Routes>
       </BrowserRouter>
     </div>
   )

@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { CreateNewForm, SearchBar } from './../index';
 import Info from "./Info";
 
+import {motion} from 'framer-motion'
+
 const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) => {
     const pageCount = useSelector((state) => state.pageCount);
     const [all, setAll] = useState([]);
@@ -68,8 +70,11 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) 
             <div className="scrollbar-thin scrollbar-corner-red scrollbar-track-white scrollbar-thumb-red h-96 w-80 shadow-md bg-white rounded-lg overflow-scroll mb-3 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
                     <ul>
                         {!loading ? all.filter(item =>
-                        item.title.toLowerCase().slice(0, searchBar.length) === searchBar.toLowerCase()).map(item => 
-                        <li key={item.title}>
+                        item.title.toLowerCase().slice(0, searchBar.length) === searchBar.toLowerCase()).map((item, index) => 
+                        <motion.li key={item.title}
+                            animate={{y: [-100, 0], opacity: [0, 1]}}
+                            transition={{delay: index / 10}}
+                        >
                         <input checked={current && current._id === item._id ? true : false} className="hidden peer" onChange={updateValue} type="radio" name={type} id={item._id} value={JSON.stringify(item)} />
                         <label className="peer-checked:bg-dark rounded-lg transition-all shadow-md duration-150 m-3 flex justify-between items-center text-orange bg-light" htmlFor={item._id}>
                             <div className= "flex justify-between items-center h-auto w-full px-3 py-2">
@@ -86,7 +91,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) 
                                 </button>
                             </div>
                         </label>
-                        </li>)
+                        </motion.li>)
                         : 
                         <div className="w-full h-full flex justify-center items-center">
                             <button disabled type="button" className="w-44 p-3 mr-2 text-lg text-red bg-white inline-flex justify-center items-center">

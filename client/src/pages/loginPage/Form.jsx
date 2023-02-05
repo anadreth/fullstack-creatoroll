@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { Formik} from "formik";
 import * as yup from "yup";
+import {motion} from 'framer-motion'
 
 import { setLogin } from '../../state';
 
@@ -115,7 +116,9 @@ const Form = () => {
                         {isRegister && (
                             <div className='w-80 md:w-96 text-center'>  
                                 <h1 className="p-3  text-6xl font-seasons">REGISTER</h1>
-                                    <input
+                                    <motion.input
+                                        animate={{x: [-100, 0], opacity: [0, 1]}}
+                                        transition={{duration: 0.1}}
                                         className='p-3 w-full transition-all duration-300 focus:outline-red mb-3 rounded-lg outline-none text-red shadow-md'
                                         type="text" 
                                         name="userName"
@@ -124,9 +127,11 @@ const Form = () => {
                                         onBlur={handleBlur}
                                         value={values.userName}
                                     />
-                                {errors.userName && touched.userName ? <div className='pb-3 transition-all duration-300'>{errors.userName}</div> : null}
+                                {errors.userName && touched.userName ? <motion.div className='pb-3 transition-all duration-300'>{errors.userName}</motion.div> : null}
                                 
-                                <input 
+                                <motion.input 
+                                animate={{x: [-100, 0], opacity: [0, 1]}}
+                                transition={{duration: 0.2, delay: 0.2}}
                                     className='p-3 w-full transition-all focus:outline-red duration-300 rounded-lg mb-3 outline-none text-red shadow-md'
                                     type="text" 
                                     name="email"
@@ -135,9 +140,11 @@ const Form = () => {
                                     onBlur={handleBlur}
                                     value={values.email}
                                     />
-                                {errors.email && touched.email ? <div className='pb-3 transition-all duration-300'>{errors.email}</div> : null}
+                                {errors.email && touched.email ? <motion.div className='pb-3 transition-all duration-300'>{errors.email}</motion.div> : null}
                                
-                                <input 
+                                <motion.input 
+                                animate={{x: [-100, 0], opacity: [0, 1]}}
+                                transition={{duration: 0.3, delay: 0.3}}
                                     className='p-3 w-full transition-all focus:outline-red duration-300 rounded-lg outline-none text-red shadow-md'
                                     type="password" 
                                     name="password"
@@ -147,14 +154,20 @@ const Form = () => {
                                     value={values.password}
                                     helpertext={touched.password && errors.password}
                                     />
-                                {errors.password && touched.password  ? <div className='pt-3 transition-all duration-300'>{errors.password }</div> : null}
+                                {errors.password && touched.password  ? <motion.div className='pt-3 transition-all duration-300'>{errors.password }</motion.div> : null}
                                 
                             </div> 
                         )}
                         {isLogin && (
                             <div className='w-80 md:w-96 text-center'>
-                                <h1 className="p-3 text-6xl font-seasons ">LOGIN</h1>
-                                <input 
+                                <motion.h1 className="p-3 text-6xl font-seasons "
+                                    animate={{opacity: [0, 1]}}
+                                    transition={{duration: 1}}
+                                >LOGIN</motion.h1>
+                                <motion.input 
+                                    animate={{x: [-100, 0], opacity: [0, 1]}}
+                                    transition={{duration: 0.1}}
+
                                     className='p-3 rounded-lg transition-all focus:outline-red duration-300 w-full mb-3 outline-none text-red shadow-md'
                                     type="text" 
                                     name="email"
@@ -164,9 +177,11 @@ const Form = () => {
                                     value={values.email}
                                     helpertext={touched.email && errors.email}
                                     />
-                                    {errors.email && touched.email ? <div className='pb-3 transition-all duration-300'>{errors.email}</div> : null}
+                                    {errors.email && touched.email ? <motion.div className='pb-3 transition-all duration-300'>{errors.email}</motion.div> : null}
 
-                                <input 
+                                <motion.input 
+                                    animate={{x: [-100, 0], opacity: [0, 1]}}
+                                    transition={{duration: 0.2, delay: 0.2}}
                                     className='p-3 rounded-lg transition-all focus:outline-red duration-300  w-full outline-none text-red shadow-md'
                                     type="password"
                                     name="password"
@@ -176,7 +191,7 @@ const Form = () => {
                                     value={values.password}
                                     helpertext={touched.password && errors.password}
                                     />
-                                    {errors.password && touched.password  ? <div className='pt-3 transition-all duration-300'>{errors.password}</div> : null}
+                                    {errors.password && touched.password  ? <motion.div className='pt-3 transition-all duration-300'>{errors.password}</motion.div> : null}
 
                             </div>
                         )}
@@ -185,14 +200,19 @@ const Form = () => {
                                <img src="https://creato-roll-server.onrender.com/images/little-dice.png" className='aspect-square w-[25px] h-[25px]' alt="- - -"/>
                             </div>
 
-                            <button 
+                            <motion.button 
+                                 animate={{x: [-100, 0], opacity: [0, 1]}}
+                                 transition={{duration: 0.4, delay: 0.4}}
                             className='p-3 w-80 transition-all duration-150 md:w-96 rounded-lg mb-3 bg-red text-light shadow-md hover:bg-dark-red'
                                 type="submit" 
                                 disabled={isSubmitting}
                                 >
                                 {isLogin ? "Login" : "Register" }
-                            </button>
-                            <div className='w-80 md:w-96 text-center'>
+                            </motion.button>
+                            <motion.div className='w-80 md:w-96 text-center'
+                                animate={{opacity: [0, 1]}}
+                                transition={{duration: 1}}
+                            >
                                 {isLogin ? 
                                 <>
                                     <p className={`text-${!exist ? "orange" : "red"}`}>{exist ? "Don't have an acount?" : "User does not exist!"} </p>
@@ -208,7 +228,7 @@ const Form = () => {
                                     resetForm();
                                 }}>Log in here.</a>
                                 </>}
-                            </div>
+                            </motion.div>
                         </div>
                     </form>
                 )}

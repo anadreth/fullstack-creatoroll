@@ -11,7 +11,7 @@ import CharChart from "./CharChart/CharChart";
 import PopUp from "./CharChart/PopUp";
 import BackgroundPop from "./CharChart/BackgroundPop"
 
-
+import {motion} from 'framer-motion'
 
 
 const UserDashboard = () => {
@@ -112,7 +112,12 @@ const UserDashboard = () => {
                     <CharChart character={character} setRacePop={setRacePop} setClassPop={setClassPop} setTraitPop={setTraitPop} setEqpPop={setEqpPop} setBackPop={setBackPop} selected={selected} />
 
                         <div className="my-3 flex flex-col justify-end gap-3">
-                                <button onClick={deleteCharacter} className="bg-red p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-dark-red hover:text-white">Delete Character</button>
+                                <motion.button onClick={deleteCharacter} className="bg-red p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-dark-red hover:text-white"
+                                    animate={{ opacity: [0, 1]}}      
+                                    transition={{duration: 0.5,delay: 0.5}}     
+                                >
+                                Delete Character
+                                </motion.button>
                                {/* <button onClick={saveDiv} className="bg-red p-3 text-light shadow-md rounded-lg transition-all duration-150 hover:bg-dark-red hover:text-white">Get PDF</button> */}
                         </div> 
                   

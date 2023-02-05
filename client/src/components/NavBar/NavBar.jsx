@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import {motion} from 'framer-motion'
 
 import { Transition } from '@tailwindui/react'
 
@@ -36,7 +37,7 @@ const NavBar = () => {
     return (
 
     <nav className="font-poppins text-light bg-light p-3 fixed w-full z-20 top-0 left-0">
-        <div className="flex flex-wrap items-center justify-between mx-auto">
+        <motion.div className="flex flex-wrap items-center justify-between mx-auto">
             <button onClick={toHome} className="flex items-center md:ml-6">
                 <img src={url + "images/logo-clear.png"} className="h-12 mr-3 sm:h-9" alt="Creato-Roll Logo" />
                 <span className="font-seasons self-center text-xl text-orange whitespace-nowrap tracking-widest">CreatoRoll</span>
@@ -59,7 +60,7 @@ const NavBar = () => {
                     </button>
                 </div>
             </div>
-        </div>
+        </motion.div>
                 <Transition
                 show={sidebar}
                 className="bg-red rounded-lg flex justify-end items-start text-lg w-full h-screen p-3 mt-3"
