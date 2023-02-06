@@ -9,6 +9,7 @@ const Form = ({setError, error}) => {
     const currentUser = useSelector((state) => state.user);
     const unique_id = uuid();
     const [saving, setSaving] = useState(false);
+    const [serverError, setServerError] = useState(null);
 
     //for FORM SUBMISSION
     const { charName, race, charClass, strength, dexterity, intelligence, background, traits, equipment } = useSelector(state => ({
@@ -23,31 +24,42 @@ const Form = ({setError, error}) => {
         equipment: state.equipment,
     }));
      
-    console.log(equipment);
     const saveCharacter = async () => {
-        const savedResponse = await fetch("https://creato-roll-server.onrender.com/character/save", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                id: currentUser._id,
-                charId: unique_id,
-                charName: charName,
-                race: race,
-                charClass: charClass,
-                strength: strength,
-                dexterity: dexterity,
-                intelligence: intelligence,
-                background: background,
-                traits: traits,
-                equipment: equipment,
-            }),
-        });
-        const saved = await savedResponse.json();
-        console.log(saved);
-        if(saved) {
-            navigate("/dashboard/" + currentUser._id);
-            setSaving(false);
+        setServerError(null);
+        try {
+            const savedResponse = await fetch("https://creato-roll-server.onrender.com/character/save", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: currentUser._id,
+                    charId: unique_id,
+                    charName: charName,
+                    race: race,
+                    charClass: charClass,
+                    strength: strength,
+                    dexterity: dexterity,
+                    intelligence: intelligence,
+                    background: background,
+                    traits: traits,
+                    equipment: equipment,
+                }),
+            });
+            const saved = await savedResponse.json();
+    
+            if (!savedResponse.ok) {
+                setServerError("Something went wrong with saving.");
+                return;
+            }
+            
+            if(saved) {
+                navigate("/dashboard/" + currentUser._id);
+                setServerError(null);
+                setSaving(false);
+            }
+        }   catch (error) {
+            setServerError("Something went wrong.");
         }
+      
     }
 
     const handleFormSubmit = async(currentUser) => { 
@@ -65,7 +77,7 @@ const Form = ({setError, error}) => {
 
     return(
         <div>
-            <button disabled={saving ? true : false}  className="rounded-lg bg-orange active:animate-ping transition-all hover:shadow-lg hover:shadow-white duration-150 shadow-md w-44 text-light border-orange border-2 p-2" onClick={handleFormSubmit}>{saving ? "Saving!" : "Save Character"}</button>
+            <button disabled={saving ? true : false}  className="rounded-lg bg-orange active:animate-ping transition-all hover:shadow-lg hover:shadow-white duration-150 shadow-md w-44 text-light border-orange border-2 p-2" onClick={handleFormSubmit}>{serverError ? serverError : saving ? "Saving!" : "Save Character"}</button>
         </div>
     )
 }

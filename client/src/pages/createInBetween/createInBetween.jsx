@@ -16,6 +16,7 @@ import {
  } from "../../state";
     
 import { UserNavBar } from "../../components/index";
+import {motion} from 'framer-motion'
 
 const CreateInBetween = () => {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const CreateInBetween = () => {
         )
         dispatch(
             setRace({
-                race: {name: "", iconPath: ""},
+                race: null,
             })
         )
         dispatch(
@@ -81,7 +82,10 @@ const CreateInBetween = () => {
             <UserNavBar />
             <div className="h-[72.5px]"></div>
                 <div className="grid grid-cols-1 grid-rows-2 place-items-center w-full md:grid-cols-2 md:grid-rows-1 md:h-3/4 md:text-xl">
-                    <div className="w-80 h-52 md:w-96 md:h-80 rounded-lg p-3 bg-white shadow-md grid grid-rows-3 text-center align-center mb-3">
+                    <motion.div className="w-80 h-52 md:w-96 md:h-80 rounded-lg p-3 bg-white shadow-md grid grid-rows-3 text-center align-center mb-3"
+                        animate={{  opacity: [0, 1]}}
+                        transition={{duration: 0.2}}
+                    >
                         <div className="flex justify-center items-center">
                             <h2 className="text-orange text-xl md:text-2xl">CREATE CHARACTER</h2>
                         </div>
@@ -91,8 +95,11 @@ const CreateInBetween = () => {
                         <div className="flex justify-center items-center">
                             <button onClick={handleCreateCharacter} className="transition-all duration-150 rounded-lg bg-red md:w-80 w-64 p-3 shadow-md text-light hover:bg-orange" >Character</button>
                         </div>
-                    </div>
-                    <div className="rounded-lg w-80 h-52 md:w-96 md:h-80 p-3 shadow-md bg-white  grid grid-rows-3 text-center align-center mb-6 md:mb-0">
+                    </motion.div>
+                    <motion.div className="rounded-lg w-80 h-52 md:w-96 md:h-80 p-3 shadow-md bg-white  grid grid-rows-3 text-center align-center mb-6 md:mb-0"
+                        animate={{ opacity: [0, 1]}}
+                        transition={{duration: 0.2, delay: 0.1}}
+                    >
                         <div className="flex justify-center items-center">
                             <h2 className="text-orange text-xl md:text-2xl">CREATE ADVENTURE</h2>
                         </div>
@@ -102,9 +109,12 @@ const CreateInBetween = () => {
                         <div className="flex justify-center items-center">
                             <button onClick={() => navigate("/create-adventure") } className="rounded-lg md:w-80 transition-all duration-150 hover:bg-orange w-64 shadow-md bg-red p-3 text-light">Create New Adenture</button>
                         </div>
-                    </div>  
+                    </motion.div>  
                     <div className="p-3 md:col-span-2">
-                        <button className="rounded-lg transition-all duration-150 hover:bg-dark-red w-80 hover:outline-dark-red hover:outline-2 bg-red shadow-md text-light hover:text-white p-3" onClick={() => navigate("/dashboard/" + currentUser._id ) } >To Dashboard</button>
+                        <motion.button className="rounded-lg transition-all duration-150 hover:bg-dark-red w-80 hover:outline-dark-red hover:outline-2 bg-red shadow-md text-light hover:text-white p-3" onClick={() => navigate("/dashboard/" + currentUser._id ) }
+                            animate={{  opacity: [0, 1]}}
+                            transition={{duration: 0.2, delay: 0.2}}
+                        >To Dashboard</motion.button>
                     </div>
                 </div>       
         </div>

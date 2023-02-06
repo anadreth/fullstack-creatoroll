@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { NavBar, Footer } from './../../components/index'
+import { NavBar, Footer, Error } from './../../components/index'
 
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -22,10 +22,12 @@ const initialContactValues = {
 function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const homeUrl = "https://creato-roll-client.onrender.com/"
 
   const onSubmit = async (values, onSubmitProps) => {
     setLoading(true);
+    setError(null)
     send(
       'service_cz9d09g',
       'template_8a1z9dc',
@@ -33,27 +35,26 @@ function Contact() {
       'zIo1A7_py4nBPSuE-',
     )
       .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
+        
         setLoading(false);
         setSubmitted(true);
         
       })
-      .catch((err) => {
-        console.log('FAILED...', err);
+      .catch((error) => {
+        setError("Something went wrong while sending.")
       });
       
   };
 
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    console.log(values);
     await onSubmit(values, onSubmitProps);
     
   }
 
   return (
     <div className='bg-red text-light w-full h-auto'>
-      <NavBar />
+      <NavBar contact={true} />
       {!submitted && !loading ?
         <div className='flex justify-center items-center'>
         <Formik 
@@ -72,7 +73,7 @@ function Contact() {
                 }) => ( 
                     <form onSubmit={handleSubmit}>
                         <div className='w-3/4 mx-auto text-center mt-44 mb-24 font-poppins'>
-                            <>  
+                            <div className='w-full'>  
                                 <h1 className="text-5xl font-seasons">Get In Touch</h1>
                                 <div className='font-poppins p-3 '>
                                   <p >Got a technical issue? Don't like a feature?</p>
@@ -91,7 +92,7 @@ function Contact() {
 
                                     animate={{x: [-300, 0], opacity: [0, 1]}}
                                     />
-
+                                    
                                 <motion.input 
                                     className='p-3 w-full mb-3 focus:outline-none rounded-lg text-red shadow-md'
                                     type="text" 
@@ -116,8 +117,10 @@ function Contact() {
 
                                     animate={{x: [-300, 0], opacity: [0, 1]}}
                                     transition={{delay: 0.4}}
-                                    />
-                            </> 
+                                    />  
+                            </div> 
+                            {errors.email && touched.email && <motion.div className='pb-3 transition-all duration-300'><Error message="Email is required." /></motion.div>}
+                            {errors.message && touched.message && <motion.div className='pb-3 transition-all duration-300'><Error message="Message is required." /></motion.div>}
                             <motion.button 
                                 animate={{x: [-300, 0], opacity: [0, 1]}}
                                 transition={{delay: 0.6}}
@@ -137,15 +140,15 @@ function Contact() {
         <div className='bg-red text-light w-full h-screen flex justify-center items-center'>
           <div className='w-3/4 text-center'>
             <h2 className='p-3 text-5xl font-seasons'>Submiting...</h2>
-            <p className='font-poppins text-light'>Just a moment.</p> 
+            <p className='font-poppins text-light'>Give us a moment.</p> 
           </div> 
         </div>
 
         : 
         <div className='bg-red text-light w-full h-screen flex justify-center items-center'>
           <div className='w-3/4 text-center'>
-            <h2 className='p-3 text-5xl font-seasons'>MESSAGE SENT...</h2>
-            <p className='font-poppins text-light'>Thank you! We will answer soon.</p> 
+            <h2 className='p-3 text-5xl font-seasons'>{error ? error : "MESSAGE SENT..."}</h2>
+            <p className='font-poppins text-light'>{error ? "Please try again later." : "Thank you! We will answer soon."}</p> 
           </div> 
         </div>}
       <Footer />

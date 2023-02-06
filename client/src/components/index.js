@@ -10,6 +10,9 @@ import PageList from "./PageList/PageList";
 import PageNav from "./PageNav/PageNav";
 import SearchBar from "./SearchBar/SearchBar";
 import UserNavBar from "./UserNavBar/userNavBar";
+import Loading from './Loading/Loading'
+import SearchIcon from "./SearchIcon/SearchIcon";
+import Error from "./Error/Error";
 
 export {
     ArrowLeft,
@@ -24,4 +27,7 @@ export {
     PageNav,
     SearchBar,
     UserNavBar,
+    Loading,
+    SearchIcon,
+    Error
 }

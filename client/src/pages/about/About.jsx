@@ -9,7 +9,7 @@ function About() {
             animate={{opacity: [0, 1]}}
             transition={{duration: 1}}
             >
-            <NavBar />
+            <NavBar contact={false}/>
             <div className='flex justify-center items-center w-screen h-screen bg-light z-100'>
                 <div className=''>
                     <h1 className='font-seasons text-orange tracking-widest text-5xl'>ABOUT US</h1>

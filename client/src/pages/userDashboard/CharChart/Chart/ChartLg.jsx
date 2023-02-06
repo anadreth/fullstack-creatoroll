@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {motion} from 'framer-motion'
 
 function ChartLg({character, setBackPop, setClassPop, setEqpPop, setRacePop, setTraitPop}) {

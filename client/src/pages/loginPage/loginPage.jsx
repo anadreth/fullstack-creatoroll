@@ -8,7 +8,7 @@ const LoginPage = () => {
     const currentUser = useSelector((state) => state.user);
     return (
         <div>
-            <NavBar />
+            <NavBar contact={false} />
             <Form />
         </div>
     )

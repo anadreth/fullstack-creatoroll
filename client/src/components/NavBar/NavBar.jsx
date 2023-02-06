@@ -1,19 +1,20 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import {motion} from 'framer-motion'
+import {AnimatePresence, motion} from 'framer-motion'
 
-import { Transition } from '@tailwindui/react'
-
-
-
-const NavBar = () => {
+const NavBar = ({contact}) => {
     const [sidebar, setSidebar] = useState(false);
+    const [show, setShow] = useState(false);
     const navigate = useNavigate();
     const buttonRef = useRef(null)
     const url = "https://creato-roll-server.onrender.com/"
-    const urlHome = "https://creato-roll-client.onrender.com/"
    
     const handleSidebar = () => {
+        if(show) {
+            setShow(false);
+        } else {
+            setShow(true);
+        }
         if(sidebar) {
             setSidebar(false);
             buttonRef.current.blur();
@@ -36,11 +37,11 @@ const NavBar = () => {
 
     return (
 
-    <nav className="font-poppins text-light bg-light p-3 fixed w-full z-20 top-0 left-0">
+    <nav className={`font-poppins text-light ${contact ? "bg-red" : "bg-light"}  p-3 fixed w-full z-20 top-0 left-0`}>
         <motion.div className="flex flex-wrap items-center justify-between mx-auto">
             <button onClick={toHome} className="flex items-center md:ml-6">
                 <img src={url + "images/logo-clear.png"} className="h-12 mr-3 sm:h-9" alt="Creato-Roll Logo" />
-                <span className="font-seasons self-center text-xl text-orange whitespace-nowrap tracking-widest">CreatoRoll</span>
+                <span className={`font-seasons self-center text-xl ${contact ? "text" : "text-orange"} whitespace-nowrap tracking-widest`}>CreatoRoll</span>
             </button>
             <div className="flex md:order-2 md:mr-6">
                 <div>
@@ -61,25 +62,26 @@ const NavBar = () => {
                 </div>
             </div>
         </motion.div>
-                <Transition
-                show={sidebar}
-                className="bg-red rounded-lg flex justify-end items-start text-lg w-full h-screen p-3 mt-3"
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="-translate-x-[-100%]"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-[-100%]"
-                >
-                        <div className="w-full">
-                            <ul className="" >
-                                <li><button className="p-6  w-full hover:text-red hover:bg-light hover:font-bold text-end rounded-lg" onClick={toHome}>HOME</button></li>
-                                <li><button className="p-6  w-full hover:text-red hover:bg-light hover:font-bold text-end rounded-lg" onClick={toContact}>CONTACT</button></li>
-                                <li><button className="p-6   w-full hover:text-red hover:bg-light hover:font-bold text-end rounded-lg" onClick={toAbout}>ABOUT</button></li>
-                                <li><button className="p-6   w-full hover:text-red hover:bg-light hover:font-bold text-end rounded-lg" onClick={toLogin}>JOIN</button></li>
-                            </ul>
-                        </div>
-                </Transition>
+        <AnimatePresence>
+            {show &&
+             <motion.div
+             className={`fixed rounded-lg flex justify-end items-start text-lg w-full h-screen p-3 mt-3 ${contact ? "bg-light text-red" : "bg-red text-light"}`}
+                initial={{x: 500}}
+                animate={{x: 0}}
+                exit={{x: 500}}
+                transition={{duration: 0.3, ease: "easeInOut"}}
+             >
+                     <div className="w-full">
+                         <ul className="" >
+                             <li><button className="p-6  w-full hover:text-red hover:bg-light hover:font-bold text-end rounded-lg" onClick={toHome}>HOME</button></li>
+                             <li><button className="p-6  w-full hover:text-red hover:bg-light hover:font-bold text-end rounded-lg" onClick={toContact}>CONTACT</button></li>
+                             <li><button className="p-6   w-full hover:text-red hover:bg-light hover:font-bold text-end rounded-lg" onClick={toAbout}>ABOUT</button></li>
+                             <li><button className="p-6   w-full hover:text-red hover:bg-light hover:font-bold text-end rounded-lg" onClick={toLogin}>JOIN</button></li>
+                         </ul>
+                     </div>
+             </motion.div>    
+            }
+        </AnimatePresence>
     </nav>
    
     )

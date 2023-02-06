@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import Form from "./Form";
+import {motion} from 'framer-motion'
 import {
     UserNavBar,
     Attributes,
@@ -10,7 +11,8 @@ import {
     ArrowLeft, 
     ArrowRight, 
     PageNav, 
-    PageList 
+    PageList, 
+    Error
 } from "../../components/index";
 
 import { 
@@ -94,7 +96,6 @@ const CreateCharacter = () => {
                     break;
                 };  
             case 1: 
-            
                 if(!currentRace) {
                     setError(true);
                     return;
@@ -163,15 +164,31 @@ const CreateCharacter = () => {
             <div className="h-full bg-light">
                 <div className="h-2/4 flex flex-col justify-center items-center">
                     <div className="flex flex-col justify-center items-center">
-                            <h2 className="text-xl p-3 text-orange">Name your character</h2>
-                            <input className="w-80 p-3 shadow-md rounded-lg focus:outline-none" type="text" onChange={handleName} placeholder={currentName ? currentName : "Name"}/>
+                            <motion.h2 className="text-xl p-3 text-orange"
+                                animate={{opacity: [0, 1]}}
+                                transition={{duration: 0.2}}
+                            >Name your character</motion.h2>
+                            <motion.input className="w-80 p-3 shadow-md rounded-lg focus:outline-none" type="text" onChange={handleName} placeholder={currentName ? currentName : "Name"}
+                                animate={{opacity: [0, 1]}}
+                                transition={{duration: 0.2, delay: 0.2}}
+                            />
                     </div>
                 </div>
                 
-                <div className="h-1/4 flex  flex-col justify-center items-center">
-                        <p className="text-dark-red">{error ? "Your character must have a name." : ""}</p>
-                        <button className="inline-block transition-all duration-150 rounded-lg hover:bg-orange w-44 bg-red text-light shadow-md p-3 m-3" onClick={increment}><ArrowRight /></button>
-                        <button className="inline-block transition-all duration-150 hover:bg-dark-red hover:border-dark-red hover:text-white rounded-lg w-44 bg-white border-orange shadow-md text-orange border-2 p-3 m-3" onClick={toInBetween}>Create Other</button>
+                <div className="h-1/4 flex  flex-col justify-center items-center text-red">
+                       {error && 
+                            <Error className="text-red"
+                                message={"Your character must have a name."}
+                            />
+                        } 
+                        <motion.button className="inline-block transition-all duration-150 rounded-lg hover:bg-orange w-44 bg-red text-light shadow-md p-3 m-3" onClick={increment}
+                            animate={{x: [-100, 0], opacity: [0, 1]}}
+                            transition={{duration: 0.3, ease: "easeInOut"}}
+                        ><ArrowRight /></motion.button>
+                        <motion.button className="inline-block transition-all duration-150 hover:bg-dark-red hover:border-dark-red hover:text-white rounded-lg w-44 bg-white border-orange shadow-md text-orange border-2 p-3 m-3" onClick={toInBetween}
+                            animate={{x: [100, 0], opacity: [0, 1]}}
+                            transition={{duration: 0.3, ease: "easeInOut", delay: 0.1}}
+                        >Create Other</motion.button>
                 </div> 
             </div>
             

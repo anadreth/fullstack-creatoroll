@@ -4,7 +4,6 @@ import { setStrength, setDexterity, setIntelligence } from '../../state';
 
 import Attribute from "./Attribute/Attribute";
 
-
 const Attributes = () => {
     const dispatch = useDispatch();
     const strength = useSelector((state) => state.strength)
@@ -76,9 +75,9 @@ const Attributes = () => {
             <div className=" w-80 flex justify-start items-center">
                 <h2 className="my-3 text-xl text-orange">Choose Your Attributes</h2>
             </div>
-            <Attribute decrement={decrementStrength} increment={incrementStrength} nameAtt="Strength" count={strength} />
-            <Attribute decrement={decrementDexterity} increment={incrementDexterity} nameAtt="Dexterity" count={dexterity} />
-            <Attribute decrement={decrementIntelligence} increment={incrementIntelligence} nameAtt="Intelligence" count={intelligence} />
+            <Attribute decrement={decrementStrength} increment={incrementStrength} nameAtt="Strength" count={strength} delay={0}/>
+            <Attribute decrement={decrementDexterity} increment={incrementDexterity} nameAtt="Dexterity" count={dexterity} delay={0.1}/>
+            <Attribute decrement={decrementIntelligence} increment={incrementIntelligence} nameAtt="Intelligence" count={intelligence} delay={0.2} />
         </div>
     )
 }
