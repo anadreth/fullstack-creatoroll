@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../../state";
 
-import {motion} from 'framer-motion'
+import {motion, AnimatePresence} from 'framer-motion'
 
 
 const UserNavBar = ({userName,}) => {
     const [sidebar, setSidebar] = useState(false);
+    const [show, setShow] = useState(false);
     const currentUser = useSelector((state) => state.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -17,6 +18,11 @@ const UserNavBar = ({userName,}) => {
     const url = "https://creato-roll-server.onrender.com/"
    
     const handleSidebar = () => {
+        if(show) {
+            setShow(false);
+        } else {
+            setShow(true);
+        }
         if(sidebar) {
             setSidebar(false);
             buttonRef.current.blur();
@@ -66,16 +72,14 @@ const UserNavBar = ({userName,}) => {
                 </div>
             </div>
         </motion.div>
-
-            <Transition
-            show={sidebar}
-            className="bg-red flex justify-end items-start text-lg w-full h-screen p-3 mt-3 rounded-lg"
-            enter="transition ease-in-out duration-300 transform"
-            enterFrom="-translate-x-[-100%]"
-            enterTo="translate-x-0"
-            leave="transition ease-in-out duration-300 transform"
-            leaveFrom="translate-x-0"
-            leaveTo="-translate-x-[-100%]"
+        <AnimatePresence>
+            {show &&
+            <motion.div
+            className="fixed rounded-lg flex justify-end items-start text-lg w-full h-screen p-3 mt-3 bg-red text-light"
+                initial={{x:  "100%"}}
+                animate={{x: 0}}
+                exit={{x:  "100%"}}
+                transition={{duration: 0.3, ease: "easeInOut"}}
             >
                     <div className="w-full">
                         <ul >
@@ -84,7 +88,8 @@ const UserNavBar = ({userName,}) => {
                             <li><button className="p-6 w-full hover:text-red hover:bg-light rounded-lg hover:font-bold text-end" onClick={handleClickLogOut}>Logout</button></li>
                         </ul>
                     </div>
-            </Transition>
+            </motion.div>}
+        </AnimatePresence>
     </nav>
    
     )

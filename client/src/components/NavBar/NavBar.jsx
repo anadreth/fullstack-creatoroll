@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import {AnimatePresence, motion} from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const NavBar = ({contact}) => {
     const [sidebar, setSidebar] = useState(false);
@@ -66,9 +66,9 @@ const NavBar = ({contact}) => {
             {show &&
              <motion.div
              className={`fixed rounded-lg flex justify-end items-start text-lg w-full h-screen p-3 mt-3 ${contact ? "bg-light text-red" : "bg-red text-light"}`}
-                initial={{x: window.screen > 1000 ? 1000 : 500}}
+                initial={{x:  "100%"}}
                 animate={{x: 0}}
-                exit={{x: window.screen > 1000 ? 1000 : 500}}
+                exit={{x:  "100%"}}
                 transition={{duration: 0.3, ease: "easeInOut"}}
              >
                      <div className="w-full">
