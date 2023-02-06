@@ -37,7 +37,7 @@ const NavBar = ({contact}) => {
 
     return (
 
-    <nav className={`font-poppins text-light ${contact ? "bg-red" : "bg-light"}  p-3 fixed w-full z-20 top-0 left-0 `}>
+    <nav className={`font-poppins text-light ${contact ? "bg-transparent" : "bg-transparent"}  p-3 fixed w-full z-20 top-0 left-0 `}>
         <motion.div className="flex flex-wrap items-center justify-between mx-auto">
             <button onClick={toHome} className="flex items-center md:ml-6">
                 <img src={url + "images/logo-clear.png"} className="h-12 mr-3 sm:h-9" alt="Creato-Roll Logo" />

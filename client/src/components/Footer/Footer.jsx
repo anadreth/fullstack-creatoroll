@@ -4,23 +4,23 @@ import {motion} from 'framer-motion'
 
 
 
-function Footer() {
+function Footer({color}) {
     const navigate = useNavigate();
   return (
     <motion.div
         initial={{opacity: 0}}
         whileInView={{opacity: 1}}
     >
-        <footer className="p-3 mx-3 mt-3 bg-light sm:p-6  text-red font-poppins">
-            <div className="md:flex md:justify-between text-red ">
-                <motion.div className="grid  text-red grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3"
-                    initial={{x: -300}}
-                    whileInView={{x: 0}}
+        <footer className={`p-3 mx-3 mt-3 ${color ? "bg-light text-red" : "bg-red text-light"} sm:p-6 font-poppins rounded-t-lg shadow-md`}>
+            <div className="md:flex md:justify-between">
+                <motion.div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3"
+                    initial={{y: 100, opacity: 0}}
+                    whileInView={{y: 0, opacity: 1}}
                     transition={{duration: 0.5}}
                 >
-                    <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Resources</h2>
-                        <ul className="text-gray-600 ">
+                    <div className=''>
+                        <h2 className={`mb-6 text-sm font-semibold uppercase`}>Resources</h2>
+                        <ul className="">
                             <li className="mb-4">
                                 <button onClick={() => navigate("/")} className="hover:underline">CreatoRoll</button>
                             </li>
@@ -30,8 +30,8 @@ function Footer() {
                         </ul>
                     </div>
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Follow us</h2>
-                        <ul className="text-gray-600 ">
+                        <h2 className="mb-6 text-sm font-semibold uppercase">Follow us</h2>
+                        <ul className="">
                             <li className="mb-4">
                                 <a href="https://github.com/anadreth"  target="_blank" className="hover:underline">Github</a>
                             </li>
@@ -41,8 +41,8 @@ function Footer() {
                         </ul>
                     </div>
                     <div className=''>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Legal</h2>
-                        <ul className="text-gray-600 ">
+                        <h2 className="mb-6 text-sm font-semibold uppercase ">Legal</h2>
+                        <ul className="">
                             <li className="mb-4">
                                 <button onClick={() => navigate("/about")} className="hover:underline">Privacy Policy</button>
                             </li>

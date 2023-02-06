@@ -5,7 +5,7 @@ import { NavBar, Footer } from './../../components/index'
 function About() {
 
     return (
-        <motion.div
+        <motion.div className=''
             animate={{opacity: [0, 1]}}
             transition={{duration: 1}}
             >
@@ -44,7 +44,7 @@ function About() {
                     </motion.p>
                 </div>
             </div>
-            <Footer />
+            <Footer color={true} />
         </motion.div>
   )
 }

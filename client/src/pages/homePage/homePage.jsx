@@ -56,7 +56,7 @@ const HomePage = () => {
                 </div>
             </motion.div>
 
-            <Footer />
+            <Footer color={true} />
         </div>
     )
 }

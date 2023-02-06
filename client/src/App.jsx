@@ -44,7 +44,7 @@ if (isLoading) {
 }
 
   return (
-    <div className="App">
+    <div className="App h-screen overflow-scroll scrollbar-rounded-lg scrollbar-thin scrollbar-corner-red scrollbar-track-light scrollbar-thumb-red scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <BrowserRouter>
           <ScrollToTop />
           <Routes>
