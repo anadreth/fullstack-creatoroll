@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Formik} from "formik";
 import * as yup from "yup";
@@ -38,6 +38,7 @@ const Form = () => {
     const [duplicate, setDuplicate] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const token = useSelector((state) => state.token);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -73,8 +74,9 @@ const Form = () => {
                     user: loggedIn.user,
                     token: loggedIn.token,
                     })
+                
                 );
-
+                console.log(token);        
             navigate("/dashboard/" + loggedIn.user._id);
             setLoading(false);
             } 
