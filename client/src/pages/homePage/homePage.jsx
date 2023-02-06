@@ -16,6 +16,7 @@ const HomePage = () => {
             <NavBar contact={false} />
             
             <motion.div className="grid place-items-center h-screen z-50"  >
+                <img src={url + "/images/dots.png"} alt="dots"  className="absolute"/>
                 <div className="h-screen w-full flex flex-col justify-center items-center lg:text-center md:text-center text-left">
                     <div className="mt-[73.1px]"></div>
                     <motion.h2 className="text-5xl text-red font-seasons p-3 w-80 lg:w-full md:w-full" 
