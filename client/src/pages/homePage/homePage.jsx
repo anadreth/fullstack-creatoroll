@@ -14,7 +14,7 @@ const HomePage = () => {
     return (
         <div className="w-full h-auto tracking-widest font-poppins bg-light">   
             <NavBar contact={false} />
-            
+            <img src={url + "images/arrows.png"} alt="" className="absolute"/>
             <motion.div className="grid place-items-center h-screen z-50"  >
                 
                 <div className="h-screen w-full flex flex-col justify-center items-center lg:text-center md:text-center text-left">
@@ -25,21 +25,23 @@ const HomePage = () => {
                     >
                         <span className="text-orange">Create</span> and enjoy unique <span className="text-orange">stories</span> with just a few clicks.
                     </motion.h2>
+                    
                     <div className="relative p-3 lg:w-2/4 md:w-3/4 flex justify-center items-center">
                         <motion.img src={url + "images/brand.png"} 
                             animate={{ opacity: [0, 1] }}
                             transition={{ ease: "easeOut", duration: 0.5, delay: 0.4 }}
                         />
-                        <img src={url + "images/dots.png"}  alt="dots"  className="absolute bottom-0 left-0"/>
+                        
                     </div>
                     <motion.p className="text-red p-3"
                         animate={{  opacity: [0, 1]}}
                         transition={{ ease: "easeOut", duration: 0.5, delay: 0.6 }} 
                     >LET ADVENTURE BEGIN</motion.p>
-                    <motion.div className="flex justify-center items-center "
+                    <motion.div className="flex justify-center items-center relative"
                         animate={{  opacity: [0, 1]}}
                         transition={{ ease: "easeOut", duration: 0.5, delay: 0.6 }} 
                     >
+                        <img src={url + "images/dots.png"}  alt="dots"  className="absolute top-0 -left-12 opacity-50"/>
                         <button onClick={handleStart} className="w-80 rounded-lg bg-red text-light shadow-md flex items-center justify-center transition-all duration-300 p-3 group hover:bg-dark-red">
                             <div className="inline-flex overflow-hidden ">
                                 <svg className="absolute left-2/4 -translate-x-2/4 w-6 h-6 -translate-y-10 transform transition-all duration-300 origin-left group-hover:translate-y-0 delay-100 group-focus:translate-y-0 delay-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
