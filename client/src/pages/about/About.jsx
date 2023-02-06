@@ -10,6 +10,9 @@ function About() {
             transition={{duration: 1}}
             >
             <NavBar contact={false}/>
+            <motion.h1 className={`font-seasons rotate absolute top-1/2 -translate-y-[78%] left-1/2 -translate-x-[50%] text-red opacity-10 lg:text-[250px] md:text-[150px] text-9xl`}
+                animate={{opacity: [0, 0.1]}}
+            >ABOUT</motion.h1>
             <div className='flex justify-center items-center w-screen h-screen bg-light z-100'>
                 <div className=''>
                     <h1 className='font-seasons text-orange tracking-widest text-5xl'>ABOUT US</h1>

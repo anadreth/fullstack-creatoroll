@@ -55,6 +55,9 @@ function Contact() {
   return (
     <div className='bg-red text-light w-full h-auto'>
       <NavBar contact={true} />
+      <motion.h1 className={`${screen.width < 1600 ? "hidden" : ""} font-seasons rotate-90 absolute top-80 -right-24 text-light opacity-10 text-[250px]`}
+        animate={{opacity: [0, 0.1]}}
+      >CONTACT</motion.h1>
       {!submitted && !loading ?
         <div className='flex justify-center items-center'>
         <Formik 
