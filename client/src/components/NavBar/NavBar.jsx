@@ -66,9 +66,9 @@ const NavBar = ({contact}) => {
             {show &&
              <motion.div
              className={`fixed rounded-lg flex justify-end items-start text-lg w-full h-screen p-3 mt-3 ${contact ? "bg-light text-red" : "bg-red text-light"}`}
-                initial={{x: 500}}
+                initial={{x: window.screen > 1000 ? 1000 : 500}}
                 animate={{x: 0}}
-                exit={{x: 500}}
+                exit={{x: window.screen > 1000 ? 1000 : 500}}
                 transition={{duration: 0.3, ease: "easeInOut"}}
              >
                      <div className="w-full">
