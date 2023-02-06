@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect} from "react"
 import { useSelector } from "react-redux";
 
 import { 
@@ -6,19 +6,19 @@ import {
   Navigate, 
   Route, 
   Routes } from 'react-router-dom';
+  
 import ScrollToTop from "./functions/ScrollToTop";
 
 import { 
   HomePage,
   About, 
   Contact, 
-  CreateAdventure, 
-  CreateCharacter, 
   CreateInBetween, 
-  LoginPage, 
-  UserDashboard 
+  LoginPage,
+  UserDashboard,
+  CreateCharacter,
+  CreateAdventure,
 } from './pages/index'
-
 
 
 function App() {
@@ -44,11 +44,11 @@ if (isLoading) {
 }
 
   return (
+    
     <div className="App h-screen overflow-scroll scrollbar-rounded-lg scrollbar-thin scrollbar-corner-red scrollbar-track-light scrollbar-thumb-red scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <BrowserRouter>
           <ScrollToTop />
           <Routes>
-          
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/about" element={<About />} />
@@ -58,7 +58,6 @@ if (isLoading) {
             <Route path="/create-character" element={isAuth ? <CreateCharacter /> : <Navigate to ="/login" />} />
             <Route path="/create-adventure" element={isAuth ? <CreateAdventure /> : <Navigate to ="/login" />} />
             <Route path="/create-in-between" element={isAuth ? <CreateInBetween /> : <Navigate to ="/login" />} />
-          
           </Routes>
       </BrowserRouter>
     </div>

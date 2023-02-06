@@ -5,14 +5,12 @@ import User from '../models/User.js'
 /* REGISTER USER */
 export const register = async (req, res) => {
     try {
-        //this must be send from FE
         
         const {
             userName,
             email,
             password,
         } = req.body;
-        //encryp -> save -> LOGIN -> user provides password -> salting again -> correct? -> give JWT
 
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
