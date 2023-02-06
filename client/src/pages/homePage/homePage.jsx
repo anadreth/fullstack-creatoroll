@@ -16,7 +16,7 @@ const HomePage = () => {
             <NavBar contact={false} />
             
             <motion.div className="grid place-items-center h-screen z-50"  >
-                <img src={url + "/images/dots.png"} alt="dots"  className="absolute"/>
+                
                 <div className="h-screen w-full flex flex-col justify-center items-center lg:text-center md:text-center text-left">
                     <div className="mt-[73.1px]"></div>
                     <motion.h2 className="text-5xl text-red font-seasons p-3 w-80 lg:w-full md:w-full" 
@@ -25,11 +25,12 @@ const HomePage = () => {
                     >
                         <span className="text-orange">Create</span> and enjoy unique <span className="text-orange">stories</span> with just a few clicks.
                     </motion.h2>
-                    <div className="p-3 lg:w-2/4 md:w-3/4 flex justify-center items-center">
+                    <div className="relative p-3 lg:w-2/4 md:w-3/4 flex justify-center items-center">
                         <motion.img src={url + "images/brand.png"} 
                             animate={{ opacity: [0, 1] }}
                             transition={{ ease: "easeOut", duration: 0.5, delay: 0.4 }}
                         />
+                        <img src={url + "images/dots.png"}  alt="dots"  className="absolute bottom-0 left-0"/>
                     </div>
                     <motion.p className="text-red p-3"
                         animate={{  opacity: [0, 1]}}
