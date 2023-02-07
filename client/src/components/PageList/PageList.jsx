@@ -8,6 +8,7 @@ import {motion, AnimatePresence, LayoutGroup} from 'framer-motion'
 
 const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) => {
     const pageCount = useSelector((state) => state.pageCount);
+    const token = useSelector((state) => state.token);
     const [all, setAll] = useState([]);
     const [searchBar, setSearchBar] = useState("");
     const [showSearch, setShowSearch] = useState(false);
@@ -40,6 +41,7 @@ const PageList = ({type, getUrl, saveUrl, updateValue, title, iconList, error}) 
         try {
             const allResponse = await fetch(url + getUrl, {
                 method: "GET",
+                headers: {Authorization: `Bearer ${token}`}
             })
 
             if (!allResponse.ok) {

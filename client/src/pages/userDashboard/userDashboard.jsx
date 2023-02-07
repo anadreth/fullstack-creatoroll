@@ -11,12 +11,13 @@ import CharChart from "./CharChart/CharChart";
 import PopUp from "./CharChart/PopUp";
 import BackgroundPop from "./CharChart/BackgroundPop"
 
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 
 
 const UserDashboard = () => {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.user);
+    const token = useSelector((state) => state.token);
     const [racePop, setRacePop] = useState(false);
     const [classPop, setClassPop] = useState(false);
     const [traitPop, setTraitPop] = useState(false);
@@ -61,7 +62,7 @@ const UserDashboard = () => {
         try {
             const response = await fetch("https://creato-roll-server.onrender.com/character/get", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }, 
                 body: JSON.stringify({
                     id: currentUser._id,
                 }),
@@ -86,7 +87,7 @@ const UserDashboard = () => {
         try {
             const response = await fetch("https://creato-roll-server.onrender.com/character/delete", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                 body: JSON.stringify({
                     id: currentUser._id,
                     charId: selected,

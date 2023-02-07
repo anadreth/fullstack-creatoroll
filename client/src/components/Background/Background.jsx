@@ -6,6 +6,7 @@ import {motion} from 'framer-motion'
 const Background = ({setGenerated, generated}) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const token = useSelector((state) => state.token);
     const currentName = useSelector((state) => state.charName);
     const currentRace = useSelector((state) => state.race);
     const currentClass = useSelector((state) => state.charClass);
@@ -21,7 +22,7 @@ const Background = ({setGenerated, generated}) => {
         try {
             const responseBackground = await fetch('https://creato-roll-server.onrender.com/background/get', {
                 method:'POST',
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                 body: JSON.stringify({
                     name: currentName,
                     charClass: currentClass.title,

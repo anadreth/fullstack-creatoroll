@@ -7,6 +7,7 @@ import { useState } from 'react';
 const Form = ({setError, error}) => {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.user);
+    const token = useSelector((state) => state.token);
     const unique_id = uuid();
     const [saving, setSaving] = useState(false);
     const [serverError, setServerError] = useState(null);
@@ -29,7 +30,7 @@ const Form = ({setError, error}) => {
         try {
             const savedResponse = await fetch("https://creato-roll-server.onrender.com/character/save", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                 body: JSON.stringify({
                     id: currentUser._id,
                     charId: unique_id,
