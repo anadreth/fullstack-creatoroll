@@ -110,6 +110,8 @@ const Form = () => {
         }
       );
 
+      
+      onSubmitProps.resetForm();  
       const savedUser = await savedUserResponse.json();
 
       if (!savedUserResponse.ok) {
@@ -185,6 +187,7 @@ const Form = () => {
                       onBlur={handleBlur}
                       value={values.userName}
                     />
+
                     {errors.userName && touched.userName && (
                       <motion.div className="pb-3 transition-all duration-300">
                         <Error message={errors.userName} />
