@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
 import * as yup from "yup";
 import { motion } from "framer-motion";
 
@@ -51,7 +51,6 @@ const Form = () => {
   const [duplicate, setDuplicate] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const token = useSelector((state) => state.token);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -89,7 +88,6 @@ const Form = () => {
             token: loggedIn.token,
           })
         );
-        console.log(token);
         navigate("/dashboard/" + loggedIn.user._id);
         setLoading(false);
       }
@@ -110,14 +108,13 @@ const Form = () => {
         }
       );
 
-      
       onSubmitProps.resetForm();  
+      
       const savedUser = await savedUserResponse.json();
 
       if (!savedUserResponse.ok) {
         onSubmitProps.resetForm();
         if (savedUser.error.slice(0, 6) === "E11000") {
-          console.log("duplicate");
           setDuplicate(true);
           setLoading(false);
           return;
@@ -128,7 +125,6 @@ const Form = () => {
       }
 
       if (savedUser) {
-        console.log("saved");
         setError(null);
         setDuplicate(false);
         setLoading(false);
@@ -185,7 +181,7 @@ const Form = () => {
                       placeholder="username"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.userName}
+                      value={values.userName ? values.userName : ""}
                     />
 
                     {errors.userName && touched.userName && (
@@ -288,7 +284,6 @@ const Form = () => {
                   transition={{ duration: 0.4, delay: 0.4 }}
                   className="p-3 w-80 transition-all duration-150 md:w-96 rounded-lg mb-3 bg-red text-light shadow-md hover:bg-dark-red"
                   type="submit"
-                  onClick={() => console.log("clicked")}
                   disabled={loading ? true : false}
                 >
                   {loading && exist ? (
