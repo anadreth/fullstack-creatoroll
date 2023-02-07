@@ -7,16 +7,30 @@ import * as yup from "yup";
 import { motion } from "framer-motion";
 
 import { setLogin } from "../../state";
-import { Loading } from "./../../components/index";
+import { Loading, Error } from "./../../components/index";
 
 const registerSchema = yup.object().shape({
   userName: yup.string().required("Username is required."),
-  email: yup.string().email("Invalid email.").required("Email is required."),
+  email: yup
+    .string()
+    .email("Invalid email.")
+    .required("Email is required.")
+    .matches(
+      /^[a-z0-9.]+@[a-z0-9.]+\.[a-z]{2,4}$/,
+      "Email can contain only letters (a-z), numbers (0-9) and dots(.)."
+    ),
   password: yup.string().required("Password is required."),
 });
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email("Invalid email.").required("Email is required."),
+  email: yup
+    .string()
+    .email("Invalid email.")
+    .required("Email is required.")
+    .matches(
+      /^[a-z0-9.]+@[a-z0-9.]+\.[a-z]{2,4}$/,
+      "Email can contain only letters (a-z), numbers (0-9) and dots(.)."
+    ),
   password: yup.string().required("Password is required."),
 });
 
@@ -86,14 +100,6 @@ const Form = () => {
   };
 
   const register = async (values, onSubmitProps) => {
-    if (!/^[a-z0-9.]+@[a-z0-9.]+\.[a-z]{2,4}$/.test(values.email)) {
-      console.log("type");
-      setError("Only letter (a-z), numbers (0-9) and dots(.) are allowed.");
-      setLoading(false);
-      onSubmitProps.resetForm();
-      return;
-    }
-
     try {
       const savedUserResponse = await fetch(
         "https://creato-roll-server.onrender.com/auth/register",
@@ -179,11 +185,11 @@ const Form = () => {
                       onBlur={handleBlur}
                       value={values.userName}
                     />
-                    {errors.userName && touched.userName ? (
+                    {errors.userName && touched.userName && (
                       <motion.div className="pb-3 transition-all duration-300">
-                        {errors.userName}
+                        <Error message={errors.userName} />
                       </motion.div>
-                    ) : null}
+                    )}
 
                     <motion.input
                       animate={{ opacity: [0, 1] }}
@@ -196,11 +202,12 @@ const Form = () => {
                       onBlur={handleBlur}
                       value={values.email}
                     />
-                    {errors.email && touched.email ? (
+
+                    {errors.email && touched.email && (
                       <motion.div className="pb-3 transition-all duration-300">
-                        {errors.email}
+                        <Error message={errors.email} />
                       </motion.div>
-                    ) : null}
+                    )}
 
                     <motion.input
                       animate={{ opacity: [0, 1] }}
@@ -213,11 +220,11 @@ const Form = () => {
                       onBlur={handleBlur}
                       value={values.password}
                     />
-                    {errors.password && touched.password ? (
+                    {errors.password && touched.password && (
                       <motion.div className="pt-3 transition-all duration-300">
-                        {errors.password}
+                        <Error message={errors.password} />
                       </motion.div>
-                    ) : null}
+                    )}
                   </div>
                 )}
                 {isLogin && (
@@ -240,11 +247,11 @@ const Form = () => {
                       onBlur={handleBlur}
                       value={values.email}
                     />
-                    {errors.email && touched.email ? (
+                    {errors.email && touched.email && (
                       <motion.div className="pb-3 transition-all duration-300">
-                        {errors.email}
+                        <Error message={errors.email} />
                       </motion.div>
-                    ) : null}
+                    )}
 
                     <motion.input
                       animate={{ opacity: [0, 1] }}
@@ -257,11 +264,11 @@ const Form = () => {
                       onBlur={handleBlur}
                       value={values.password}
                     />
-                    {errors.password && touched.password ? (
+                    {errors.password && touched.password && (
                       <motion.div className="pt-3 transition-all duration-300">
-                        {errors.password}
+                        <Error message={errors.password} />
                       </motion.div>
-                    ) : null}
+                    )}
                   </div>
                 )}
 
