@@ -53,10 +53,10 @@ This web application consist of:
     </ul>
     
  <div display="flex" justify="space-between" align="center">
-    <img src="https://user-images.githubusercontent.com/118491174/217798870-03579eb6-9b52-456e-8b7f-1690cc576874.png" width="auto" height="400" margin="auto"/>
-    <img src="https://user-images.githubusercontent.com/118491174/217798887-2f6b115f-b247-4799-8575-8423adad60ef.png" width="auto" height="400" margin="auto"/>
-    <img src="https://user-images.githubusercontent.com/118491174/217801763-b30b2f34-dc55-4d55-915b-8ef4da6c0dbd.png" width="auto" height="400" margin="auto"/>
-    <img src="https://user-images.githubusercontent.com/118491174/217801767-8bfa718d-5388-4b0e-90df-c51c83426e08.png" width="auto" height="400" margin="auto"/>
+    <img src="https://user-images.githubusercontent.com/118491174/217798870-03579eb6-9b52-456e-8b7f-1690cc576874.png" width="auto" height="350" margin="auto"/>
+    <img src="https://user-images.githubusercontent.com/118491174/217798887-2f6b115f-b247-4799-8575-8423adad60ef.png" width="auto" height="350" margin="auto"/>
+    <img src="https://user-images.githubusercontent.com/118491174/217801763-b30b2f34-dc55-4d55-915b-8ef4da6c0dbd.png" width="auto" height="350" margin="auto"/>
+    <img src="https://user-images.githubusercontent.com/118491174/217801767-8bfa718d-5388-4b0e-90df-c51c83426e08.png" width="auto" height="350" margin="auto"/>
  </div>
 
 5. Adventure Creator (currently in development)
