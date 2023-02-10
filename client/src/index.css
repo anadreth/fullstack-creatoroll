@@ -4,11 +4,10 @@ html,
 body,
 #root,
 .app {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 @tailwind base;
@@ -17,6 +16,6 @@ body,
 
 /* Interesting import of fonts without link */
 @font-face {
-    font-family: 'Seasons';
-    src: url('./fonts/Fontspring-DEMO-theseasons-reg.otf');
+  font-family: "Seasons";
+  src: url("./fonts/Fontspring-DEMO-theseasons-reg.otf");
 }

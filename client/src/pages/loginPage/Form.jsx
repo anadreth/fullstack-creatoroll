@@ -108,8 +108,8 @@ const Form = () => {
         }
       );
 
-      onSubmitProps.resetForm();  
-      
+      onSubmitProps.resetForm();
+
       const savedUser = await savedUserResponse.json();
 
       if (!savedUserResponse.ok) {
